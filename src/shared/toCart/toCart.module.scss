@@ -1,0 +1,64 @@
+$toCartBgColor: #d3d5da;
+
+.toCart {
+    display: flex;
+}
+
+.button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+} 
+
+.cartButton {
+    width: 40px;
+    height: 40px;
+}
+
+.cartIcon {
+    background-image: url('../../assets/icons/cart.svg');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.plusButton, .minusButton {
+    width: 20px;
+    height: 20px;
+}
+
+.plusIcon {
+    background-image: url('../../assets/icons//plus.svg');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.minusIcon {
+    background-image: url('../../assets/icons/minus.svg');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.cartInput {
+    display: flex;
+    background-color: $toCartBgColor;
+    height: 40px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    column-gap: 4px;
+}
+
+.counterInput {
+    border: none;
+    text-align: center;
+    background: transparent;
+    width: 30px;
+}

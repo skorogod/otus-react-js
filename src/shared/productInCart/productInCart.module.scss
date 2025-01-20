@@ -1,0 +1,73 @@
+.productInCart {
+    display: flex;
+    gap: 1rem;
+    border-radius: 10px;
+    border: 1px solid black;
+    width: 300px;
+    padding: 6px;
+    justify-content: space-between;
+}
+
+.main {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.imageContainer {
+    width: 80px;
+    height: 80px;
+    
+
+    .image {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+}
+
+.info {
+    display: flex;
+    flex-flow: column;
+    gap: 0.5rem;
+
+    .title {
+        font-weight: 600;
+        font-size: 1rem;
+    }
+}
+
+.infoGrid {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 0.5rem;
+    align-items: center;
+
+    
+
+    .costLabel::before {
+        content: 'Цена:';
+    }
+}
+
+.deleteContainer {
+    width: 20px;
+    align-self: center;
+
+    .deleteButton {
+        padding: 0;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .deleteIcon {
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.counter {
+    font-weight: 600;
+    align-self: center;
+}

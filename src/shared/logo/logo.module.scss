@@ -1,0 +1,18 @@
+.logo {
+    object-fit: cover;
+    width: 100%;
+}
+
+.logoContainer {
+    &.small {
+        width: 30px;
+    }
+    
+    &.medium {
+        width: 40px;
+    }
+    
+    &.large {
+        width: 50px;
+    }
+}
