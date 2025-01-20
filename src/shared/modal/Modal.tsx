@@ -3,7 +3,7 @@ import modalCss from './modal.module.scss';
 
 type ModalProps = {
   visible: boolean;
-  children: ReactElement;
+  children: ReactElement | string;
   onCloseClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 

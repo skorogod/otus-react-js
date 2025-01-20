@@ -4,6 +4,11 @@
     left: 0;
     right: 0;
     padding: 1rem;
+
+    &.dark {
+        background-color: rgb(34, 28, 79);
+        color: whitesmoke;
+    }
 }
 
 .content {
