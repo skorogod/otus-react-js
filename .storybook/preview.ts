@@ -1,7 +1,5 @@
-import React from "react";
-import type { Preview, StoryObj } from "@storybook/react";
-import {ThemeProvider} from '../src/features/themeProvider/ThemeProvider'
-import { DecoratorFn } from "@storybook/react";
+import type { Preview } from "@storybook/react";
+import i18n from '../src/i18n';
 
 
 const preview: Preview = {

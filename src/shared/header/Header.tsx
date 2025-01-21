@@ -6,6 +6,8 @@ import { Button } from '../button/Button';
 import headerCss from './header.module.scss';
 import { ThemeToggler } from '../themeToggler/ThemeToggler';
 import { useTheme } from '../../hooks/useTheme';
+import { useLang } from '../../hooks/useLang';
+import { LanguageSwitcher } from '../languageSwitcher/laguageSwitcher';
 
 type HeaderProps = {
   user?: User;
@@ -16,28 +18,30 @@ type HeaderProps = {
 };
 
 export const Header: FC<HeaderProps> = ({ user, backgroundColor, onLogin, onLogout, onCreateAccount }) => {
-  const {theme, toggleTheme} = useTheme()
+  const themeContext = useTheme()
+  const languageContext = useLang()
 
   return (
     <header 
       style={{ backgroundColor: backgroundColor }} 
-      className={`${headerCss.header} ${theme === 'dark' ? headerCss.dark : ''}`}
+      className={`${headerCss.header} ${themeContext.theme === 'dark' ? headerCss.dark : ''}`}
     >
       <div className={headerCss.content}>
         <div className={headerCss.logo}>
           <Logo />
         </div>
         <div style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}>
+          <LanguageSwitcher></LanguageSwitcher>
           <ThemeToggler></ThemeToggler>
           <div className={headerCss.userInfo}>
             {user ? (
               <>
-                <Button primary={theme !== 'light'}  size="small" onClick={onLogout} label="Log out" />
+                <Button primary={themeContext.theme !== 'light'}  size="small" onClick={onLogout} label={languageContext.t('logoutLabel')} />
               </>
             ) : (
               <>
-                <Button size="small" onClick={onLogin} label="Log in" />
-                <Button primary size="small" onClick={onCreateAccount} label="Sign up" />
+                <Button primary={themeContext.theme !== 'light'} size="small" onClick={onLogin} label={languageContext.t('loginLabel')} />
+                <Button primary={themeContext.theme !== 'light'} size="small" onClick={onCreateAccount} label={languageContext.t(`signUpLabel`)}/>
               </>
             )}
           </div>
