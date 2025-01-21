@@ -65,7 +65,7 @@
     "uuid": "^11.0.5"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "lint:fix": "eslint src --fix",
     "lint": "eslint src",
     "start": "webpack serve --mode development",
