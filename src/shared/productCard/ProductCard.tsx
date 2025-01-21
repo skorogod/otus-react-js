@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import productCardCss from './productCard.module.scss';
-import { ToCart } from '../toCart/ToCart';
-import type { ProductCardProps } from '../../interfaces/product.interface';
+import React, { FC } from "react";
+import productCardCss from "./productCard.module.scss";
+import { ToCart } from "../toCart/ToCart";
+import type { ProductCardProps } from "../../interfaces/product.interface";
 
 export const ProductCard: FC<ProductCardProps> = ({
   color,
@@ -13,13 +13,20 @@ export const ProductCard: FC<ProductCardProps> = ({
   count,
 }) => {
   return (
-    <article className={productCardCss.productCard} style={{ backgroundColor: backgroundColor, color: color }}>
+    <article
+      className={productCardCss.productCard}
+      style={{ backgroundColor: backgroundColor, color: color }}
+    >
       <header className={productCardCss.header}>
         <p className={`title ${productCardCss.title}`}>{title}</p>
       </header>
       <main className={productCardCss.main}>
         <div className={productCardCss.imageContainer}>
-          <img className={productCardCss.image} src={image} alt="product-image" />
+          <img
+            className={productCardCss.image}
+            src={image}
+            alt="product-image"
+          />
         </div>
         <p className={productCardCss.description}>{description}</p>
         <div className={productCardCss.info}>

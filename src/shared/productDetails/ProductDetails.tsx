@@ -1,7 +1,7 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
-import type { Product } from '../../interfaces/product.interface';
-import productDetailsCss from './productDetails.module.scss';
-import { ToCart } from '../toCart/ToCart';
+import React, { FC, useEffect, useRef, useState } from "react";
+import type { Product } from "../../interfaces/product.interface";
+import productDetailsCss from "./productDetails.module.scss";
+import { ToCart } from "../toCart/ToCart";
 
 type Props = Product & {
   inStock: number;
@@ -26,7 +26,9 @@ export const ProductDetails: FC<Props> = ({
 
   useEffect(() => {
     if (ref.current) {
-      setDescriptionOverflow(ref.current.scrollHeight > ref.current.clientHeight);
+      setDescriptionOverflow(
+        ref.current.scrollHeight > ref.current.clientHeight
+      );
     }
   });
 
@@ -35,14 +37,21 @@ export const ProductDetails: FC<Props> = ({
       <div className={productDetailsCss.productCard}>
         <div className={productDetailsCss.images}>
           <picture className={productDetailsCss.mainImageContainer}>
-            <img className={productDetailsCss.mainImage} src={images[0]} alt="" />
+            <img
+              className={productDetailsCss.mainImage}
+              src={images[0]}
+              alt=""
+            />
           </picture>
         </div>
         <div className={productDetailsCss.info}>
           <h1 className={productDetailsCss.title}>{title}</h1>
           <div className={productDetailsCss.categoryContainer}>
-            <label className={productDetailsCss.categoryLabel} htmlFor="category"></label>
-            <p id="category">{category ? category.name : 'нет данных'}</p>
+            <label
+              className={productDetailsCss.categoryLabel}
+              htmlFor="category"
+            ></label>
+            <p id="category">{category ? category.name : "нет данных"}</p>
           </div>
           <div className={productDetailsCss.inStock}>
             <span>{inStock} шт.</span>
@@ -54,7 +63,9 @@ export const ProductDetails: FC<Props> = ({
             <p className={productDetailsCss.costFull} id="cost">
               {costFull}
             </p>
-            {costDiscount && <p className={productDetailsCss.costDiscount}>{costDiscount}</p>}
+            {costDiscount && (
+              <p className={productDetailsCss.costDiscount}>{costDiscount}</p>
+            )}
           </div>
           <div className={productDetailsCss.purchaiseButtons}>
             <div className={productDetailsCss.buy}>
@@ -74,18 +85,20 @@ export const ProductDetails: FC<Props> = ({
           <p
             id="description"
             ref={ref}
-            className={`${productDetailsCss.description} ${showFullDescription ? productDetailsCss.full : ''}`}
+            className={`${productDetailsCss.description} ${
+              showFullDescription ? productDetailsCss.full : ""
+            }`}
           >
             {description}
           </p>
           {descriptionOverflow || showFullDescription ? (
             <div className={productDetailsCss.moreToggle}>
               <a href="#" onClick={onToggleFullDescription} role="button">
-                {!showFullDescription ? 'ещё' : 'свернуть'}
+                {!showFullDescription ? "ещё" : "свернуть"}
               </a>
             </div>
           ) : (
-            ''
+            ""
           )}
         </div>
       </div>
