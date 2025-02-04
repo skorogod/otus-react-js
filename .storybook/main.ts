@@ -11,7 +11,8 @@ const config: StorybookConfig = {
     "@chromatic-com/storybook",
     "@storybook/preset-scss",
     "@storybook/addon-interactions",
-    "@storybook/addon-mdx-gfm"
+    "@storybook/addon-mdx-gfm",
+    "@storybook-react-i18next"
   ],
   framework: {
     name: "@storybook/react-webpack5",

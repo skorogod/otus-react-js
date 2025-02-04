@@ -1,5 +1,5 @@
-import React from 'react';
-import s from './button.module.sass';
+import React from "react";
+import s from "./button.module.sass";
 
 interface ButtonProps {
   /**
@@ -13,7 +13,7 @@ interface ButtonProps {
   /**
    * How large should the button be?
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: "small" | "medium" | "large";
   /**
    * Button contents
    */
@@ -27,10 +27,21 @@ interface ButtonProps {
 /**
  * Primary UI component for user interaction
  */
-export function Button({ primary = false, size = 'medium', backgroundColor, label, ...props }: ButtonProps) {
+export function Button({
+  primary = false,
+  size = "medium",
+  backgroundColor,
+  label,
+  ...props
+}: ButtonProps) {
   const mode = primary ? s.primary : s.secondary;
   return (
-    <button type="button" className={[s.button, s[size], mode].join(' ')} style={{ backgroundColor }} {...props}>
+    <button
+      type="button"
+      className={[s.button, s[size], mode].join(" ")}
+      style={{ backgroundColor }}
+      {...props}
+    >
       {label}
     </button>
   );

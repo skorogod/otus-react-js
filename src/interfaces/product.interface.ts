@@ -1,4 +1,4 @@
-import { Category } from './category.interface';
+import { Category } from "./category.interface";
 
 export type Product = {
   title: string;
@@ -9,7 +9,7 @@ export type Product = {
   category?: Category;
 };
 
-export type ProductCardProps = Omit<Product, 'images'> & {
+export type ProductCardProps = Omit<Product, "images"> & {
   count: number;
   backgroundColor?: string;
   color?: string;
