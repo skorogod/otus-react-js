@@ -6,7 +6,5 @@ type Props = {
 };
 
 export const Portal: FC<Props> = ({ children }) => {
-  return createPortal(
-    children, document.body
-  )
+  return createPortal(children, document.body);
 };
