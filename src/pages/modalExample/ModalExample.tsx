@@ -16,7 +16,7 @@ export const ModalExample = () => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button onClick={(e) => setModalVisible(!modalVisible)}>
+        <button onClick={() => setModalVisible(!modalVisible)}>
           show Modal
         </button>
       </div>

@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { Product } from "../../interfaces/product.interface";
+import { TProduct } from "../../interfaces/product.interface";
 import producInCartCss from "./productInCart.module.scss";
 
 import delteIcon from "../../assets/icons/delete.svg";
 
-type ProductInCartProps = Product & { counter: number };
+type ProductInCartProps = TProduct & { counter: number };
 
 export const ProductInCart: FC<ProductInCartProps> = (props) => {
   return (

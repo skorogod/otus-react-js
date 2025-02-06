@@ -21,7 +21,7 @@ export const ToCart: FC<toCartProps> = ({ counter = 0 }) => {
             <i className={toCartCss.minusIcon}></i>
           </button>
           <input
-            value={counter}
+            defaultValue={counter}
             className={toCartCss.counterInput}
             type="text"
           />

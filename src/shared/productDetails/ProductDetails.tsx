@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import type { Product } from "../../interfaces/product.interface";
+import type { TProduct } from "../../interfaces/product.interface";
 import productDetailsCss from "./productDetails.module.scss";
 import { ToCart } from "../toCart/ToCart";
 
-type Props = Product & {
+type Props = TProduct & {
   inStock: number;
 };
 
