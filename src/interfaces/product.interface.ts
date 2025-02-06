@@ -1,7 +1,7 @@
 import { Category } from "./category.interface";
 
 export type TProduct = {
-  id: string,
+  id: string;
   title: string;
   costFull: number;
   costDiscount?: number;
@@ -10,7 +10,7 @@ export type TProduct = {
   category?: Category;
 };
 
-export type TProductCardProps = Omit<TProduct, "images" | 'id'> & {
+export type TProductCardProps = Omit<TProduct, "images" | "id"> & {
   count: number;
   backgroundColor?: string;
   color?: string;

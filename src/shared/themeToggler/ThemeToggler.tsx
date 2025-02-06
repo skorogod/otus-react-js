@@ -11,7 +11,7 @@ export const ThemeToggler: FC = () => {
   return (
     <button
       className={themeTogglerScss.button}
-      onClick={(e) => {
+      onClick={() => {
         if (themeContext) {
           themeContext.toggleTheme();
         }

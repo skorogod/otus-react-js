@@ -4,11 +4,8 @@ import { InfiniteScrollExample } from "src/pages/infiniteScrollExample/InfiniteS
 import { InfiniteScroll } from "src/shared/infiniteScroll/Infinitescroll";
 import { ProductsListExample } from "src/pages/page/productListExample/ProductListExample";
 
-
 function App() {
-  return (
-    <ProductsListExample></ProductsListExample>
-  );
+  return <ProductsListExample></ProductsListExample>;
 }
 
 export default App;
