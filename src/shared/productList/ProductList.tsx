@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import type { TProduct } from "src/interfaces/product.interface";
+import type { TProduct } from "../../interfaces/product.interface";
 import productsListScss from './productsList.module.scss'
-import { InfiniteScroll } from "src/shared/infiniteScroll/Infinitescroll";
+import { InfiniteScroll } from "../../shared/infiniteScroll/Infinitescroll";
 import { ProductCard } from "../productCard/ProductCard";
 
 

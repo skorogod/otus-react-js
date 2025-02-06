@@ -1,8 +1,8 @@
 import React from "react";
-import { createRandomProduct } from "src/helpers/createProduct";
+import { createRandomProduct } from "../../../helpers/createProduct";
 import { useEffect, useState } from "react";
-import { TProduct } from "src/interfaces/product.interface";
-import { ProductsList } from "src/shared/productList/ProductList";
+import { TProduct } from "../../../interfaces/product.interface";
+import { ProductsList } from "../../../shared/productList/ProductList";
 
 
 export const ProductsListExample = () => {
