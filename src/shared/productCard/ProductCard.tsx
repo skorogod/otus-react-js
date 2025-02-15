@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import productCardCss from "./productCard.module.scss";
 import { ToCart } from "../toCart/ToCart";
-import type { ProductCardProps } from "../../interfaces/product.interface";
+import type { TProductCardProps } from "../../interfaces/product.interface";
 
-export const ProductCard: FC<ProductCardProps> = ({
+export const ProductCard: FC<TProductCardProps> = ({
   color,
   backgroundColor,
   title,
