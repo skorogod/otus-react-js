@@ -1,11 +1,9 @@
 import React, {
-  ReactNode,
-  FC,
+  type ReactNode,
+  type FC,
   useRef,
   useState,
   useEffect,
-  Children,
-  ReactElement,
 } from "react";
 
 export type TInfiniteScrollProps = {
@@ -32,7 +30,7 @@ export const InfiniteScroll: FC<TInfiniteScrollProps> = ({
     if (isIntersecting && next) {
       next();
     }
-  }, [isIntersecting]);
+  }, [isIntersecting, next]);
 
   useEffect(() => {
     if (ref.current) {
@@ -48,7 +46,7 @@ export const InfiniteScroll: FC<TInfiniteScrollProps> = ({
         return () => observer.unobserve(child);
       }
     }
-  }, [children]);
+  }, [children, observerOptions, once]);
 
   return (
     <div ref={ref} className={`infiniteScroll ${className}`}>
