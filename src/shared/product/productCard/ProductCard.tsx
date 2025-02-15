@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import productCardCss from "./productCard.module.scss";
 import { ToCart } from "../../toCart/ToCart";
 import type { TProductCardProps } from "../../../interfaces/product.interface";
-import productScss from '../product.module.scss'
+import productScss from "../product.module.scss";
 import { BasicCard } from "../../../shared/basicCard/BasicCard";
 
 export const ProductCard: FC<TProductCardProps> = ({
@@ -18,30 +18,28 @@ export const ProductCard: FC<TProductCardProps> = ({
   return (
     <BasicCard
       image={image}
-      header={
-        <p className='title'>{title}</p>
-      }
+      header={<p className="title">{title}</p>}
       main={
         <>
           <p className={productCardCss.description}>{description}</p>
           <div className={productCardCss.info}>
-            <label className={productCardCss.costLabel} htmlFor={`cost-${id}`}></label>
+            <label
+              className={productCardCss.costLabel}
+              htmlFor={`cost-${id}`}
+            ></label>
             <p id={`cost-${id}`}>{costFull}</p>
-            {
-              costDiscount && 
-              <p 
+            {costDiscount && (
+              <p
                 id={`cost-discount-${id}`}
                 className={productScss.costDiscount}
               >
                 {costDiscount}
               </p>
-            }
+            )}
           </div>
         </>
       }
-      footer={
-        <ToCart counter={count}></ToCart>
-      }
+      footer={<ToCart counter={count}></ToCart>}
       {...restProps}
     />
   );

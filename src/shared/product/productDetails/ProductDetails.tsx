@@ -1,9 +1,8 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import type { TProductDetailsProps } from "../../../interfaces/product.interface";
 import productDetailsCss from "./productDetails.module.scss";
-import productScss from '../product.module.scss'
+import productScss from "../product.module.scss";
 import { ToCart } from "../../toCart/ToCart";
-
 
 export const ProductDetails: FC<TProductDetailsProps> = ({
   inStock,

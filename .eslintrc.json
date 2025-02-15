@@ -31,7 +31,7 @@
         "@typescript-eslint/triple-slash-reference": "error",
         "react/jsx-uses-vars": "error",
         "react/jsx-uses-react": "error",
-        "rules": {"prettier/prettier": ["error", { "endOfLine": "auto" }]   }
+        "prettier/prettier": ["error", { "endOfLine": "auto" }] 
 
     },
     "settings": {
