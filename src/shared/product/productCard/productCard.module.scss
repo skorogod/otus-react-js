@@ -43,9 +43,10 @@
     }
 
     .info {
+        padding-top: 1rem;
         display: grid;
         align-items: center;
-        grid-template-columns: repeat(2, max-content);
+        grid-template-columns: repeat(3, max-content);
         row-gap: 0.3rem;
         column-gap: 0.5rem;
         border-top: 1px solid black;

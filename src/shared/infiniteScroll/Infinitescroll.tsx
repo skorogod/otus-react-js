@@ -24,7 +24,7 @@ export const InfiniteScroll: FC<TInfiniteScrollProps> = ({
   observerOptions,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [isIntersecting, setIsIntersectiong] = useState(false);
+  const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
     if (isIntersecting && next) {
@@ -37,7 +37,7 @@ export const InfiniteScroll: FC<TInfiniteScrollProps> = ({
       const child = ref.current.lastElementChild;
       if (child) {
         const observer = new IntersectionObserver(([entry]) => {
-          setIsIntersectiong(entry.isIntersecting);
+          setIsIntersecting(entry.isIntersecting);
           if (once && entry.isIntersecting) {
             observer.unobserve(child);
           }

@@ -1,13 +1,11 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import type { TProduct } from "../../interfaces/product.interface";
+import type { TProductDetailsProps } from "../../../interfaces/product.interface";
 import productDetailsCss from "./productDetails.module.scss";
-import { ToCart } from "../toCart/ToCart";
+import productScss from '../product.module.scss'
+import { ToCart } from "../../toCart/ToCart";
 
-type Props = TProduct & {
-  inStock: number;
-};
 
-export const ProductDetails: FC<Props> = ({
+export const ProductDetails: FC<TProductDetailsProps> = ({
   inStock,
   title,
   costFull,
@@ -59,12 +57,12 @@ export const ProductDetails: FC<Props> = ({
         </div>
 
         <div className={productDetailsCss.purchaise}>
-          <div className={productDetailsCss.cost}>
-            <p className={productDetailsCss.costFull} id="cost">
+          <div className={productScss.cost}>
+            <p className={productScss.costFull} id="cost">
               {costFull}
             </p>
             {costDiscount && (
-              <p className={productDetailsCss.costDiscount}>{costDiscount}</p>
+              <p className={productScss.costDiscount}>{costDiscount}</p>
             )}
           </div>
           <div className={productDetailsCss.purchaiseButtons}>
@@ -86,7 +84,7 @@ export const ProductDetails: FC<Props> = ({
             id="description"
             ref={ref}
             className={`${productDetailsCss.description} ${
-              showFullDescription ? productDetailsCss.full : ""
+              showFullDescription ? productDetailsCss.full : null
             }`}
           >
             {description}
@@ -97,9 +95,7 @@ export const ProductDetails: FC<Props> = ({
                 {!showFullDescription ? "ещё" : "свернуть"}
               </a>
             </div>
-          ) : (
-            ""
-          )}
+          ) : null}
         </div>
       </div>
     </div>

@@ -10,7 +10,11 @@ export type TProduct = {
   category?: Category;
 };
 
-export type TProductCardProps = Omit<TProduct, "images" | "id"> & {
+export type TProductDetailsProps = TProduct & {
+  inStock: boolean
+}
+
+export type TProductCardProps = Omit<TProduct, "images"> & {
   count: number;
   backgroundColor?: string;
   color?: string;

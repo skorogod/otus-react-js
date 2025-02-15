@@ -1,15 +1,18 @@
 import React, { FC } from "react";
 import productCardCss from "./productCard.module.scss";
-import { ToCart } from "../toCart/ToCart";
-import type { TProductCardProps } from "../../interfaces/product.interface";
+import { ToCart } from "../../toCart/ToCart";
+import type { TProductCardProps } from "../../../interfaces/product.interface";
+import productScss from '../product.module.scss'
 
 export const ProductCard: FC<TProductCardProps> = ({
+  id,
   color,
   backgroundColor,
   title,
   image,
   description,
   costFull,
+  costDiscount,
   count,
 }) => {
   return (
@@ -30,8 +33,17 @@ export const ProductCard: FC<TProductCardProps> = ({
         </div>
         <p className={productCardCss.description}>{description}</p>
         <div className={productCardCss.info}>
-          <label className={productCardCss.costLabel} htmlFor="cost"></label>
-          <p id="cost">{costFull}</p>
+          <label className={productCardCss.costLabel} htmlFor={`cost-${id}`}></label>
+          <p id={`cost-${id}`}>{costFull}</p>
+          {
+            costDiscount && 
+            <p 
+              id={`cost-discount-${id}`}
+              className={productScss.costDiscount}
+            >
+              {costDiscount}
+            </p>
+          }
         </div>
       </main>
       <footer className={productCardCss.footer}>
