@@ -1,0 +1,22 @@
+
+
+.description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.info {
+    padding-top: 1rem;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3, max-content);
+    row-gap: 0.3rem;
+    column-gap: 0.5rem;
+    border-top: 1px solid black;
+
+    .costLabel::after {
+        content: 'Цена:';
+    }
+}

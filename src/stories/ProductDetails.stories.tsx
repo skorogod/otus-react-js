@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ProductDetails } from '../shared/productDetails/ProductDetails';
+import { ProductDetails } from '../shared/product/productDetails/ProductDetails';
 
 const meta: Meta<typeof ProductDetails> = {
   title: 'Example/ProductDetails',
