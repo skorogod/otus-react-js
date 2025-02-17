@@ -1,10 +1,4 @@
-import React, {
-  type ReactNode,
-  type FC,
-  useRef,
-  useState,
-  useEffect,
-} from "react";
+import React, { type ReactNode, type FC, useRef, useState, useEffect } from "react";
 
 export type TInfiniteScrollProps = {
   children: ReactNode;
@@ -16,13 +10,7 @@ export type TInfiniteScrollProps = {
   className?: string;
 };
 
-export const InfiniteScroll: FC<TInfiniteScrollProps> = ({
-  children,
-  next,
-  className,
-  once,
-  observerOptions,
-}) => {
+export const InfiniteScroll: FC<TInfiniteScrollProps> = ({ children, next, className, once, observerOptions }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
 

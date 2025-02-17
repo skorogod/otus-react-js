@@ -23,16 +23,10 @@ export const ProductCard: FC<TProductCardProps> = ({
         <>
           <p className={productCardCss.description}>{description}</p>
           <div className={productCardCss.info}>
-            <label
-              className={productCardCss.costLabel}
-              htmlFor={`cost-${id}`}
-            ></label>
+            <label className={productCardCss.costLabel} htmlFor={`cost-${id}`}></label>
             <p id={`cost-${id}`}>{costFull}</p>
             {costDiscount && (
-              <p
-                id={`cost-discount-${id}`}
-                className={productScss.costDiscount}
-              >
+              <p id={`cost-discount-${id}`} className={productScss.costDiscount}>
                 {costDiscount}
               </p>
             )}

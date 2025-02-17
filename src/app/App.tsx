@@ -5,17 +5,10 @@ import { RangeSlider } from "src/features/rangeSlider/RangeSlider";
 
 function App() {
   return (
-
-  <div
-    style={{display: 'flex', justifyContent: 'center'}}
-  >
-    <RangeSlider
-      max={100}
-      min={0}
-      step={1}
-    ></RangeSlider>;
-  </div>
-  ) 
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <RangeSlider max={100} min={0} step={1}></RangeSlider>;
+    </div>
+  );
 }
 
 export default App;

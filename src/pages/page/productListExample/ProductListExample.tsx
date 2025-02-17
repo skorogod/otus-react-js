@@ -10,9 +10,7 @@ export const ProductsListExample = () => {
   const getNextProducts = (count = 10) => {
     const nextProducts: Array<TProduct> = [];
     for (let i = 0; i < count; i++) {
-      nextProducts.push(
-        createRandomProduct(new Date().toLocaleDateString("ru"))
-      );
+      nextProducts.push(createRandomProduct(new Date().toLocaleDateString("ru")));
     }
     setProducts([...products, ...nextProducts]);
   };
