@@ -21,9 +21,5 @@ export const LanguageProvider: FC<LanguageProviderProps> = ({ children }) => {
     i18n.changeLanguage(lang);
   };
 
-  return (
-    <LanguageContext.Provider value={{ t, i18n, toggleLang }}>
-      {children}
-    </LanguageContext.Provider>
-  );
+  return <LanguageContext.Provider value={{ t, i18n, toggleLang }}>{children}</LanguageContext.Provider>;
 };

@@ -17,22 +17,14 @@ type HeaderProps = {
   onCreateAccount: () => void;
 };
 
-export const Header: FC<HeaderProps> = ({
-  user,
-  backgroundColor,
-  onLogin,
-  onLogout,
-  onCreateAccount,
-}) => {
+export const Header: FC<HeaderProps> = ({ user, backgroundColor, onLogin, onLogout, onCreateAccount }) => {
   const themeContext = useTheme();
   const languageContext = useLang();
 
   return (
     <header
       style={{ backgroundColor: backgroundColor }}
-      className={`${headerCss.header} ${
-        themeContext.theme === "dark" ? headerCss.dark : ""
-      }`}
+      className={`${headerCss.header} ${themeContext.theme === "dark" ? headerCss.dark : ""}`}
     >
       <div className={headerCss.content}>
         <div className={headerCss.logo}>

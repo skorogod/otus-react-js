@@ -1,4 +1,8 @@
-.productCard {
+.header {
+    text-align: center;
+}
+
+.card {
     display: flex;
     flex-flow: column;
     border-radius: 10px;
@@ -9,10 +13,6 @@
     gap: 1rem;
     max-width: 300px;
     padding: 1rem;
-
-    .title {
-        text-align: center;
-    }
 }
 
 .main {
@@ -34,28 +34,7 @@
             
         }
     }
-
-    .description {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    .info {
-        display: grid;
-        align-items: center;
-        grid-template-columns: repeat(2, max-content);
-        row-gap: 0.3rem;
-        column-gap: 0.5rem;
-        border-top: 1px solid black;
-
-        .costLabel::after {
-            content: 'Цена:';
-        }
-    }
 }
-
 
 .footer {
     display: flex;
