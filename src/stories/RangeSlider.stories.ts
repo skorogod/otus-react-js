@@ -5,7 +5,7 @@ import { RangeSlider } from "../../src/features/rangeSlider/RangeSlider";
 const meta:Meta<typeof RangeSlider> = {
     title: "Example/RangeSlider",
     component: RangeSlider,
-    tags: ['autofocus'],
+    tags: ['autodocs'],
     parameters: {
         Layout: 'centered'
     }
