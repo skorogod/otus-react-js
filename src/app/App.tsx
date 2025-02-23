@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import { ResizerExample } from "src/pages/resizerExample/ResizerExample";
+import { TransitionModalExample } from "src/pages/transitionModalExample/TransitionModalExample";
 
 function App() {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <ResizerExample initialHeight={200} initialWidth={400} />
+      <TransitionModalExample></TransitionModalExample>
     </div>
   );
 }
