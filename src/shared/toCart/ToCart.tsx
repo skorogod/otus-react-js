@@ -15,19 +15,11 @@ export const ToCart: FC<toCartProps> = ({ counter = 0 }) => {
         </button>
       ) : (
         <div className={toCartCss.cartInput}>
-          <button
-            className={[toCartCss.button, toCartCss.plusButton].join(" ")}
-          >
+          <button className={[toCartCss.button, toCartCss.plusButton].join(" ")}>
             <i className={toCartCss.minusIcon}></i>
           </button>
-          <input
-            defaultValue={counter}
-            className={toCartCss.counterInput}
-            type="text"
-          />
-          <button
-            className={[toCartCss.button, toCartCss.plusButton].join(" ")}
-          >
+          <input defaultValue={counter} className={toCartCss.counterInput} type="text" />
+          <button className={[toCartCss.button, toCartCss.plusButton].join(" ")}>
             <i className={toCartCss.plusIcon}></i>
           </button>
         </div>

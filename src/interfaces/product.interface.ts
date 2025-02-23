@@ -12,7 +12,7 @@ export type TProduct = {
 };
 
 export type TProductDetailsProps = TProduct & {
-  inStock: boolean;
+  inStock: number;
 };
 
 export type TProductCardProps = Omit<TProduct, "images"> &

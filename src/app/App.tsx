@@ -1,9 +1,13 @@
 import React from "react";
 import "./App.css";
-import { ProductsListExample } from "src/pages/page/productListExample/ProductListExample";
+import { ResizerExample } from "src/pages/resizerExample/ResizerExample";
 
 function App() {
-  return <ProductsListExample />;
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <ResizerExample initialHeight={200} initialWidth={400} />
+    </div>
+  );
 }
 
 export default App;

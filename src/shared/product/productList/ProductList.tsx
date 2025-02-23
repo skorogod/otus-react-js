@@ -9,10 +9,7 @@ type TProductsListProps = {
   getNextProducts: () => void;
 };
 
-export const ProductList: FC<TProductsListProps> = ({
-  products,
-  getNextProducts,
-}) => {
+export const ProductList: FC<TProductsListProps> = ({ products, getNextProducts }) => {
   return (
     <InfiniteScroll
       next={getNextProducts}
