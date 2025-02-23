@@ -1,3 +1,4 @@
+import { TBasicCardProps } from "src/shared/basicCard/basicCard.interface";
 import { Category } from "./category.interface";
 
 export type TProduct = {
@@ -10,9 +11,11 @@ export type TProduct = {
   category?: Category;
 };
 
-export type TProductCardProps = Omit<TProduct, "images" | "id"> & {
-  count: number;
-  backgroundColor?: string;
-  color?: string;
-  image: string;
+export type TProductDetailsProps = TProduct & {
+  inStock: boolean;
 };
+
+export type TProductCardProps = Omit<TProduct, "images"> &
+  Omit<TBasicCardProps, "header" | "main" | "footer"> & {
+    count: number;
+  };
