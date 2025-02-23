@@ -1,0 +1,51 @@
+$modal-overlay-bg: rgba(51, 62, 96, 0.54);
+$modal-bg: rgb(223, 226, 233);
+$modal-border: 1px solid rgb(0, 0, 0);
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $modal-overlay-bg;
+};
+
+.visible {
+    display: block;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: flex-end;
+};
+
+.modal {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 300px;
+    margin: 0 auto;
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+    background-color: $modal-bg;
+    border: $modal-border;
+};
+
+.closeButton {
+    display: inline-block;
+    padding: 0;
+    border: none;
+    background: transparent
+};
+
+.closeIcon {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-image: url('../../assets//icons/close.svg');
+    background-size: cover;
+    cursor: pointer
+};

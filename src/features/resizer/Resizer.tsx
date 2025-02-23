@@ -24,7 +24,7 @@ export const Resizer: FC<TResizerProps> = ({ children, initialHeight, initialWid
       });
       observer.observe(rootRef.current);
     }
-  }, [rootRef.current]);
+  }, []);
 
   const MIN_SIZE = 32;
 
