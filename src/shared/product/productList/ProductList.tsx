@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import type { TProduct } from "../../interfaces/product.interface";
+import type { TProduct } from "../../../interfaces/product.interface";
 import productsListScss from "./productsList.module.scss";
-import { InfiniteScroll } from "../../shared/infiniteScroll/Infinitescroll";
+import { InfiniteScroll } from "../../infiniteScroll/Infinitescroll";
 import { ProductCard } from "../productCard/ProductCard";
 
 type TProductsListProps = {
@@ -9,10 +9,7 @@ type TProductsListProps = {
   getNextProducts: () => void;
 };
 
-export const ProductsList: FC<TProductsListProps> = ({
-  products,
-  getNextProducts,
-}) => {
+export const ProductList: FC<TProductsListProps> = ({ products, getNextProducts }) => {
   return (
     <InfiniteScroll
       next={getNextProducts}
@@ -24,6 +21,7 @@ export const ProductsList: FC<TProductsListProps> = ({
     >
       {products.map((product) => (
         <ProductCard
+          id={product.id}
           key={product.id}
           title={product.title}
           costFull={product.costFull}

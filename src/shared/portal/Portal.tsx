@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import { createPortal } from "react-dom";
 
 type Props = {
@@ -6,7 +6,5 @@ type Props = {
 };
 
 export const Portal: FC<Props> = ({ children }) => {
-  return createPortal(
-    children, document.body
-  );
+  return createPortal(children, document.body);
 };

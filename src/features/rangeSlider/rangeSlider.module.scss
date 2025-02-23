@@ -1,0 +1,49 @@
+.rangeSlider {
+    display: flex;
+    flex-flow: column;
+    width: 200px;
+    margin-top: 200px;
+}
+
+.inputGroup {
+    display: flex;
+}
+
+.slider {
+    height: 5px;
+    position: relative;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+.slider .track {
+    height: 100%;
+    position: absolute;
+    border-radius: 5px;
+    background: #17a2b8;
+}
+
+.rangeInputContainer {
+    position: relative;
+}
+
+
+.values {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftValue, .rightValue {
+    top: 15px;
+}  
+
+.leftValue {
+    position: absolute;
+    left:  5px;
+}
+
+.rightValue {
+    position: absolute;
+    right: -5px;
+}

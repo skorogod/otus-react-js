@@ -11,11 +11,7 @@ export const ProductInCart: FC<ProductInCartProps> = (props) => {
     <article className={producInCartCss.productInCart}>
       <div className={producInCartCss.main}>
         <div className={producInCartCss.imageContainer}>
-          <img
-            className={producInCartCss.image}
-            src={props.images[0]}
-            alt="product-image"
-          />
+          <img className={producInCartCss.image} src={props.images[0]} alt="product-image" />
         </div>
         <div className={producInCartCss.info}>
           <p className={`title ${producInCartCss.title}`}>{props.title}</p>
@@ -27,16 +23,10 @@ export const ProductInCart: FC<ProductInCartProps> = (props) => {
           </div>
         </div>
       </div>
-      {props.counter > 1 && (
-        <p className={producInCartCss.counter}>({props.counter})</p>
-      )}
+      {props.counter > 1 && <p className={producInCartCss.counter}>({props.counter})</p>}
       <div className={producInCartCss.deleteContainer}>
         <button className={producInCartCss.deleteButton}>
-          <img
-            className={producInCartCss.deleteIcon}
-            src={delteIcon}
-            alt="delete-icon"
-          />
+          <img className={producInCartCss.deleteIcon} src={delteIcon} alt="delete-icon" />
         </button>
       </div>
     </article>

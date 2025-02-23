@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { ProductCard } from '../shared/productCard/ProductCard';
+import { ProductCard } from '../shared/product/productCard/ProductCard';
 import telegramAccountsImage from '../assets/telegram-accounts.jpg';
 import type { TProductCardProps } from 'src/interfaces/product.interface';
 
@@ -19,6 +19,7 @@ const meta: Meta<typeof ProductCard> = {
 export default meta;
 
 const productCardProps: Omit<TProductCardProps, 'count'> = {
+  id: 'vsjanflsurhs',
   title: 'Телеграм аккаунт',
   description: 'лучшие телеграм аккаунты по низким ценам только у нас!',
   image: telegramAccountsImage,

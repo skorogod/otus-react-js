@@ -1,9 +1,13 @@
 import React from "react";
 import "./App.css";
-import { ModalExample } from "src/pages/modalExample/ModalExample";
+import { ResizerExample } from "src/pages/resizerExample/ResizerExample";
 
 function App() {
-  return <ModalExample></ModalExample>;
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <ResizerExample initialHeight={200} initialWidth={400} />
+    </div>
+  );
 }
 
 export default App;
