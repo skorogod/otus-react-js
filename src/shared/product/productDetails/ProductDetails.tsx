@@ -25,7 +25,7 @@ export const ProductDetails: FC<TProductDetailsProps> = ({
     if (ref.current) {
       setDescriptionOverflow(ref.current.scrollHeight > ref.current.clientHeight);
     }
-  });
+  }, [ref, setDescriptionOverflow]);
 
   return (
     <div className={productDetailsCss.productDetails}>
