@@ -1,11 +1,10 @@
 import React from "react";
-import "./App.css";
-import { TransitionModalExample } from "src/pages/transitionModalExample/TransitionModalExample";
+import { SignUpBlock } from "src/pages/auth/signUpBlock/SignUpBlock";
 
 function App() {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <TransitionModalExample></TransitionModalExample>
+      <SignUpBlock></SignUpBlock>
     </div>
   );
 }
