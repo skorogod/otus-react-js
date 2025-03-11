@@ -56,7 +56,9 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.7",
     "@mui/material": "^6.4.7",
+    "@mui/styled-engine-sc": "^6.4.6",
     "@types/i18next": "^13.0.0",
     "@types/react-i18next": "^8.1.0",
     "classnames": "^2.5.1",
@@ -69,6 +71,7 @@
     "react-hook-form": "^7.54.2",
     "react-i18next": "^15.4.0",
     "react-spring": "^9.7.5",
+    "styled-components": "^6.1.15",
     "uid": "^2.0.2",
     "uuid": "^11.0.5"
   },

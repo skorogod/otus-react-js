@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import cn from "clsx";
-import s from "./registerForm.module.scss";
+import s from "./loginForm.module.scss";
 import {
   useForm,
   Controller,
@@ -11,9 +11,8 @@ import type { TRegisterFormValues, TRegisterFormProps } from "./types";
 import { EmailField } from "src/features/fields/emailField/EmailField";
 import { PasswordField } from "src/features/fields/passwordField/PasswordField";
 import { Button } from "@mui/material";
-import { UsernameField } from "src/features/fields/usrnameField/UsernameField";
 
-export const RegisterForm: FC<TRegisterFormProps> = ({ className }) => {
+export const LoginForm: FC<TRegisterFormProps> = ({ className }) => {
   const { handleSubmit, formState, control } = useForm<TRegisterFormValues>({
     mode: "onChange",
   });
@@ -45,25 +44,6 @@ export const RegisterForm: FC<TRegisterFormProps> = ({ className }) => {
           <EmailField
             submitCount={formState.submitCount}
             errors={formState.errors.email?.message || ""}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        name="username"
-        control={control}
-        rules={{
-          required: "Введите имя пользователя",
-          pattern: {
-            value: /^[a-zA-Z0-9]+$/i,
-            message:
-              "Имя пользователя должно содержить только цифры и латинские буквы",
-          },
-        }}
-        render={({ field }) => (
-          <UsernameField
-            submitCount={formState.submitCount}
-            errors={formState.errors.username?.message || ""}
             {...field}
           />
         )}

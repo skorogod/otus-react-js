@@ -1,4 +1,10 @@
-import React, { type ChangeEvent, type FC, useEffect, useRef, useState } from "react";
+import React, {
+  type ChangeEvent,
+  type FC,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import rangeSliderScss from "./rangeSlider.module.scss";
 import { getPercent } from "./helpers";
 import { RangeInput } from "./RangeInput";

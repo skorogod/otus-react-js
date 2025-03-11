@@ -1,4 +1,10 @@
-import React, { type ReactNode, type FC, useEffect, useRef, useState } from "react";
+import React, {
+  type ReactNode,
+  type FC,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import s from "./Resizer.module.scss";
 
 type TResizerProps = {
@@ -7,10 +13,17 @@ type TResizerProps = {
   initialHeight: number;
 };
 
-export const Resizer: FC<TResizerProps> = ({ children, initialHeight, initialWidth }) => {
+export const Resizer: FC<TResizerProps> = ({
+  children,
+  initialHeight,
+  initialWidth,
+}) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [size, setSize] = useState<{ width: number; height: number }>({ width: initialWidth, height: initialHeight });
+  const [size, setSize] = useState<{ width: number; height: number }>({
+    width: initialWidth,
+    height: initialHeight,
+  });
 
   useEffect(() => {
     if (rootRef.current) {
@@ -18,7 +31,10 @@ export const Resizer: FC<TResizerProps> = ({ children, initialHeight, initialWid
         for (const entry of entries) {
           const contentBoxSize = entry.contentBoxSize[0];
           if (wrapperRef.current) {
-            wrapperRef.current.style.fontSize = `${Math.max(contentBoxSize.inlineSize / 200, 1.5)}rem`;
+            wrapperRef.current.style.fontSize = `${Math.max(
+              contentBoxSize.inlineSize / 200,
+              1.5
+            )}rem`;
           }
         }
       });
@@ -32,7 +48,7 @@ export const Resizer: FC<TResizerProps> = ({ children, initialHeight, initialWid
     e.stopPropagation();
     if (rootRef.current) {
       const start = { x: 0, y: 0, width: MIN_SIZE, height: MIN_SIZE };
-      const move = (e: MouseEvent) => {
+      const move = () => {
         e.preventDefault();
         if (rootRef.current) {
           const rect = rootRef.current.getBoundingClientRect();
@@ -53,11 +69,20 @@ export const Resizer: FC<TResizerProps> = ({ children, initialHeight, initialWid
   };
 
   return (
-    <div id="resizer-root" ref={rootRef} className={s.root} style={{ height: size.height, width: size.width }}>
+    <div
+      id="resizer-root"
+      ref={rootRef}
+      className={s.root}
+      style={{ height: size.height, width: size.width }}
+    >
       <div ref={wrapperRef} className={s.wrapper}>
         {children}
       </div>
-      <button type="button" className={s.resizer} onMouseDown={onMouseDownResizer} />
+      <button
+        type="button"
+        className={s.resizer}
+        onMouseDown={onMouseDownResizer}
+      />
     </div>
   );
 };

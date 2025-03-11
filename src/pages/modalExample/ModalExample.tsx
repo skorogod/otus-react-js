@@ -10,10 +10,20 @@ export const ModalExample = () => {
   return (
     <>
       <div className={modalExampleScss.modalExampleContainer}>
-        <input placeholder="enter some text" type="text" value={text} onChange={(e) => setText(e.target.value)} />
-        <button onClick={() => setModalVisible(!modalVisible)}>show Modal</button>
+        <input
+          placeholder="enter some text"
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <button onClick={() => setModalVisible(!modalVisible)}>
+          show Modal
+        </button>
       </div>
-      <Modal visible={modalVisible} onCloseClick={() => setModalVisible(!modalVisible)}>
+      <Modal
+        visible={modalVisible}
+        onCloseClick={() => setModalVisible(!modalVisible)}
+      >
         {text}
       </Modal>
     </>

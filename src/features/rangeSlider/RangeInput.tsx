@@ -8,18 +8,24 @@ type TRangeInputProps = InputHTMLAttributes<HTMLInputElement> & {
   ref: Ref<HTMLInputElement>;
 };
 
-export const RangeInput: FC<TRangeInputProps> = ({ min, max, step, ref, value, onChange, ...restProps }) => {
-  return (
-    <input
-      min={min}
-      max={max}
-      type="range"
-      step={step}
-      ref={ref}
-      value={value}
-      onChange={onChange}
-      {...restProps}
-      className={rangeInputScss.rangeInput}
-    />
-  );
-};
+export const RangeInput: FC<TRangeInputProps> = ({
+  min,
+  max,
+  step,
+  ref,
+  value,
+  onChange,
+  ...restProps
+}) => (
+  <input
+    min={min}
+    max={max}
+    type="range"
+    step={step}
+    ref={ref}
+    value={value}
+    onChange={onChange}
+    {...restProps}
+    className={rangeInputScss.rangeInput}
+  />
+);

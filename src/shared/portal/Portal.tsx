@@ -5,6 +5,5 @@ type Props = {
   children: ReactNode;
 };
 
-export const Portal: FC<Props> = ({ children }) => {
-  return createPortal(children, document.body);
-};
+export const Portal: FC<Props> = ({ children }) =>
+  createPortal(children, document.body);

@@ -8,19 +8,17 @@ type ModalProps = {
   onCloseClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-export const Modal: FC<ModalProps> = ({ visible, children, onCloseClick }) => {
-  return (
-    <Portal>
-      <div className={`${modalCss.modalOverlay} ${visible && modalCss.visible}`}>
-        <div className={modalCss.modal}>
-          <header className={modalCss.modalHeader}>
-            <button onClick={onCloseClick} className={modalCss.closeButton}>
-              <i className={modalCss.closeIcon}></i>
-            </button>
-          </header>
-          {children}
-        </div>
+export const Modal: FC<ModalProps> = ({ visible, children, onCloseClick }) => (
+  <Portal>
+    <div className={`${modalCss.modalOverlay} ${visible && modalCss.visible}`}>
+      <div className={modalCss.modal}>
+        <header className={modalCss.modalHeader}>
+          <button onClick={onCloseClick} className={modalCss.closeButton}>
+            <i className={modalCss.closeIcon}></i>
+          </button>
+        </header>
+        {children}
       </div>
-    </Portal>
-  );
-};
+    </div>
+  </Portal>
+);
