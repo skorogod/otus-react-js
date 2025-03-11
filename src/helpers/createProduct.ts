@@ -1,6 +1,18 @@
 import { v4 as uuidv4 } from "uuid";
 import { TProduct } from "src/interfaces/product.interface";
 
+//  Функция для генерации рандомной строки
+function str_random(length: number) {
+  let result = "";
+  const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (let i = 0; i < length; i++) {
+    const randomInd = Math.floor(Math.random() * characters.length);
+    result += characters.charAt(randomInd);
+  }
+  return result;
+}
+
 export const createRandomProduct: (createdAt: string) => TProduct = (
   createdAt
 ) => {
@@ -26,15 +38,3 @@ export const createRandomProduct: (createdAt: string) => TProduct = (
     },
   };
 };
-
-//  Функция для генерации рандомной строки
-function str_random(length: number) {
-  let result = "";
-  const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
-
-  for (let i = 0; i < length; i++) {
-    const randomInd = Math.floor(Math.random() * characters.length);
-    result += characters.charAt(randomInd);
-  }
-  return result;
-}

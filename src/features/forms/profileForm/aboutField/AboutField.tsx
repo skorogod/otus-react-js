@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import cn from "clsx";
-import { FormItem } from "src/shared/ui/formItem/FormItem";
+import { FormItem } from "../../../../shared/ui/formItem/FormItem";
 import { TextareaAutosize } from "@mui/material";
 import { ProfileFormProps } from "../types";
 import s from "./aboutField.module.scss";

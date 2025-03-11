@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Button } from "@mui/material";
 import s from "./imageUpload.module.scss";
 import { styled } from "@mui/material/styles";
-import cn from "clsx";
 
 interface ImageUploadProps {
   onImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -13,10 +12,7 @@ const Input = styled("input")({
   display: "none",
 });
 
-export const ImageUpload: React.FC<ImageUploadProps> = ({
-  onImageChange,
-  className,
-}) => (
+export const ImageUpload: React.FC<ImageUploadProps> = ({ onImageChange }) => (
   <Box>
     <label htmlFor="contained-button-file">
       <Input

@@ -1,5 +1,5 @@
 import React, { FC, ChangeEvent, FocusEvent, useState } from "react";
-import { FormItem } from "src/shared/ui/formItem/FormItem";
+import { FormItem } from "../../../shared/ui/formItem/FormItem";
 import s from "./passwordField.module.scss";
 import cn from "clsx";
 import {

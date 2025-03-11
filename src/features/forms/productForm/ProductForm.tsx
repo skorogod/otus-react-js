@@ -4,9 +4,9 @@ import { TProductFormValues } from "./types";
 import { Box, Button } from "@mui/material";
 import { ImagePreview } from "./imagePreview/ImagePreview";
 import { ImageUpload } from "./imageUploadField/ImageUploadField";
-import { FormTextField } from "src/features/fields/textField/TextField";
+import { FormTextField } from "../../../features/fields/textField/TextField";
 import s from "./productForm.module.scss";
-import { Title } from "src/shared/ui/title/Title";
+import { Title } from "../../../shared/ui/title/Title";
 
 export const AddProductForm: FC = () => {
   const { handleSubmit, setValue, control, getValues, formState } =

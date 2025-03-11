@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField, TextFieldProps } from "@mui/material";
-import { FormItem } from "src/shared/ui/formItem/FormItem";
+import { FormItem } from "../../../shared/ui/formItem/FormItem";
 import cn from "clsx";
 import s from "./textField.module.scss";
 

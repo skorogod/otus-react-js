@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import cn from "clsx";
 import { Helmet } from "react-helmet";
 import { Frame } from "../frame";
-import s from "./Page.scss";
+import s from "./Page.module.scss";
 
 export type PageProps = {
   className?: string;

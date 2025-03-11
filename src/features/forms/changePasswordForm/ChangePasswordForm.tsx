@@ -11,7 +11,7 @@ import cn from "clsx";
 import { PasswordField } from "../../fields/passwordField/PasswordField";
 import type { ChangePasswordFormValues } from "./types";
 import { Button } from "@mui/material";
-import { Title } from "src/shared/ui/title/Title";
+import { Title } from "../../../shared/ui/title/Title";
 
 export const ChangePaswordForm: FC<ChangePasswordFormProps> = ({
   className,

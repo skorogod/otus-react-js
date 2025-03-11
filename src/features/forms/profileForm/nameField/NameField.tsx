@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FC, FocusEvent, Ref } from "react";
 import cn from "clsx";
-import { Input, OutlinedInput } from "@mui/material";
-import { FormItem } from "src/shared/ui/formItem/FormItem";
-import s from "./nameField.scss";
+import { OutlinedInput } from "@mui/material";
+import { FormItem } from "../../../../shared/ui/formItem/FormItem";
+import s from "./nameField.module.scss";
 import { type ProfileFormProps } from "../types";
 
 export type TNameField = Pick<

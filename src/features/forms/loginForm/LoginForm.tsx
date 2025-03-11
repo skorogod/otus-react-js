@@ -8,8 +8,8 @@ import {
   SubmitErrorHandler,
 } from "react-hook-form";
 import type { TRegisterFormValues, TRegisterFormProps } from "./types";
-import { EmailField } from "src/features/fields/emailField/EmailField";
-import { PasswordField } from "src/features/fields/passwordField/PasswordField";
+import { EmailField } from "../../../features/fields/emailField/EmailField";
+import { PasswordField } from "../../../features/fields/passwordField/PasswordField";
 import { Button } from "@mui/material";
 
 export const LoginForm: FC<TRegisterFormProps> = ({ className }) => {
@@ -65,7 +65,7 @@ export const LoginForm: FC<TRegisterFormProps> = ({ className }) => {
         )}
       />
       <Button type="submit" variant="contained">
-        Зарегистрироваться
+        Войти
       </Button>
     </form>
   );

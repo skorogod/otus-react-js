@@ -8,10 +8,10 @@ import {
   SubmitErrorHandler,
 } from "react-hook-form";
 import type { TRegisterFormValues, TRegisterFormProps } from "./types";
-import { EmailField } from "src/features/fields/emailField/EmailField";
-import { PasswordField } from "src/features/fields/passwordField/PasswordField";
+import { EmailField } from "../../../features/fields/emailField/EmailField";
+import { PasswordField } from "../../../features/fields/passwordField/PasswordField";
 import { Button } from "@mui/material";
-import { UsernameField } from "src/features/fields/usrnameField/UsernameField";
+import { UsernameField } from "../../../features/fields/usrnameField/UsernameField";
 
 export const RegisterForm: FC<TRegisterFormProps> = ({ className }) => {
   const { handleSubmit, formState, control } = useForm<TRegisterFormValues>({

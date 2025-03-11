@@ -1,10 +1,10 @@
 import { Divider } from "@mui/material";
 import React, { FC } from "react";
-import { ChangePaswordForm } from "src/features/forms/changePasswordForm/ChangePasswordForm";
-import { ProfileForm } from "src/features/forms/profileForm/ProfileForm";
+import { ChangePaswordForm } from "../../../features/forms/changePasswordForm/ChangePasswordForm";
+import { ProfileForm } from "../../../features/forms/profileForm/ProfileForm";
 import s from "./profileScreen.module.scss";
 import cn from "clsx";
-import { Page } from "src/shared/ui/page";
+import { Page } from "../../../shared/ui/page";
 
 export type TProfileScreen = {
   className?: string;

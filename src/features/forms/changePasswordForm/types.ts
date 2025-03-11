@@ -11,4 +11,4 @@ export type ChangePasswordFormErrors = Record<
   string
 >;
 
-export type ChangePasswordFormProps = TFormProps<ChangePasswordFormValues>;
+export type ChangePasswordFormProps = TFormProps;

@@ -4,7 +4,7 @@ import { ProfileFormProps } from "./types";
 import { NameField } from "./nameField/NameField";
 import s from "./profileForm.module.scss";
 import { AboutField } from "./aboutField/AboutField";
-import { Title } from "src/shared/ui/title/Title";
+import { Title } from "../../../shared/ui/title/Title";
 import { Button } from "@mui/material";
 import {
   useForm,

@@ -1,7 +1,7 @@
-import React, { ChangeEvent, FC, FocusEvent, Ref } from "react";
+import React, { ChangeEvent, FC, FocusEvent } from "react";
 import cn from "clsx";
 import { OutlinedInput } from "@mui/material";
-import { FormItem } from "src/shared/ui/formItem/FormItem";
+import { FormItem } from "../../../shared/ui/formItem/FormItem";
 import s from "./usernameField.module.scss";
 import { TFieldProps } from "../types";
 
