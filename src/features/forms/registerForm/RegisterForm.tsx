@@ -14,12 +14,19 @@ import { Button } from "@mui/material";
 import { UsernameField } from "../../../features/fields/usrnameField/UsernameField";
 
 export const RegisterForm: FC<TRegisterFormProps> = ({ className }) => {
-  const { handleSubmit, formState, control } = useForm<TRegisterFormValues>({
-    mode: "onChange",
-  });
+  const { handleSubmit, formState, control, reset } =
+    useForm<TRegisterFormValues>({
+      mode: "onChange",
+    });
 
   const onSubmit: SubmitHandler<TRegisterFormValues> = (data) => {
     console.log(data);
+    reset({
+      email: "",
+      username: "",
+      password: "",
+      repeatPassword: "",
+    });
   };
 
   const onInvalid: SubmitErrorHandler<TRegisterFormValues> = (error) => {
@@ -81,6 +88,29 @@ export const RegisterForm: FC<TRegisterFormProps> = ({ className }) => {
             title="Пароль"
             placeholder="Введите пароль"
             errors={formState.errors.password?.message || ""}
+          />
+        )}
+      />
+      <Controller
+        name="repeatPassword"
+        control={control}
+        rules={{
+          required: "Введите пароль",
+          validate: {
+            checkRepeatPassword: (repeatPassword, { password }) => {
+              if (repeatPassword !== password) {
+                return "Пароли не совпадают";
+              }
+            },
+          },
+        }}
+        render={({ field }) => (
+          <PasswordField
+            {...field}
+            fullWidth
+            title="Повторите пароль"
+            placeholder="Повторите пароль"
+            errors={formState.errors.repeatPassword?.message || ""}
           />
         )}
       />

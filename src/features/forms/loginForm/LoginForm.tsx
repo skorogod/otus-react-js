@@ -13,12 +13,19 @@ import { PasswordField } from "../../../features/fields/passwordField/PasswordFi
 import { Button } from "@mui/material";
 
 export const LoginForm: FC<TRegisterFormProps> = ({ className }) => {
-  const { handleSubmit, formState, control } = useForm<TRegisterFormValues>({
-    mode: "onChange",
-  });
+  const { handleSubmit, formState, control, reset, getValues } =
+    useForm<TRegisterFormValues>({
+      mode: "onChange",
+    });
+
+  console.log("values ", getValues());
 
   const onSubmit: SubmitHandler<TRegisterFormValues> = (data) => {
     console.log(data);
+    reset({
+      email: "",
+      password: "",
+    });
   };
 
   const onInvalid: SubmitErrorHandler<TRegisterFormValues> = (error) => {

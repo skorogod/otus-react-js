@@ -9,7 +9,7 @@ import s from "./productForm.module.scss";
 import { Title } from "../../../shared/ui/title/Title";
 
 export const AddProductForm: FC = () => {
-  const { handleSubmit, setValue, control, getValues, formState } =
+  const { handleSubmit, setValue, control, getValues, formState, reset } =
     useForm<TProductFormValues>({
       defaultValues: {
         name: "",
@@ -48,6 +48,7 @@ export const AddProductForm: FC = () => {
 
   const onSubmit: SubmitHandler<TProductFormValues> = (data) => {
     console.log(data);
+    reset();
   };
 
   const handleMainImageChange = useCallback(

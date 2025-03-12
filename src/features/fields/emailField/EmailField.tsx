@@ -22,6 +22,7 @@ export const EmailField: FC<TNameField> = ({
   ref,
   errors,
   disabled,
+  ...restProps
 }) => (
   <FormItem
     className={cn(s.root, className)}
@@ -37,6 +38,7 @@ export const EmailField: FC<TNameField> = ({
       onChange={onChange}
       onBlur={onBlur}
       placeholder="Введите почтовый адрес"
+      {...restProps}
     />
   </FormItem>
 );

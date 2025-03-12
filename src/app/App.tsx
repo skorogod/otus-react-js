@@ -1,10 +1,10 @@
 import React from "react";
-import { ProfileScreen } from "src/pages/profile/profileScreen/ProfileScreen";
+import { SignUpBlock } from "src/pages/auth/signUpBlock/SignUpBlock";
 
 function App() {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <ProfileScreen></ProfileScreen>
+      <SignUpBlock></SignUpBlock>
     </div>
   );
 }
