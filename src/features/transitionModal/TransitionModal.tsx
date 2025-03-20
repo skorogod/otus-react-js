@@ -9,7 +9,11 @@ type TTransitionModalProps = {
   children: ReactNode;
 };
 
-export const TransitionModal: FC<TTransitionModalProps> = ({ isOpen, onClose, children }) => {
+export const TransitionModal: FC<TTransitionModalProps> = ({
+  isOpen,
+  onClose,
+  children,
+}) => {
   const transitions = useTransition(isOpen, {
     from: { opacity: 0, transform: "scale(0.9)" },
     enter: { opacity: 1, transform: "scale(1)" },
@@ -19,11 +23,19 @@ export const TransitionModal: FC<TTransitionModalProps> = ({ isOpen, onClose, ch
   return (
     <Portal>
       <>
-        {transitions((styles, item) => {
-          return (
+        {transitions(
+          (styles, item) =>
             item && (
-              <animated.div style={styles} onClick={onClose} className={s.modalOverlay}>
-                <animated.div style={styles} onClick={(e) => e.stopPropagation()} className={s.modal}>
+              <animated.div
+                style={styles}
+                onClick={onClose}
+                className={s.modalOverlay}
+              >
+                <animated.div
+                  style={styles}
+                  onClick={(e) => e.stopPropagation()}
+                  className={s.modal}
+                >
                   <header className={s.modalHeader}>
                     <button onClick={onClose} className={s.closeButton}>
                       <i className={s.closeIcon}></i>
@@ -33,8 +45,7 @@ export const TransitionModal: FC<TTransitionModalProps> = ({ isOpen, onClose, ch
                 </animated.div>
               </animated.div>
             )
-          );
-        })}
+        )}
       </>
     </Portal>
   );

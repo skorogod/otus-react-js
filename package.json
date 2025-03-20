@@ -18,6 +18,7 @@
     "@types/node": "^20.2.5",
     "@types/react": "^18.2.8",
     "@types/react-dom": "^18.2.4",
+    "@types/react-helmet": "^6.1.11",
     "@typescript-eslint/eslint-plugin": "^5.59.9",
     "@typescript-eslint/parser": "^5.59.9",
     "babel-loader": "^9.1.2",
@@ -53,6 +54,11 @@
     "webpack-dev-server": "^4.15.0"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.7",
+    "@mui/material": "^6.4.7",
+    "@mui/styled-engine-sc": "^6.4.6",
     "@types/i18next": "^13.0.0",
     "@types/react-i18next": "^8.1.0",
     "classnames": "^2.5.1",
@@ -61,8 +67,11 @@
     "i18next-browser-languagedetector": "^8.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.54.2",
     "react-i18next": "^15.4.0",
     "react-spring": "^9.7.5",
+    "styled-components": "^6.1.15",
     "uid": "^2.0.2",
     "uuid": "^11.0.5"
   },

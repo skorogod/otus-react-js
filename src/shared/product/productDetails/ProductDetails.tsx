@@ -23,7 +23,9 @@ export const ProductDetails: FC<TProductDetailsProps> = ({
 
   useEffect(() => {
     if (ref.current) {
-      setDescriptionOverflow(ref.current.scrollHeight > ref.current.clientHeight);
+      setDescriptionOverflow(
+        ref.current.scrollHeight > ref.current.clientHeight
+      );
     }
   }, [ref, setDescriptionOverflow]);
 
@@ -32,13 +34,20 @@ export const ProductDetails: FC<TProductDetailsProps> = ({
       <div className={productDetailsCss.productCard}>
         <div className={productDetailsCss.images}>
           <picture className={productDetailsCss.mainImageContainer}>
-            <img className={productDetailsCss.mainImage} src={images[0]} alt="" />
+            <img
+              className={productDetailsCss.mainImage}
+              src={images[0]}
+              alt=""
+            />
           </picture>
         </div>
         <div className={productDetailsCss.info}>
           <h1 className={productDetailsCss.title}>{title}</h1>
           <div className={productDetailsCss.categoryContainer}>
-            <label className={productDetailsCss.categoryLabel} htmlFor="category"></label>
+            <label
+              className={productDetailsCss.categoryLabel}
+              htmlFor="category"
+            ></label>
             <p id="category">{category ? category.name : "нет данных"}</p>
           </div>
           <div className={productDetailsCss.inStock}>
@@ -51,7 +60,9 @@ export const ProductDetails: FC<TProductDetailsProps> = ({
             <p className={productScss.costFull} id="cost">
               {costFull}
             </p>
-            {costDiscount && <p className={productScss.costDiscount}>{costDiscount}</p>}
+            {costDiscount && (
+              <p className={productScss.costDiscount}>{costDiscount}</p>
+            )}
           </div>
           <div className={productDetailsCss.purchaiseButtons}>
             <div className={productDetailsCss.buy}>
@@ -71,7 +82,9 @@ export const ProductDetails: FC<TProductDetailsProps> = ({
           <p
             id="description"
             ref={ref}
-            className={`${productDetailsCss.description} ${showFullDescription ? productDetailsCss.full : null}`}
+            className={`${productDetailsCss.description} ${
+              showFullDescription ? productDetailsCss.full : null
+            }`}
           >
             {description}
           </p>

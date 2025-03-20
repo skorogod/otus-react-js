@@ -1,0 +1,9 @@
+.root {
+  display: flex;
+  flex-flow: column;
+  row-gap: 1rem;
+}
+
+.submitBtn {
+  align-self: flex-start;
+}

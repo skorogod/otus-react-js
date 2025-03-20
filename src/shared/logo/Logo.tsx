@@ -7,10 +7,8 @@ type LogoProps = {
   size?: "small" | "medium" | "large";
 };
 
-export const Logo: FC<LogoProps> = ({ size = "medium" }) => {
-  return (
-    <div className={[logoCss.logoContainer, logoCss[size]].join(" ")}>
-      <img className={logoCss.logo} src={logo} alt="logo" />
-    </div>
-  );
-};
+export const Logo: FC<LogoProps> = ({ size = "medium" }) => (
+  <div className={[logoCss.logoContainer, logoCss[size]].join(" ")}>
+    <img className={logoCss.logo} src={logo} alt="logo" />
+  </div>
+);

@@ -2,7 +2,10 @@ name: Test, Lint, Build and Deploy on Github Pages
 
 on:
   push:
-    branches: ["master", "main", 'react-patterns', 'range-slider', 'products_infinite_scroll', 'popover']
+    branches: [
+      "master", "main", 'react-patterns', 'range-slider', 'products_infinite_scroll', 'popover',
+      "forms"
+    ]
 
   # Позволяет запустить этот рабочий процесс вручную на вкладке Actions
   workflow_dispatch:
