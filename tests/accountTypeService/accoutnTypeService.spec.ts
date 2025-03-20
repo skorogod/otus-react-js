@@ -1,9 +1,7 @@
 import { AccountTypeService } from "src/services/accountType/accountType.service";
-import {
-  TAccountType,
-  TAccountTypeName,
-} from "src/interfaces/accountType.interface";
 import { TUpdateAccoutTypeParams } from "src/services/accountType/interfaces";
+import { localStorageMock } from "../mocks";
+import { mockData } from "./mocks";
 
 // Мокаем Axios
 jest.mock("axios", () => ({
@@ -11,23 +9,6 @@ jest.mock("axios", () => ({
     patch: jest.fn(),
   })),
 }));
-
-// Мокаем localStorage
-const localStorageMock = (() => {
-  let store: Record<string, string> = {};
-  return {
-    getItem: (key: string) => store[key] || null,
-    setItem: (key: string, value: string) => {
-      store[key] = value;
-    },
-    removeItem: (key: string) => {
-      delete store[key];
-    },
-    clear: () => {
-      store = {};
-    },
-  };
-})();
 
 Object.defineProperty(global, "localStorage", {
   value: localStorageMock,
@@ -48,11 +29,6 @@ describe("AccountTypeService", () => {
 
   describe("updateAccountTypeById", () => {
     it("update account type and return updated data", async () => {
-      const mockData: TAccountType = {
-        id: "1",
-        name: TAccountTypeName.Standard,
-        discount: 10,
-      };
       const params: TUpdateAccoutTypeParams = {
         id: "1",
         data: { discount: 20 },
@@ -65,13 +41,15 @@ describe("AccountTypeService", () => {
       const result = await accountTypeService.updateAccountTypeById(params);
 
       expect(result).toEqual(mockData);
-      expect(
-        (accountTypeService as any).axiosClient.patch
-      ).toHaveBeenCalledWith(`/account-types/${params.id}`, params.data, {
-        headers: {
-          Authorization: "Bearer fake-token",
-        },
-      });
+      expect(accountTypeService.axiosClient.patch).toHaveBeenCalledWith(
+        `/account-types/${params.id}`,
+        params.data,
+        {
+          headers: {
+            Authorization: "Bearer fake-token",
+          },
+        }
+      );
     });
 
     it("should throw an error when the request fails", async () => {
@@ -88,13 +66,15 @@ describe("AccountTypeService", () => {
       await expect(
         accountTypeService.updateAccountTypeById(params)
       ).rejects.toThrow(mockError);
-      expect(
-        (accountTypeService as any).axiosClient.patch
-      ).toHaveBeenCalledWith(`/account-types/${params.id}`, params.data, {
-        headers: {
-          Authorization: "Bearer fake-token",
-        },
-      });
+      expect(accountTypeService.axiosClient.patch).toHaveBeenCalledWith(
+        `/account-types/${params.id}`,
+        params.data,
+        {
+          headers: {
+            Authorization: "Bearer fake-token",
+          },
+        }
+      );
     });
   });
 });

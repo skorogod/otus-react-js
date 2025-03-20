@@ -1,3 +1,9 @@
 import type { TAccount } from "src/interfaces/account.interface";
 
-export type TGetAccountResponse = TAccount;
+export type TGetAccountsResponse = TAccount[];
+
+export type TGetAccountByIdResponse = TAccount;
+
+export type TGetAccountByIdParams = {
+  id: TAccount["id"];
+};

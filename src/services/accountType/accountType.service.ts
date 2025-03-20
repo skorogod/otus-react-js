@@ -1,5 +1,5 @@
 import { TAccountType } from "src/interfaces/accountType.interface";
-import { BaseService } from "../baseService/base.service";
+import { BaseService } from "../base/base.service";
 import { TUpdateAccoutTypeParams } from "./interfaces";
 
 export class AccountTypeService extends BaseService {

@@ -4,6 +4,12 @@ import {
 } from "src/interfaces/accountType.interface";
 import { TUpdateAccoutTypeParams } from "src/services/accountType/interfaces";
 
+export const mockData: TAccountType = {
+  id: "1",
+  name: TAccountTypeName.Standard,
+  discount: 10,
+};
+
 export const accountTypesMock: TAccountType[] = [
   {
     id: "a",
