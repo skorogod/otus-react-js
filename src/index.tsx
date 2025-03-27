@@ -6,7 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ProfileScreen } from "./pages/profile/profileScreen/ProfileScreen";
 import { ProductsScreen } from "./pages/products/productsScreen/ProductsScreen";
 import { ProductCartScreen } from "./pages/ProductCartScreen/ProductCartScreen";
-
+console.log("test");
 const router = createBrowserRouter([
   {
     path: "/",

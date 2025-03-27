@@ -1,6 +1,6 @@
 {
   "description": "",
-  "homepage": "https://skorogod.github.io/otus-react-js/",
+  "homepage": "https://skorogod.github.io/otus-react-js",
   "devDependencies": {
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.4",

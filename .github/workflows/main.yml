@@ -6,7 +6,7 @@ on:
       "master", "main", 'react-patterns', 
       'range-slider', 'products_infinite_scroll', 
       'popover', account_service,
-      "forms", routing
+      "forms", "routing"
     ]
 
   # Позволяет запустить этот рабочий процесс вручную на вкладке Actions
@@ -49,6 +49,10 @@ jobs:
         with:
           branch: gh-pages
           folder: dist
+          clean: true
+          force: true
+          single-commit: true
+          commit-message: "Deploy ${{ github.sha }}"
 
       # # Собираем Storybook
       # - name: Build Storybook
