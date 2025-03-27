@@ -1,12 +1,14 @@
 import React, { FC, ReactElement } from "react";
-import { Header } from "../header/Header";
+import { Header } from "../../features/header/Header";
+import cn from "clsx";
+import s from "./layout.module.scss";
 
 type LayoutProps = {
   children: ReactElement;
 };
 
 export const Layout: FC<LayoutProps> = ({ children }) => (
-  <section>
+  <>
     <Header
       onCreateAccount={() => {
         console.log("create account");
@@ -14,6 +16,6 @@ export const Layout: FC<LayoutProps> = ({ children }) => (
       onLogin={() => console.log("login")}
       onLogout={() => console.log("logout")}
     />
-    <main>{children}</main>
-  </section>
+    <main className={cn(s.main)}>{children}</main>
+  </>
 );

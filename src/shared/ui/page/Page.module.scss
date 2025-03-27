@@ -1,15 +1,18 @@
-
+$bacground-color: #efefef;
 
 .root {
   padding-bottom: 60px
 }
 
 .page {
-  margin-top: 20px;
   border-radius: 8px;
 }
 
 .title {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background-color: $bacground-color;
   margin-top: 20px;
   font-weight: 500;
 }

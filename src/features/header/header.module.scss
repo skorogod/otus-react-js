@@ -1,0 +1,27 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background-color: #dcd9df;
+    margin-bottom: 100px;
+    &.dark {
+        background-color: rgb(23, 23, 29);
+        color: whitesmoke;
+    }
+}
+
+.content {
+    display: flex;
+    position: relative;
+}
+
+.tools {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}

@@ -20,3 +20,8 @@ p {
     font-size: 1.3rem;
     font-weight: 700;
 }
+
+main {
+    max-height: 100vh;
+    overflow: hidden;
+}

@@ -1,13 +1,17 @@
 import React, { FC } from "react";
 import type { User } from "src/interfaces/user.interface";
-import { Logo } from "../logo/Logo";
-import { Button } from "../button/Button";
+import { Logo } from "../../shared/logo/Logo";
+import { Button } from "../../shared/button/Button";
 
-import headerCss from "./header.module.scss";
-import { ThemeToggler } from "../themeToggler/ThemeToggler";
+import s from "./header.module.scss";
+import { ThemeToggler } from "../../shared/themeToggler/ThemeToggler";
 import { useTheme } from "../../hooks/useTheme";
 import { useLang } from "../../hooks/useLang";
-import { LanguageSwitcher } from "../languageSwitcher/laguageSwitcher";
+import { LanguageSwitcher } from "../../shared/languageSwitcher/laguageSwitcher";
+import { Navigation } from "../../shared/ui/navigation/Navigation";
+import { routes } from "../../routes/routes";
+
+import cn from "clsx";
 
 type HeaderProps = {
   user?: User;
@@ -30,18 +34,17 @@ export const Header: FC<HeaderProps> = ({
   return (
     <header
       style={{ backgroundColor: backgroundColor }}
-      className={`${headerCss.header} ${
-        themeContext.theme === "dark" ? headerCss.dark : ""
-      }`}
+      className={`${s.header} ${themeContext.theme === "dark" ? s.dark : ""}`}
     >
-      <div className={headerCss.content}>
-        <div className={headerCss.logo}>
+      <div className={s.content}>
+        <div className={s.logo}>
           <Logo />
         </div>
-        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+        <Navigation routes={routes} />
+        <div className={cn(s.tools)}>
           <LanguageSwitcher></LanguageSwitcher>
           <ThemeToggler></ThemeToggler>
-          <div className={headerCss.userInfo}>
+          <div className={s.userInfo}>
             {user ? (
               <>
                 <Button

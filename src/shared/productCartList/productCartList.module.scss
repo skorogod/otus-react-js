@@ -1,0 +1,12 @@
+.productCartList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.emptyCart {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+} 

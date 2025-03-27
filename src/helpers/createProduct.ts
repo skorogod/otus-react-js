@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { TProduct } from "src/interfaces/product.interface";
-
+import { TProductTypeName } from "src/interfaces/productType.interface";
+import { TAccountTypeName } from "src/interfaces/accountType.interface";
 //  Функция для генерации рандомной строки
 function str_random(length: number) {
   let result = "";
@@ -35,6 +36,16 @@ export const createRandomProduct: (createdAt: string) => TProduct = (
       id: uuidv4(),
       name: str_random(6),
       photo: str_random(10),
+    },
+    type: {
+      id: uuidv4(),
+      name: TProductTypeName.TelegramAccount,
+      discount: new Map([
+        [TAccountTypeName.Free, Math.random() * 100],
+        [TAccountTypeName.Premium, Math.random() * 100],
+        [TAccountTypeName.Gold, Math.random() * 100],
+        [TAccountTypeName.Standard, Math.random() * 100],
+      ]),
     },
   };
 };

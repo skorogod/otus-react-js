@@ -1,11 +1,18 @@
 import React from "react";
-import { SignUpBlock } from "src/pages/auth/signUpBlock/SignUpBlock";
+import { Layout } from "src/shared/layout/Layout";
+import { Outlet } from "react-router-dom";
+import { ThemeProvider } from "src/providers/themeProvider/ThemeProvider";
+import { LanguageProvider } from "src/providers/languageProvider/LanguageProvider";
 
 function App() {
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <SignUpBlock></SignUpBlock>
-    </div>
+    <ThemeProvider>
+      <LanguageProvider>
+        <Layout>
+          <Outlet />
+        </Layout>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 

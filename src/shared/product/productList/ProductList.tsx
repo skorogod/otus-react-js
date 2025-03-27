@@ -32,6 +32,7 @@ export const ProductList: FC<TProductsListProps> = ({
         category={product.category}
         image={product.images[0]}
         count={Math.round(Math.random() * 100)}
+        type={product.type}
       />
     ))}
   </InfiniteScroll>

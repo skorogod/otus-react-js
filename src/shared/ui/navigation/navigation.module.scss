@@ -1,0 +1,25 @@
+.root {
+ 
+}
+
+.navList {
+  display: flex;
+  flex-flow: row;
+  gap: 0.5rem;
+  list-style-type: none;
+}
+
+.navListItem .link {
+  text-decoration: none;
+  color: black;
+  &.dark {
+    color: whitesmoke;
+    &:hover {
+      color: red;
+    }
+  }
+
+  &:hover {
+    color: blue;
+  }
+}
