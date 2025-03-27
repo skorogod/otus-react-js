@@ -4,7 +4,7 @@ import { createRandomProduct } from "../../../helpers/createProduct";
 import { TProduct } from "../../../interfaces/product.interface";
 import { ProductList } from "../../../shared/product/productList/ProductList";
 
-export const ProductsListExample = () => {
+export const ProductsScreen = () => {
   const [products, setProducts] = useState<TProduct[] | never[]>([]);
 
   const getNextProducts = (count = 10) => {

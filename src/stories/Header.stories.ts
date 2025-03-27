@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Header } from '../shared/header/Header';
+import { Header } from '../features/header/Header';
 import ThemeDecorator from '../../.storybook/themeDecorator';
 import LangDecorator from '../../.storybook/langDecorator';
 import '../i18n'

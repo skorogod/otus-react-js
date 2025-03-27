@@ -2,6 +2,8 @@ import type { Meta } from '@storybook/react';
 import { ProductCard } from '../shared/product/productCard/ProductCard';
 import telegramAccountsImage from '../assets/telegram-accounts.jpg';
 import type { TProductCardProps } from 'src/interfaces/product.interface';
+import { TProductTypeName } from 'src/interfaces/productType.interface';
+import { TAccountTypeName } from 'src/interfaces/accountType.interface';
 
 const meta: Meta<typeof ProductCard> = {
   title: 'Example/ProductCard',
@@ -24,6 +26,16 @@ const productCardProps: Omit<TProductCardProps, 'count'> = {
   description: 'лучшие телеграм аккаунты по низким ценам только у нас!',
   image: telegramAccountsImage,
   costFull: 200,
+  type: {
+    id: 'vsjanflsurhs',
+    name: TProductTypeName.TelegramAccount,
+    discount: new Map([
+      [TAccountTypeName.Free, Math.random() * 100],
+      [TAccountTypeName.Premium, Math.random() * 100],
+      [TAccountTypeName.Gold, Math.random() * 100],
+      [TAccountTypeName.Standard, Math.random() * 100],
+    ]),
+  },
 };
 
 export const WithNotNullCount = {
