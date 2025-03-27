@@ -3,7 +3,9 @@ name: Test, Lint, Build and Deploy on Github Pages
 on:
   push:
     branches: [
-      "master", "main", 'react-patterns', 'range-slider', 'products_infinite_scroll', 'popover',
+      "master", "main", 'react-patterns', 
+      'range-slider', 'products_infinite_scroll', 
+      'popover', account_service,
       "forms"
     ]
 
