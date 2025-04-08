@@ -1,5 +1,5 @@
-import { AccountTypeService } from "src/services/accountType/accountType.service";
-import { TUpdateAccoutTypeParams } from "src/services/accountType/interfaces";
+import { AccountTypeService } from "src/api/services/accountType/accountType.service";
+import { TUpdateAccoutTypeParams } from "src/api/services/accountType/interfaces";
 import { localStorageMock } from "../mocks";
 import { mockData } from "./mocks";
 

@@ -1,4 +1,4 @@
-import { AccountService } from "src/services/account/account.service";
+import { AccountService } from "src/api/services/account/account.service";
 import { localStorageMock } from "../mocks";
 import { mockData } from "./mocks";
 
