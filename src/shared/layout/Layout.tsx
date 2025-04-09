@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "src/app/store";
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
 import { authSlice } from "src/app/store/slices/auth/auth";
+import { authService } from "src/api/services/auth/authFactory";
 
 type LayoutProps = {
   children: ReactElement;
@@ -17,6 +18,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
 
   const onLogout = () => {
     dispatch(authSlice.actions.logout());
+    authService.logout();
   };
 
   return (

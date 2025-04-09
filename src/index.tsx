@@ -12,7 +12,8 @@ import { store } from "./app/store";
 import i18n from "./i18n";
 import { SignInBlock } from "./pages/auth/signInBlock/SignInBlock";
 import { SignUpBlock } from "./pages/auth/signUpBlock/SignUpBlock";
-import { ProtectedComponent } from "./features/protectedComponent/protectedComponent";
+
+import { ProtectedComponent } from "./features/protectedComponent/ProtectedComponent";
 
 i18n.init();
 

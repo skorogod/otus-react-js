@@ -1,24 +1,40 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { RootState } from "src/app/store";
 import { SignInBlock } from "src/pages/auth/signInBlock/SignInBlock";
+import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
+import { initializeAuth } from "src/app/store/slices/auth/auth";
+import { useNavigateTo } from "src/app/hooks/useNavigate";
+import { authService } from "src/api/services/auth/auth";
 
 export const ProtectedComponent = () => {
   const user = useSelector((state: RootState) => state.auth.user);
+  console.log("USER", user);
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const dispatch = useAppDispatch();
+  const { toLogin } = useNavigateTo();
+
+  useEffect(() => {
+    dispatch(initializeAuth());
+    authService.setUnauthorizedCallback(toLogin);
+  }, [dispatch]);
 
   useEffect(() => {
     if (!user) {
-      navigate("/login");
+      if (location.pathname === "signup") {
+        navigate("/signup");
+      } else {
+        navigate("/signin");
+      }
     } else {
-      navigate("/");
+      console.log("Nav to goods");
+      navigate("/gods");
     }
-  });
+  }, [user]);
 
-  if (user) {
-    return <Outlet></Outlet>;
-  } else {
-    return <SignInBlock></SignInBlock>;
-  }
+  return <Outlet></Outlet>;
 };
