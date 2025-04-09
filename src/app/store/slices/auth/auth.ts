@@ -4,7 +4,7 @@ import type {
   AuthCredentials,
   AuthResponse,
 } from "src/api/services/auth/interface";
-import { authService } from "src/api/services/auth/auth";
+import { authService } from "src/api/services/auth/authFactory";
 
 export const TOKEN_KEY = "token";
 export const REFRESH_TOKEN_KEY = "refresh_token";
@@ -56,6 +56,7 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
+        console.log("FullFIELD", action.payload);
         state.token = action.payload.token;
         state.refreshToken = action.payload.refreshToken;
         state.user = action.payload.user;
@@ -73,6 +74,7 @@ export const authSlice = createSlice({
 export const initializeAuth = createAsyncThunk(
   "auth/initialize",
   async (_, { dispatch }) => {
+    console.log("initialize");
     const token = localStorage.getItem(TOKEN_KEY);
     if (token) {
       dispatch(authSlice.actions.setToken());
