@@ -1,24 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { createRandomProduct } from "../../../helpers/createProduct";
-
-import { TProduct } from "../../../interfaces/product.interface";
+import React, { useCallback, useEffect } from "react";
 import { ProductList } from "../../../shared/product/productList/ProductList";
+import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
+import {
+  fetchProducts,
+  selectProducts,
+  selectProductsPagination,
+  updateProductsPaginationPage,
+} from "src/app/store/slices/products/products";
+import { useSelector } from "react-redux";
 
 export const ProductsScreen = () => {
-  const [products, setProducts] = useState<TProduct[] | never[]>([]);
+  const products = useSelector(selectProducts);
+  const pagination = useSelector(selectProductsPagination);
+  const dispatch = useAppDispatch();
 
-  const getNextProducts = (count = 10) => {
-    const nextProducts: Array<TProduct> = [];
-    for (let i = 0; i < count; i++) {
-      nextProducts.push(
-        createRandomProduct(new Date().toLocaleDateString("ru"))
-      );
-    }
-    setProducts([...products, ...nextProducts]);
+  console.log("products", products);
+
+  const getNextProducts = () => {
+    dispatch(fetchProducts({ ...pagination }));
+    dispatch(updateProductsPaginationPage(pagination.page + 1));
   };
 
   useEffect(() => {
-    getNextProducts(10);
+    if (!products.length) {
+      getNextProducts();
+    }
   }, []);
 
   return <ProductList products={products} getNextProducts={getNextProducts} />;

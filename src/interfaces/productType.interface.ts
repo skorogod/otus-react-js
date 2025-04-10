@@ -10,5 +10,5 @@ export enum TProductTypeName {
 export type TProductType = {
   id: string;
   name: TProductTypeName;
-  discount: Map<TAccountTypeName, number>;
+  discount: Record<TAccountTypeName, number>;
 };

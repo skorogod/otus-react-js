@@ -30,7 +30,7 @@ export const InfiniteScroll: FC<TInfiniteScrollProps> = ({
     if (isIntersecting && next) {
       next();
     }
-  }, [isIntersecting, next]);
+  }, [isIntersecting]);
 
   useEffect(() => {
     if (ref.current) {
