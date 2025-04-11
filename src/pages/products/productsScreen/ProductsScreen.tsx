@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { ProductList } from "../../../shared/product/productList/ProductList";
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
 import {
@@ -7,18 +7,25 @@ import {
   selectProductsPagination,
   updateProductsPaginationPage,
 } from "src/app/store/slices/products/products";
+import { ProductCard } from "src/shared/product/productCard/ProductCard";
 import { useSelector } from "react-redux";
+import { addToCart } from "src/app/store/slices/cart/cart.slice";
+import { TProduct } from "src/interfaces/product.interface";
+import { selectProductQuantity } from "src/app/store/slices/cart/cart.slice";
+import { RootState } from "src/app/store";
 
 export const ProductsScreen = () => {
   const products = useSelector(selectProducts);
   const pagination = useSelector(selectProductsPagination);
   const dispatch = useAppDispatch();
 
-  console.log("products", products);
-
   const getNextProducts = () => {
     dispatch(fetchProducts({ ...pagination }));
     dispatch(updateProductsPaginationPage(pagination.page + 1));
+  };
+
+  const onProductCountChange = (product: TProduct) => (count: number) => {
+    dispatch(addToCart({ product, count }));
   };
 
   useEffect(() => {
@@ -27,5 +34,31 @@ export const ProductsScreen = () => {
     }
   }, []);
 
-  return <ProductList products={products} getNextProducts={getNextProducts} />;
+  return (
+    <ProductList
+      products={products}
+      renderProduct={(product) => {
+        const quantity = useSelector((state: RootState) =>
+          selectProductQuantity(state, product.id)
+        );
+        console.log(product.id, quantity);
+        return (
+          <ProductCard
+            id={product.id}
+            key={product.id}
+            title={product.title}
+            costFull={product.costFull}
+            costDiscount={product.costDiscount}
+            description={product.description}
+            category={product.category}
+            image={product.images[0]}
+            count={quantity}
+            type={product.type}
+            onCountChange={onProductCountChange(product)}
+          />
+        );
+      }}
+      getNextProducts={getNextProducts}
+    />
+  );
 };

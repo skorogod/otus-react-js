@@ -13,6 +13,7 @@ export const ProductCard: FC<TProductCardProps> = ({
   costDiscount,
   count,
   image,
+  onCountChange,
   ...restProps
 }) => (
   <BasicCard
@@ -35,7 +36,7 @@ export const ProductCard: FC<TProductCardProps> = ({
         </div>
       </>
     }
-    footer={<ToCart counter={count}></ToCart>}
+    footer={<ToCart counter={count || 0} onCountChange={onCountChange} />}
     {...restProps}
   />
 );
