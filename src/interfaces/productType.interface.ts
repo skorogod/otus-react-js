@@ -4,6 +4,7 @@ export enum TProductTypeName {
   Car = "Car",
   Toy = "Toy",
   Food = "Food",
+  TelegramAccount = "TelegramAccount",
 }
 
 export type TProductType = {

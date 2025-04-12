@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ProductsListExample } from "../pages/page/productListExample/ProductListExample";
+import { ProductsScreen } from "../pages/products/productsScreen/ProductsScreen";
 
 import '../app/App.css';
 
-const meta: Meta<typeof ProductsListExample> = {
+const meta: Meta<typeof ProductsScreen> = {
     title: 'Example/ProductsListExample',
-    component: ProductsListExample,
+    component: ProductsScreen,
     parameters: {
         Layout: 'centered'
     }
