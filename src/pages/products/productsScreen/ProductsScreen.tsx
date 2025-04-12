@@ -11,8 +11,6 @@ import { ProductCard } from "src/shared/product/productCard/ProductCard";
 import { useSelector } from "react-redux";
 import { addToCart } from "src/app/store/slices/cart/cart.slice";
 import { TProduct } from "src/interfaces/product.interface";
-import { selectProductQuantity } from "src/app/store/slices/cart/cart.slice";
-import { RootState } from "src/app/store";
 
 export const ProductsScreen = () => {
   const products = useSelector(selectProducts);
@@ -37,27 +35,20 @@ export const ProductsScreen = () => {
   return (
     <ProductList
       products={products}
-      renderProduct={(product) => {
-        const quantity = useSelector((state: RootState) =>
-          selectProductQuantity(state, product.id)
-        );
-        console.log(product.id, quantity);
-        return (
-          <ProductCard
-            id={product.id}
-            key={product.id}
-            title={product.title}
-            costFull={product.costFull}
-            costDiscount={product.costDiscount}
-            description={product.description}
-            category={product.category}
-            image={product.images[0]}
-            count={quantity}
-            type={product.type}
-            onCountChange={onProductCountChange(product)}
-          />
-        );
-      }}
+      renderProduct={(product) => (
+        <ProductCard
+          id={product.id}
+          key={product.id}
+          title={product.title}
+          costFull={product.costFull}
+          costDiscount={product.costDiscount}
+          description={product.description}
+          category={product.category}
+          image={product.images[0]}
+          type={product.type}
+          onCountChange={onProductCountChange(product)}
+        />
+      )}
       getNextProducts={getNextProducts}
     />
   );
