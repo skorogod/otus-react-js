@@ -26,6 +26,7 @@ const productCardProps: Omit<TProductCardProps, 'count'> = {
   description: 'лучшие телеграм аккаунты по низким ценам только у нас!',
   image: telegramAccountsImage,
   costFull: 200,
+  onCountChange: () => {},
   type: {
     id: 'vsjanflsurhs',
     name: TProductTypeName.TelegramAccount,

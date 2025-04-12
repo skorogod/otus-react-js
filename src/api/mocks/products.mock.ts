@@ -15,8 +15,8 @@ export const generateMockProducts = (count: number): TProduct[] =>
       ],
     },
     images: [
-      `https://picsum.photos/200/200?random=${index}`,
-      `https://picsum.photos/200/200?random=${index + 1}`,
+      `https://loremflickr.com/200/200?random=${index}`,
+      `https://loremflickr.com/200/200?random=${index + 1}`,
     ],
     type: {
       id: (index + 1).toString(),

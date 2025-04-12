@@ -4,8 +4,12 @@ import { mockData } from "./mocks";
 import { TUpdateProductTypeDiscount } from "src/api/services/productType/interfaces";
 
 jest.mock("axios", () => ({
-  Axios: jest.fn().mockImplementation(() => ({
+  create: jest.fn().mockImplementation(() => ({
     patch: jest.fn(),
+    interceptors: {
+      request: { use: jest.fn(), eject: jest.fn() },
+      response: { use: jest.fn(), eject: jest.fn() },
+    },
   })),
 }));
 
