@@ -22,7 +22,12 @@ describe("Calculate discount", () => {
           ...mockProduct,
           type: {
             ...mockProductType,
-            discount: new Map([[TAccountTypeName.Standard, 0.5]]),
+            discount: {
+              [TAccountTypeName.Standard]: 0.5,
+              [TAccountTypeName.Free]: 0.1,
+              [TAccountTypeName.Premium]: 0.6,
+              [TAccountTypeName.Gold]: 0.7,
+            },
           },
         },
       })

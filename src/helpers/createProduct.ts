@@ -40,12 +40,12 @@ export const createRandomProduct: (createdAt: string) => TProduct = (
     type: {
       id: uuidv4(),
       name: TProductTypeName.TelegramAccount,
-      discount: new Map([
-        [TAccountTypeName.Free, Math.random() * 100],
-        [TAccountTypeName.Premium, Math.random() * 100],
-        [TAccountTypeName.Gold, Math.random() * 100],
-        [TAccountTypeName.Standard, Math.random() * 100],
-      ]),
+      discount: {
+        [TAccountTypeName.Free]: Math.random() * 100,
+        [TAccountTypeName.Premium]: Math.random() * 100,
+        [TAccountTypeName.Gold]: Math.random() * 100,
+        [TAccountTypeName.Standard]: Math.random() * 100,
+      },
     },
   };
 };

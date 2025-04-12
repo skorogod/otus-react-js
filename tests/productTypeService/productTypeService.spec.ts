@@ -1,11 +1,15 @@
-import { ProductTypeService } from "src/services/productType/productType.service";
+import { ProductTypeService } from "src/api/services/productType/productType.service";
 import { localStorageMock } from "../mocks";
 import { mockData } from "./mocks";
-import { TUpdateProductTypeDiscount } from "src/services/productType/interfaces";
+import { TUpdateProductTypeDiscount } from "src/api/services/productType/interfaces";
 
 jest.mock("axios", () => ({
-  Axios: jest.fn().mockImplementation(() => ({
+  create: jest.fn().mockImplementation(() => ({
     patch: jest.fn(),
+    interceptors: {
+      request: { use: jest.fn(), eject: jest.fn() },
+      response: { use: jest.fn(), eject: jest.fn() },
+    },
   })),
 }));
 

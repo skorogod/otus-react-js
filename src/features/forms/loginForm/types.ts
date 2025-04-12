@@ -1,9 +1,11 @@
-export type TRegisterFormValues = {
-  email: string;
+import { AuthCredentials } from "src/api/services/auth/interface";
+
+export type TLoginFormValues = {
   password: string;
   username: string;
 };
 
-export type TRegisterFormProps = {
+export type TLoginFormProps = {
   className?: string;
+  onSubmitCb: (creds: AuthCredentials) => void;
 };

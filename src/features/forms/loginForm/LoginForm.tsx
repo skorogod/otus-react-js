@@ -7,28 +7,28 @@ import {
   SubmitHandler,
   SubmitErrorHandler,
 } from "react-hook-form";
-import type { TRegisterFormValues, TRegisterFormProps } from "./types";
-import { EmailField } from "../../../features/fields/emailField/EmailField";
+import type { TLoginFormValues, TLoginFormProps } from "./types";
+import { UsernameField } from "src/features/fields/usrnameField/UsernameField";
 import { PasswordField } from "../../../features/fields/passwordField/PasswordField";
 import { Button } from "@mui/material";
 
-export const LoginForm: FC<TRegisterFormProps> = ({ className }) => {
-  const { handleSubmit, formState, control, reset, getValues } =
-    useForm<TRegisterFormValues>({
+export const LoginForm: FC<TLoginFormProps> = ({ className, onSubmitCb }) => {
+  const { handleSubmit, formState, control, reset } = useForm<TLoginFormValues>(
+    {
       mode: "onChange",
-    });
+    }
+  );
 
-  console.log("values ", getValues());
-
-  const onSubmit: SubmitHandler<TRegisterFormValues> = (data) => {
+  const onSubmit: SubmitHandler<TLoginFormValues> = (data) => {
     console.log(data);
+    onSubmitCb({ username: data.username, password: data.password });
     reset({
-      email: "",
+      username: "",
       password: "",
     });
   };
 
-  const onInvalid: SubmitErrorHandler<TRegisterFormValues> = (error) => {
+  const onInvalid: SubmitErrorHandler<TLoginFormValues> = (error) => {
     console.log(error);
   };
 
@@ -38,19 +38,20 @@ export const LoginForm: FC<TRegisterFormProps> = ({ className }) => {
       className={cn(s.root, className)}
     >
       <Controller
-        name="email"
+        name="username"
         control={control}
         rules={{
-          required: "Введите адрес почты",
+          required: "Введите имя пользователя",
           pattern: {
-            value: /^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]/i,
-            message: "Неверный формат почты",
+            value: /^[a-zA-Z0-9]+$/i,
+            message:
+              "Имя пользователя должно содержить только цифры и латинские буквы",
           },
         }}
         render={({ field }) => (
-          <EmailField
+          <UsernameField
             submitCount={formState.submitCount}
-            errors={formState.errors.email?.message || ""}
+            errors={formState.errors.username?.message || ""}
             {...field}
           />
         )}

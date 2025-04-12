@@ -7,23 +7,46 @@ import { createHashRouter } from "react-router-dom";
 import { ProfileScreen } from "./pages/profile/profileScreen/ProfileScreen";
 import { ProductsScreen } from "./pages/products/productsScreen/ProductsScreen";
 import { ProductCartScreen } from "./pages/ProductCartScreen/ProductCartScreen";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+import i18n from "./i18n";
+import { SignInBlock } from "./pages/auth/signInBlock/SignInBlock";
+import { SignUpBlock } from "./pages/auth/signUpBlock/SignUpBlock";
+
+import { ProtectedComponent } from "./features/protectedComponent/ProtectedComponent";
+
+i18n.init();
 
 const router = createHashRouter([
   {
-    path: "/",
-    element: <App />,
+    path: "",
+    element: <ProtectedComponent></ProtectedComponent>,
     children: [
       {
-        path: "/profile",
-        element: <ProfileScreen />,
+        path: "/",
+        element: <App />,
+        children: [
+          {
+            path: "/profile",
+            element: <ProfileScreen />,
+          },
+          {
+            path: "/gods",
+            element: <ProductsScreen />,
+          },
+          {
+            path: "/cart",
+            element: <ProductCartScreen />,
+          },
+        ],
       },
       {
-        path: "/gods",
-        element: <ProductsScreen />,
+        path: "/signin",
+        element: <SignInBlock />,
       },
       {
-        path: "/cart",
-        element: <ProductCartScreen />,
+        path: "/signup",
+        element: <SignUpBlock />,
       },
     ],
   },
@@ -34,6 +57,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

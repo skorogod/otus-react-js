@@ -26,15 +26,16 @@ const productCardProps: Omit<TProductCardProps, 'count'> = {
   description: 'лучшие телеграм аккаунты по низким ценам только у нас!',
   image: telegramAccountsImage,
   costFull: 200,
+  onCountChange: () => {},
   type: {
     id: 'vsjanflsurhs',
     name: TProductTypeName.TelegramAccount,
-    discount: new Map([
-      [TAccountTypeName.Free, Math.random() * 100],
-      [TAccountTypeName.Premium, Math.random() * 100],
-      [TAccountTypeName.Gold, Math.random() * 100],
-      [TAccountTypeName.Standard, Math.random() * 100],
-    ]),
+    discount: {
+      [TAccountTypeName.Free]: Math.random() * 100,
+      [TAccountTypeName.Premium]: Math.random() * 100,
+      [TAccountTypeName.Gold]: Math.random() * 100,
+      [TAccountTypeName.Standard]: Math.random() * 100,
+    }
   },
 };
 

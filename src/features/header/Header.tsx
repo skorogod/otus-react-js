@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import type { User } from "src/interfaces/user.interface";
 import { Logo } from "../../shared/logo/Logo";
 import { Button } from "../../shared/button/Button";
 
@@ -12,9 +11,11 @@ import { Navigation } from "../../shared/ui/navigation/Navigation";
 import { routes } from "../../routes/routes";
 
 import cn from "clsx";
+import { Link } from "react-router-dom";
+import { TUser } from "src/app/store/slices/auth/interface";
 
 type HeaderProps = {
-  user?: User;
+  user?: TUser | null;
   backgroundColor?: string;
   onLogin: () => void;
   onLogout: () => void;
@@ -56,18 +57,22 @@ export const Header: FC<HeaderProps> = ({
               </>
             ) : (
               <>
-                <Button
-                  primary={themeContext.theme !== "light"}
-                  size="small"
-                  onClick={onLogin}
-                  label={languageContext.t("loginLabel")}
-                />
-                <Button
-                  primary={themeContext.theme !== "light"}
-                  size="small"
-                  onClick={onCreateAccount}
-                  label={languageContext.t(`signUpLabel`)}
-                />
+                <Link to={"/signin"}>
+                  <Button
+                    primary={themeContext.theme !== "light"}
+                    size="small"
+                    onClick={onLogin}
+                    label={languageContext.t("loginLabel")}
+                  />
+                </Link>
+                <Link to={"/signup"}>
+                  <Button
+                    primary={themeContext.theme !== "light"}
+                    size="small"
+                    onClick={onCreateAccount}
+                    label={languageContext.t(`signUpLabel`)}
+                  />
+                </Link>
               </>
             )}
           </div>

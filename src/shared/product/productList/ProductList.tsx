@@ -2,16 +2,17 @@ import React, { FC } from "react";
 import type { TProduct } from "../../../interfaces/product.interface";
 import productsListScss from "./productsList.module.scss";
 import { InfiniteScroll } from "../../infiniteScroll/Infinitescroll";
-import { ProductCard } from "../productCard/ProductCard";
 
 type TProductsListProps = {
   products: TProduct[];
   getNextProducts: () => void;
+  renderProduct: (product: TProduct) => React.ReactNode;
 };
 
 export const ProductList: FC<TProductsListProps> = ({
   products,
   getNextProducts,
+  renderProduct,
 }) => (
   <InfiniteScroll
     next={getNextProducts}
@@ -21,19 +22,6 @@ export const ProductList: FC<TProductsListProps> = ({
       threshold: 0.1,
     }}
   >
-    {products.map((product) => (
-      <ProductCard
-        id={product.id}
-        key={product.id}
-        title={product.title}
-        costFull={product.costFull}
-        costDiscount={product.costDiscount}
-        description={product.description}
-        category={product.category}
-        image={product.images[0]}
-        count={Math.round(Math.random() * 100)}
-        type={product.type}
-      />
-    ))}
+    {products.map((product) => renderProduct(product))}
   </InfiniteScroll>
 );

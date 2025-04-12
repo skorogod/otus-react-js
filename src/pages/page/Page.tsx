@@ -1,21 +1,19 @@
 import React from "react";
 import { Header } from "../../features/header/Header";
 import "./page.css";
-
-type User = {
-  name: string;
-};
+import { useSelector } from "react-redux";
+import { RootState } from "src/app/store";
 
 export const Page: React.FC = () => {
-  const [user, setUser] = React.useState<User>();
+  const user = useSelector((state: RootState) => state.auth.user);
 
   return (
     <article>
       <Header
         user={user}
-        onLogin={() => setUser({ name: "Jane Doe" })}
-        onLogout={() => setUser(undefined)}
-        onCreateAccount={() => setUser({ name: "Jane Doe" })}
+        onLogin={() => console.log("login")}
+        onLogout={() => console.log("logout")}
+        onCreateAccount={() => console.log("create")}
       />
 
       <section className="storybook-page">

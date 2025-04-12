@@ -43,6 +43,6 @@ export const base: Story = {
       'https://avatars.mds.yandex.net/get-vthumb/3333356/915836b1bb9bbb4bc9257fa973baefd8/800x450',
       'https://i.ytimg.com/vi/ht1IDr80VEw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBIiNHir1hgLfxO_2g7g0zCB_OFqg',
     ],
-    category: { name: 'Аккаунты' },
+    category: { id: '1', name: 'Аккаунты' },
   },
 };

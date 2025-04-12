@@ -1,10 +1,14 @@
-import { AccountService } from "src/services/account/account.service";
+import { AccountService } from "src/api/services/account/account.service";
 import { localStorageMock } from "../mocks";
 import { mockData } from "./mocks";
 
 jest.mock("axios", () => ({
-  Axios: jest.fn().mockImplementation(() => ({
+  create: jest.fn().mockImplementation(() => ({
     get: jest.fn(),
+    interceptors: {
+      request: { use: jest.fn(), eject: jest.fn() },
+      response: { use: jest.fn(), eject: jest.fn() },
+    },
   })),
 }));
 

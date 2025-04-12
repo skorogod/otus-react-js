@@ -2,7 +2,7 @@ import {
   TAccountType,
   TAccountTypeName,
 } from "src/interfaces/accountType.interface";
-import { TUpdateAccoutTypeParams } from "src/services/accountType/interfaces";
+import { TUpdateAccoutTypeParams } from "src/api/services/accountType/interfaces";
 
 export const mockData: TAccountType = {
   id: "1",

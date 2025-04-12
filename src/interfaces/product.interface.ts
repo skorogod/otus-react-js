@@ -11,13 +11,15 @@ export type TProduct = {
   description?: string;
   category?: Category;
   type: TProductType;
+  count?: number;
 };
 
 export type TProductDetailsProps = TProduct & {
   inStock: number;
+  onCountChange: (count: number) => void;
 };
 
 export type TProductCardProps = Omit<TProduct, "images"> &
   Omit<TBasicCardProps, "header" | "main" | "footer"> & {
-    count: number;
+    onCountChange: (count: number) => void;
   };
