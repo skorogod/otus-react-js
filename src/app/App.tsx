@@ -5,7 +5,6 @@ import { ThemeProvider } from "src/providers/themeProvider/ThemeProvider";
 import { LanguageProvider } from "src/providers/languageProvider/LanguageProvider";
 
 function App() {
-
   return (
     <ThemeProvider>
       <LanguageProvider>
