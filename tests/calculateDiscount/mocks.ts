@@ -11,16 +11,16 @@ import {
 export const mockProductType: TProductType = {
   id: "wdjfwdkvndmnsfbvsv",
   name: TProductTypeName.Toy,
-  discount: new Map([
-    [TAccountTypeName.Free, 0.5],
-    [TAccountTypeName.Standard, 0.1],
-    [TAccountTypeName.Gold, 0.15],
-    [TAccountTypeName.Premium, 0.2],
-  ]),
+  discount: {
+    [TAccountTypeName.Free]: 0.5,
+    [TAccountTypeName.Standard]: 0.1,
+    [TAccountTypeName.Gold]: 0.15,
+    [TAccountTypeName.Premium]: 0.2,
+  },
 };
 
 export const mockAccountType: TAccountType = {
-  id: "[f2kfwmfpnfwdmwkgnwdf",
+  id: "f2kfwmfpnfwdmwkgnwdf",
   name: TAccountTypeName.Standard,
   discount: 0.15,
 };

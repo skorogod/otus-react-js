@@ -9,6 +9,7 @@ export const ProductDetails: FC<TProductDetailsProps> = ({
   title,
   costFull,
   costDiscount,
+  onCountChange,
   images,
   description,
   category,
@@ -66,7 +67,7 @@ export const ProductDetails: FC<TProductDetailsProps> = ({
           </div>
           <div className={productDetailsCss.purchaiseButtons}>
             <div className={productDetailsCss.buy}>
-              <ToCart counter={1}></ToCart>
+              <ToCart onCountChange={onCountChange} counter={1}></ToCart>
               <button className={productDetailsCss.buyButton}>Купить</button>
             </div>
             <a role="button" className={productDetailsCss.contact} href="">

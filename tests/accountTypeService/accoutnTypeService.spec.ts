@@ -1,12 +1,16 @@
-import { AccountTypeService } from "src/services/accountType/accountType.service";
-import { TUpdateAccoutTypeParams } from "src/services/accountType/interfaces";
+import { AccountTypeService } from "src/api/services/accountType/accountType.service";
+import { TUpdateAccoutTypeParams } from "src/api/services/accountType/interfaces";
 import { localStorageMock } from "../mocks";
 import { mockData } from "./mocks";
 
 // Мокаем Axios
 jest.mock("axios", () => ({
-  Axios: jest.fn().mockImplementation(() => ({
+  create: jest.fn().mockImplementation(() => ({
     patch: jest.fn(),
+    interceptors: {
+      request: { use: jest.fn(), eject: jest.fn() },
+      response: { use: jest.fn(), eject: jest.fn() },
+    },
   })),
 }));
 
