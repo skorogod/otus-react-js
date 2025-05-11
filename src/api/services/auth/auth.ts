@@ -1,5 +1,5 @@
 import { BaseService } from "../base/base.service";
-import type { AuthCredentials, AuthResponse } from "./interface";
+import type { AuthCredentials, AuthResponse, SignUpResponse } from "./interface";
 
 const TOKEN_KEY = "token";
 const REFRESH_TOKEN_KEY = "refresh_token";
@@ -26,10 +26,18 @@ export class AuthService extends BaseService {
 
   public async login(credentials: AuthCredentials): Promise<AuthResponse> {
     const response = await this.axiosClient.post<AuthResponse>(
-      "/auth/login",
+      "/signin",
       credentials
     );
     this.setTokens(response.data.token, response.data.refreshToken);
+    return response.data;
+  }
+
+  public async signup(credentials: AuthCredentials): Promise<SignUpResponse> {
+    const response = await this.axiosClient.post<SignUpResponse>("signup", {
+      ...credentials,
+      comandId: "ofgjmsflgkwsgksfhlfsjhsflgh",
+    });
     return response.data;
   }
 

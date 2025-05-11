@@ -3,6 +3,7 @@ import type { TAuthState } from "./interface";
 import type {
   AuthCredentials,
   AuthResponse,
+  SignUpResponse,
 } from "src/api/services/auth/interface";
 import { authService } from "src/api/services/auth/authFactory";
 
@@ -17,8 +18,16 @@ const initialState: TAuthState = {
 
 export const login = createAsyncThunk<AuthResponse, AuthCredentials>(
   "auth/login",
-  async ({ username, password }) => {
-    const userData = await authService.login({ username, password });
+  async ({ email, password }) => {
+    const userData = await authService.login({ email, password });
+    return userData;
+  }
+);
+
+export const signup = createAsyncThunk<SignUpResponse, AuthCredentials>(
+  "auth/signup",
+  async ({ email, password }) => {
+    const userData = await authService.signup({ email, password });
     return userData;
   }
 );
@@ -56,10 +65,16 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        console.log("FullFIELD", action.payload);
         state.token = action.payload.token;
         state.refreshToken = action.payload.refreshToken;
         state.user = action.payload.user;
+      })
+      .addCase(signup.fulfilled, (state, action) => {
+        state.token = action.payload.token;
+        state.user = {
+          id: action.payload.profile._id,
+          email: action.payload.profile.email,
+        };
       })
       .addCase(getProfile.fulfilled, (state, action) => {
         state.user = action.payload.user;

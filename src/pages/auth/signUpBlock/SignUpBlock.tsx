@@ -4,21 +4,32 @@ import s from "./signUpBlock.module.scss";
 import { RegisterForm } from "../../../features/forms/registerForm/RegisterForm";
 import { Title } from "../../../shared/ui/title/Title";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
+import { AuthCredentials } from "src/api/services/auth/interface";
+import { signup } from "src/app/store/slices/auth/auth";
 
 export type TAuthScreen = {
   className?: string;
 };
 
-export const SignUpBlock: FC<TAuthScreen> = ({ className }) => (
-  <div className={cn(s.root, className)}>
-    <div className={s.frame}>
-      <div className={s.top}>
-        <Title className={s.title}>Регистрация</Title>
-      </div>
-      <RegisterForm />
-      <div className={cn(s.signInLinkContainer)}>
-        <Link to={"/signin"}>Войти</Link>
+export const SignUpBlock: FC<TAuthScreen> = ({ className }) => {
+  const dispatch = useAppDispatch();
+
+  const onSubmitCb = ({ email, password }: AuthCredentials) => {
+    dispatch(signup({ email, password }));
+  };
+
+  return (
+    <div className={cn(s.root, className)}>
+      <div className={s.frame}>
+        <div className={s.top}>
+          <Title className={s.title}>Регистрация</Title>
+        </div>
+        <RegisterForm onSubmitCb={onSubmitCb} />
+        <div className={cn(s.signInLinkContainer)}>
+          <Link to={"/signin"}>Войти</Link>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};

@@ -15,8 +15,8 @@ export type TAuthScreen = {
 export const SignInBlock: FC<TAuthScreen> = ({ className }) => {
   const dispatch = useAppDispatch();
 
-  const onSubmitCb = ({ username, password }: AuthCredentials) => {
-    dispatch(login({ username, password }));
+  const onSubmitCb = ({ email, password }: AuthCredentials) => {
+    dispatch(login({ email, password }));
   };
 
   return (
