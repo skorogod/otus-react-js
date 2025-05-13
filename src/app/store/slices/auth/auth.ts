@@ -94,7 +94,6 @@ export const authSlice = createSlice({
 export const initializeAuth = createAsyncThunk(
   "auth/initialize",
   async (_, { dispatch }) => {
-    console.log("initialize");
     const token = localStorage.getItem(TOKEN_KEY);
     if (token) {
       dispatch(authSlice.actions.setToken());

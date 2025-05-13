@@ -20,9 +20,7 @@ const initialState = productsAdapter.getInitialState({
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async ({ page, limit }: TGetReourceParams) => {
-    console.log("PAGE", page, limit);
     const products = await productsService.getAll({ page, limit });
-    console.log("Products store", products);
     return products;
   }
 );
@@ -37,7 +35,6 @@ export const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      console.log("payload ", action.payload);
       const newEntities: Record<string, TProduct> = {};
       action.payload.forEach((product) => {
         newEntities[product.id] = product;

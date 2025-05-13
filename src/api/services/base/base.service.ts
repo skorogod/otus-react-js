@@ -5,7 +5,6 @@ import axios, {
 } from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
-console.log("BASE_URL", BASE_URL);
 
 export class BaseService {
   axiosClient: AxiosInstance;
@@ -27,7 +26,6 @@ export class BaseService {
     this.axiosClient.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
         const token = this.getToken();
-        console.log("etetet");
         if (token && config.headers) {
           config.headers.Authorization = `Bearer ${token}`;
         }
@@ -40,12 +38,10 @@ export class BaseService {
       (response: AxiosResponse) => response,
       async (error) => {
         const originalRequest = error.config;
-        console.log(2);
         if (error.response?.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true;
           return this.axiosClient(originalRequest);
         } else if (error.response) {
-          console.log(1);
           const { data, status } = error.response;
           return Promise.reject({
             message: data.error,
