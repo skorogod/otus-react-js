@@ -27,7 +27,10 @@ export const SignInBlock: FC<TAuthScreen> = ({ className }) => {
         </div>
         <LoginForm onSubmitCb={onSubmitCb} />
         <div className={cn(s.signUpLinkContainer)}>
-          <Link to={"/signup"}>Регистрация</Link>
+          <Link to={"/signup"}>Регистрация Async Thunk</Link>
+        </div>
+        <div className={cn(s.signUpLinkContainer)}>
+          <Link to={"/signup-test"}>Регистрация Request in component</Link>
         </div>
       </div>
     </div>

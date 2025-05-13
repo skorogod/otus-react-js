@@ -44,7 +44,6 @@ export class AuthService extends BaseService {
         ...credentials,
         comandId: "ofgjmsflgkwsgksfhlfsjhsflgh",
       });
-      console.log(response.data);
       return response.data;
     } catch (error) {
       const apiError = error as TApiResponseError;
