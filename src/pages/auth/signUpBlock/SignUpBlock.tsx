@@ -6,7 +6,8 @@ import { Title } from "../../../shared/ui/title/Title";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
 import { AuthCredentials } from "src/api/services/auth/interface";
-import { signup } from "src/app/store/slices/auth/auth";
+import { selectAuthError, signup } from "src/app/store/slices/auth/auth";
+import { useAppSelector } from "src/app/hooks/useAppSelector";
 
 export type TAuthScreen = {
   className?: string;
@@ -14,6 +15,7 @@ export type TAuthScreen = {
 
 export const SignUpBlock: FC<TAuthScreen> = ({ className }) => {
   const dispatch = useAppDispatch();
+  const error = useAppSelector(selectAuthError);
 
   const onSubmitCb = ({ email, password }: AuthCredentials) => {
     dispatch(signup({ email, password }));
@@ -26,6 +28,7 @@ export const SignUpBlock: FC<TAuthScreen> = ({ className }) => {
           <Title className={s.title}>Регистрация</Title>
         </div>
         <RegisterForm onSubmitCb={onSubmitCb} />
+        {error && <div className={cn(s.errors)}>{error}</div>}
         <div className={cn(s.signInLinkContainer)}>
           <Link to={"/signin"}>Войти</Link>
         </div>

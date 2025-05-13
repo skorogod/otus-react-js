@@ -6,6 +6,7 @@ import type {
   SignUpResponse,
 } from "src/api/services/auth/interface";
 import { authService } from "src/api/services/auth/authFactory";
+import { RootState } from "../..";
 
 export const TOKEN_KEY = "token";
 export const REFRESH_TOKEN_KEY = "refresh_token";
@@ -14,6 +15,7 @@ const initialState: TAuthState = {
   token: null,
   refreshToken: null,
   user: null,
+  error: "",
 };
 
 export const login = createAsyncThunk<AuthResponse, AuthCredentials>(
@@ -76,6 +78,9 @@ export const authSlice = createSlice({
           email: action.payload.profile.email,
         };
       })
+      .addCase(signup.rejected, (state, action) => {
+        state.error = action.error.message || "";
+      })
       .addCase(getProfile.fulfilled, (state, action) => {
         state.user = action.payload.user;
       })
@@ -97,5 +102,7 @@ export const initializeAuth = createAsyncThunk(
     }
   }
 );
+
+export const selectAuthError = (state: RootState) => state.auth.error;
 
 export const authReducer = authSlice.reducer;

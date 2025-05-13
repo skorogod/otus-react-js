@@ -5,6 +5,7 @@ export interface TAuthState {
     id: string;
     email: string;
   } | null;
+  error: string;
 }
 
 export type TUser = {

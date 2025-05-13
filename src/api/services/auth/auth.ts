@@ -1,5 +1,10 @@
 import { BaseService } from "../base/base.service";
-import type { AuthCredentials, AuthResponse, SignUpResponse } from "./interface";
+import { TApiResponseError } from "../base/interface";
+import type {
+  AuthCredentials,
+  AuthResponse,
+  SignUpResponse,
+} from "./interface";
 
 const TOKEN_KEY = "token";
 const REFRESH_TOKEN_KEY = "refresh_token";
@@ -34,11 +39,22 @@ export class AuthService extends BaseService {
   }
 
   public async signup(credentials: AuthCredentials): Promise<SignUpResponse> {
-    const response = await this.axiosClient.post<SignUpResponse>("signup", {
-      ...credentials,
-      comandId: "ofgjmsflgkwsgksfhlfsjhsflgh",
-    });
-    return response.data;
+    try {
+      const response = await this.axiosClient.post<SignUpResponse>("signup", {
+        ...credentials,
+        comandId: "ofgjmsflgkwsgksfhlfsjhsflgh",
+      });
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      const apiError = error as TApiResponseError;
+      if (apiError.response) {
+        return Promise.reject(
+          new Error(apiError.response.data.errors[0]?.message || "")
+        );
+      }
+      throw error;
+    }
   }
 
   public async refreshToken(): Promise<AuthResponse> {

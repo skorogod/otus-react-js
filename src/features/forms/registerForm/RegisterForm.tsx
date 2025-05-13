@@ -46,10 +46,10 @@ export const RegisterForm: FC<TRegisterFormProps> = ({
         control={control}
         rules={{
           required: "Введите адрес почты",
-          pattern: {
-            value: /^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]/i,
-            message: "Неверный формат почты",
-          },
+          // pattern: {
+          //   value: /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]/i,
+          //   message: "Неверный формат почты",
+          // },
         }}
         render={({ field }) => (
           <EmailField
