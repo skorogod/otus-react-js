@@ -23,6 +23,7 @@ export class MockAuthService implements IAuthService {
   }
 
   public async signup(credentials: AuthCredentials): Promise<SignUpResponse> {
+    console.log(credentials);
     return {} as SignUpResponse;
   }
 
