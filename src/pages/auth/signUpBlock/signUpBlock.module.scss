@@ -32,3 +32,13 @@
   margin-top: 1rem;
   text-align: center;
 }
+
+.errors {
+  margin-top: 10px;
+  color: red;
+}
+
+.errors::before {
+  content: "*";
+  margin-right: 5px;
+}

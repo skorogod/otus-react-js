@@ -4,7 +4,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export class BaseService {
   axiosClient: AxiosInstance;
@@ -38,11 +38,16 @@ export class BaseService {
       (response: AxiosResponse) => response,
       async (error) => {
         const originalRequest = error.config;
-
         if (error.response?.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true;
-
           return this.axiosClient(originalRequest);
+        } else if (error.response) {
+          const { data, status } = error.response;
+          return Promise.reject({
+            message: data.error,
+            code: status,
+            details: data,
+          });
         }
       }
     );

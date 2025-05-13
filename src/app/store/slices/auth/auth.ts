@@ -3,8 +3,10 @@ import type { TAuthState } from "./interface";
 import type {
   AuthCredentials,
   AuthResponse,
+  SignUpResponse,
 } from "src/api/services/auth/interface";
 import { authService } from "src/api/services/auth/authFactory";
+import { RootState } from "../..";
 
 export const TOKEN_KEY = "token";
 export const REFRESH_TOKEN_KEY = "refresh_token";
@@ -13,12 +15,21 @@ const initialState: TAuthState = {
   token: null,
   refreshToken: null,
   user: null,
+  error: "",
 };
 
 export const login = createAsyncThunk<AuthResponse, AuthCredentials>(
   "auth/login",
-  async ({ username, password }) => {
-    const userData = await authService.login({ username, password });
+  async ({ email, password }) => {
+    const userData = await authService.login({ email, password });
+    return userData;
+  }
+);
+
+export const signup = createAsyncThunk<SignUpResponse, AuthCredentials>(
+  "auth/signup",
+  async ({ email, password }) => {
+    const userData = await authService.signup({ email, password });
     return userData;
   }
 );
@@ -56,10 +67,19 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        console.log("FullFIELD", action.payload);
         state.token = action.payload.token;
         state.refreshToken = action.payload.refreshToken;
         state.user = action.payload.user;
+      })
+      .addCase(signup.fulfilled, (state, action) => {
+        state.token = action.payload.token;
+        state.user = {
+          id: action.payload.profile._id,
+          email: action.payload.profile.email,
+        };
+      })
+      .addCase(signup.rejected, (state, action) => {
+        state.error = action.error.message || "";
       })
       .addCase(getProfile.fulfilled, (state, action) => {
         state.user = action.payload.user;
@@ -74,7 +94,6 @@ export const authSlice = createSlice({
 export const initializeAuth = createAsyncThunk(
   "auth/initialize",
   async (_, { dispatch }) => {
-    console.log("initialize");
     const token = localStorage.getItem(TOKEN_KEY);
     if (token) {
       dispatch(authSlice.actions.setToken());
@@ -82,5 +101,7 @@ export const initializeAuth = createAsyncThunk(
     }
   }
 );
+
+export const selectAuthError = (state: RootState) => state.auth.error;
 
 export const authReducer = authSlice.reducer;

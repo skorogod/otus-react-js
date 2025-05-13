@@ -6,7 +6,7 @@ on:
       "master", "main", 'react-patterns', 
       'range-slider', 'products_infinite_scroll', 
       'popover', account_service,
-      "forms", "routing", "redux",
+      "forms", "routing", "redux", registration
     ]
 
   # Позволяет запустить этот рабочий процесс вручную на вкладке Actions
