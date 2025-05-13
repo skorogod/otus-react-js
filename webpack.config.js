@@ -3,8 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const Dotenv = require('dotenv-webpack')
-
+const Dotenv = require("dotenv-webpack");
 
 const port = 2233;
 const dist = path.join(__dirname, "dist");
@@ -100,7 +99,9 @@ module.exports = (_, args) => ({
     ],
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      path: args.mode === "development" ? "./.env" : "./.env.prod",
+    }),
     new HtmlWebpackPlugin({
       template: "./index.html",
       favicon: "./favicon.svg",
