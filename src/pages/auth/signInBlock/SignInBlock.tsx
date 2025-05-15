@@ -5,8 +5,9 @@ import cn from "clsx";
 import { LoginForm } from "../../../features/forms/loginForm/LoginForm";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
-import { login } from "src/app/store/slices/auth/auth";
+import { login, selectAuthError } from "src/app/store/slices/auth/auth";
 import { AuthCredentials } from "src/api/services/auth/interface";
+import { useAppSelector } from "src/app/hooks/useAppSelector";
 
 export type TAuthScreen = {
   className?: string;
@@ -14,6 +15,7 @@ export type TAuthScreen = {
 
 export const SignInBlock: FC<TAuthScreen> = ({ className }) => {
   const dispatch = useAppDispatch();
+  const error = useAppSelector(selectAuthError);
 
   const onSubmitCb = ({ email, password }: AuthCredentials) => {
     dispatch(login({ email, password }));
@@ -32,6 +34,7 @@ export const SignInBlock: FC<TAuthScreen> = ({ className }) => {
         <div className={cn(s.signUpLinkContainer)}>
           <Link to={"/signup-test"}>Регистрация Request in component</Link>
         </div>
+        {error && <div className={cn("error-text")}>{error}</div>}
       </div>
     </div>
   );

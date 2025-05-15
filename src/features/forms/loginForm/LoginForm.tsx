@@ -41,11 +41,9 @@ export const LoginForm: FC<TLoginFormProps> = ({ className, onSubmitCb }) => {
         name="email"
         control={control}
         rules={{
-          required: "Введите имя пользователя",
           pattern: {
-            value: /^[a-zA-Z0-9]+$/i,
-            message:
-              "Имя пользователя должно содержить только цифры и латинские буквы",
+            value: /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]/i,
+            message: "Неверный формат почты",
           },
         }}
         render={({ field }) => (

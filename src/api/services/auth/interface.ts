@@ -5,9 +5,9 @@ export interface AuthCredentials {
 
 export interface AuthResponse {
   token: string;
-  refreshToken: string;
-  user: {
-    id: string;
+  refreshToken?: string;
+  profile: {
+    _id: string;
     email: string;
   };
 }

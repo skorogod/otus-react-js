@@ -34,7 +34,7 @@ export class AuthService extends BaseService {
       "/signin",
       credentials
     );
-    this.setTokens(response.data.token, response.data.refreshToken);
+    this.setTokens(response.data.token, response.data.refreshToken || "");
     return response.data;
   }
 
@@ -46,12 +46,6 @@ export class AuthService extends BaseService {
       });
       return response.data;
     } catch (error) {
-      const apiError = error as TApiResponseError;
-      if (apiError.response) {
-        return Promise.reject(
-          new Error(apiError.response.data.errors[0]?.message || "")
-        );
-      }
       throw error;
     }
   }
@@ -69,7 +63,7 @@ export class AuthService extends BaseService {
         refreshToken,
       }
     );
-    this.setTokens(response.data.token, response.data.refreshToken);
+    this.setTokens(response.data.token, response.data.refreshToken || "");
     return response.data;
   }
 
@@ -95,6 +89,13 @@ export class AuthService extends BaseService {
       (response) => response,
       async (error) => {
         const originalRequest = error.config;
+        const apiError = error as TApiResponseError;
+
+        if (apiError.response?.data.errors) {
+          return Promise.reject(
+            new Error(apiError.response.data.errors[0]?.message || "")
+          );
+        }
 
         if (error.response?.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true;

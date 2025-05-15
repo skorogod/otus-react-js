@@ -68,8 +68,14 @@ export const authSlice = createSlice({
     builder
       .addCase(login.fulfilled, (state, action) => {
         state.token = action.payload.token;
-        state.refreshToken = action.payload.refreshToken;
-        state.user = action.payload.user;
+        state.refreshToken = action.payload.token;
+        state.user = {
+          id: action.payload.profile._id,
+          email: action.payload.profile.email,
+        };
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.error = action.error.message || "Error";
       })
       .addCase(signup.fulfilled, (state, action) => {
         state.token = action.payload.token;
@@ -79,14 +85,16 @@ export const authSlice = createSlice({
         };
       })
       .addCase(signup.rejected, (state, action) => {
-        state.error = action.error.message || "";
+        state.error = action.error.message || "Error";
       })
       .addCase(getProfile.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user = state.user = {
+          id: action.payload.profile._id,
+          email: action.payload.profile.email,
+        };
       })
       .addCase(refreshToken.fulfilled, (state, action) => {
         state.token = action.payload.token;
-        state.refreshToken = action.payload.refreshToken;
       });
   },
 });

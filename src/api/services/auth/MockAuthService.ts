@@ -41,7 +41,7 @@ export class MockAuthService implements IAuthService {
     }
 
     const response = generateTokens(user.id);
-    this.setTokens(response.token, response.refreshToken);
+    this.setTokens(response.token, response.refreshToken || "");
     return response;
   }
 
@@ -58,7 +58,7 @@ export class MockAuthService implements IAuthService {
     // Для мока просто генерируем новые токены
     const userId = refreshToken.split("_")[3];
     const response = generateTokens(userId);
-    this.setTokens(response.token, response.refreshToken);
+    this.setTokens(response.token, response.refreshToken || "");
     return response;
   }
 
