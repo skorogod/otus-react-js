@@ -1,7 +1,7 @@
 import { calculateDiscount } from "src/helpers/calculateDiscount";
 import { TAccountTypeName } from "src/interfaces/accountType.interface";
 
-import { mockAccountType, mockProduct, mockProductType } from "./mocks";
+import { mockAccountType, mockProduct, mockCategory } from "./mocks";
 
 describe("Calculate discount", () => {
   test("calculate discount is a function", () => {
@@ -20,8 +20,8 @@ describe("Calculate discount", () => {
         accountType: { ...mockAccountType, discount: 0.75 },
         product: {
           ...mockProduct,
-          type: {
-            ...mockProductType,
+          category: {
+            ...mockCategory,
             discount: {
               [TAccountTypeName.Standard]: 0.5,
               [TAccountTypeName.Free]: 0.1,

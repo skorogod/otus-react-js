@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 export type TBasicCardProps = {
   backgroundColor?: string;
   color?: string;
-  image: string;
+  photo: string;
   header: ReactNode;
   main: ReactNode;
   footer: ReactNode;

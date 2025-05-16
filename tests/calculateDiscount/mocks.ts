@@ -3,14 +3,15 @@ import {
   TAccountType,
   TAccountTypeName,
 } from "src/interfaces/accountType.interface";
-import {
-  TProductType,
-  TProductTypeName,
-} from "src/interfaces/productType.interface";
+import { TProductTypeName } from "src/interfaces/productType.interface";
+import { Category } from "src/interfaces/category.interface";
 
-export const mockProductType: TProductType = {
+export const mockCategory: Category = {
   id: "wdjfwdkvndmnsfbvsv",
   name: TProductTypeName.Toy,
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  commandId: "123",
   discount: {
     [TAccountTypeName.Free]: 0.5,
     [TAccountTypeName.Standard]: 0.1,
@@ -27,8 +28,12 @@ export const mockAccountType: TAccountType = {
 
 export const mockProduct: TProduct = {
   id: "dksdmlfnds,nsfd",
-  title: "Мишка",
-  costFull: 800,
-  images: [],
-  type: mockProductType,
+  name: "Мишка",
+  oldPrice: 800,
+  price: 600,
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  commandId: "123",
+  category: mockCategory,
+  photo: "",
 };

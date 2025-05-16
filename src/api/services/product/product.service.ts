@@ -1,6 +1,7 @@
 import { BaseService } from "../base/base.service";
 import { TProduct } from "src/interfaces/product.interface";
 import { TGetReourceParams } from "../common.interface";
+import { TNewProduct } from "./interfaces";
 
 export class ProductService extends BaseService {
   private readonly endpoint = "/products";
@@ -12,7 +13,9 @@ export class ProductService extends BaseService {
 
   async getAll({ page, limit }: TGetReourceParams): Promise<TProduct[]> {
     const response = await this.axiosClient.get<TProduct[]>(this.endpoint, {
-      params: { page, limit },
+      params: {
+        pagination: JSON.stringify({ pageSize: page, pageLimit: limit }),
+      },
     });
     return response.data;
   }
@@ -24,7 +27,7 @@ export class ProductService extends BaseService {
     return response.data;
   }
 
-  async create(product: Omit<TProduct, "id">): Promise<TProduct> {
+  async create(product: TNewProduct): Promise<TProduct> {
     const response = await this.axiosClient.post<TProduct>(
       this.endpoint,
       product

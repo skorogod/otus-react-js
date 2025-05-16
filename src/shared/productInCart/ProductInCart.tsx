@@ -20,16 +20,16 @@ export const ProductInCart: FC<ProductInCartProps> = ({
       <div className={producInCartCss.imageContainer}>
         <img
           className={producInCartCss.image}
-          src={product.images[0]}
+          src={product.photo}
           alt="product-image"
         />
       </div>
       <div className={producInCartCss.info}>
-        <p className={`title ${producInCartCss.title}`}>{product.title}</p>
+        <p className={`title ${producInCartCss.title}`}>{product.name}</p>
         <div className={producInCartCss.infoGrid}>
           <label className={producInCartCss.costLabel} htmlFor="cost"></label>
           <p id="cost" className={producInCartCss.cost}>
-            {product.costFull}
+            {product.price}
           </p>
         </div>
       </div>

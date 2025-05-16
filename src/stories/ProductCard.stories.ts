@@ -22,21 +22,24 @@ export default meta;
 
 const productCardProps: Omit<TProductCardProps, 'count'> = {
   id: 'vsjanflsurhs',
-  title: 'Телеграм аккаунт',
-  description: 'лучшие телеграм аккаунты по низким ценам только у нас!',
-  image: telegramAccountsImage,
-  costFull: 200,
+  name: 'Телеграм аккаунт',
+  desc: 'лучшие телеграм аккаунты по низким ценам только у нас!',
+  photo: telegramAccountsImage,
+  price: 200,
   onCountChange: () => {},
-  type: {
+  category: {
     id: 'vsjanflsurhs',
-    name: TProductTypeName.TelegramAccount,
+    name: 'Аккаунты',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    commandId: '1',
     discount: {
-      [TAccountTypeName.Free]: Math.random() * 100,
-      [TAccountTypeName.Premium]: Math.random() * 100,
-      [TAccountTypeName.Gold]: Math.random() * 100,
-      [TAccountTypeName.Standard]: Math.random() * 100,
+      [TAccountTypeName.Free]: 0,
+      [TAccountTypeName.Standard]: 0,
+      [TAccountTypeName.Premium]: 0,
+      [TAccountTypeName.Gold]: 0,
     }
-  },
+  }
 };
 
 export const WithNotNullCount = {

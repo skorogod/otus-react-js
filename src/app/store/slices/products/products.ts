@@ -7,6 +7,7 @@ import { RootState } from "../..";
 import { productsService } from "src/api/services/product/productFactory";
 import { TGetReourceParams } from "src/api/services/common.interface";
 import { TProduct } from "src/interfaces/product.interface";
+import { TNewProduct } from "src/api/services/product/interfaces";
 
 const productsAdapter = createEntityAdapter<TProduct>();
 const initialState = productsAdapter.getInitialState({
@@ -25,6 +26,14 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+export const addNewProduct = createAsyncThunk(
+  "products/addNewProduct",
+  async (newProduct: TNewProduct) => {
+    const data = await productsService.create(newProduct);
+    return data;
+  }
+);
+
 export const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -34,13 +43,17 @@ export const productsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      const newEntities: Record<string, TProduct> = {};
-      action.payload.forEach((product) => {
-        newEntities[product.id] = product;
+    builder
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        const newEntities: Record<string, TProduct> = {};
+        action.payload.forEach((product) => {
+          newEntities[product.id] = product;
+        });
+        productsAdapter.upsertMany(state, newEntities);
+      })
+      .addCase(addNewProduct.fulfilled, (state, action) => {
+        productsAdapter.upsertOne(state, action.payload);
       });
-      productsAdapter.upsertMany(state, newEntities);
-    });
   },
 });
 

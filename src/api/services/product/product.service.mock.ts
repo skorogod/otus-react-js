@@ -4,6 +4,23 @@ import { IProductService } from "./IProductService";
 import { TGetReourceParams } from "../common.interface";
 import { v4 } from "uuid";
 import { Category } from "src/interfaces/category.interface";
+import { TNewProduct } from "./interfaces";
+import { TProductTypeName } from "src/interfaces/productType.interface";
+import { TAccountTypeName } from "src/interfaces/accountType.interface";
+
+const mockCategory: Category = {
+  id: "wdjfwdkvndmnsfbvsv",
+  name: TProductTypeName.Toy,
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  commandId: "123",
+  discount: {
+    [TAccountTypeName.Free]: 0.5,
+    [TAccountTypeName.Standard]: 0.1,
+    [TAccountTypeName.Gold]: 0.15,
+    [TAccountTypeName.Premium]: 0.2,
+  },
+};
 
 export class ProductServiceMock implements IProductService {
   private static instance: ProductServiceMock;
@@ -32,9 +49,12 @@ export class ProductServiceMock implements IProductService {
     return product;
   }
 
-  async create(product: Omit<TProduct, "id">): Promise<TProduct> {
+  async create(product: TNewProduct): Promise<TProduct> {
     const newProduct: TProduct = {
       ...product,
+      category: mockCategory,
+      createdAt: new Date(),
+      updatedAt: new Date(),
       id: v4(),
     };
     this.mockProducts.push(newProduct);

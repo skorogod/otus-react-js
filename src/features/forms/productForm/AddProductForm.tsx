@@ -1,14 +1,25 @@
 import React, { FC, useState, useCallback } from "react";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
-import { TProductFormValues } from "./types";
-import { Box, Button } from "@mui/material";
+import { TProductFormValues } from "./interfaces";
+import {
+  Box,
+  Button,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
 import { ImagePreview } from "./imagePreview/ImagePreview";
 import { ImageUpload } from "./imageUploadField/ImageUploadField";
-import { FormTextField } from "../../../features/fields/textField/TextField";
+import { FormTextField } from "../../fields/textField/TextField";
 import s from "./productForm.module.scss";
 import { Title } from "../../../shared/ui/title/Title";
+import type { TAddProducFormProps } from "./interfaces";
 
-export const AddProductForm: FC = () => {
+export const AddProductForm: FC<TAddProducFormProps> = ({
+  onSubmitCb,
+  categories,
+}) => {
   const { handleSubmit, setValue, control, getValues, formState, reset } =
     useForm<TProductFormValues>({
       defaultValues: {
@@ -17,8 +28,9 @@ export const AddProductForm: FC = () => {
         price: 0,
         discount: 0,
         stock: 0,
-        images: [],
+        photos: [],
         mainImageIndex: 0,
+        category: "",
       },
     });
 
@@ -41,13 +53,17 @@ export const AddProductForm: FC = () => {
         reader.readAsDataURL(file);
       }
 
-      setValue("images", files);
+      setValue("photos", files);
     },
     [setValue]
   );
 
   const onSubmit: SubmitHandler<TProductFormValues> = (data) => {
-    console.log(data);
+    onSubmitCb({
+      ...data,
+      photos: data.photos.map((photo) => photo.name),
+      photo: data.photos[data.mainImageIndex].name,
+    });
     reset();
   };
 
@@ -64,10 +80,10 @@ export const AddProductForm: FC = () => {
       newImages.splice(index, 1);
       setPreviewImages(newImages);
 
-      const currentImages = getValues("images") as File[];
+      const currentImages = getValues("photos") as File[];
       const newFiles = [...currentImages];
       newFiles.splice(index, 1);
-      setValue("images", newFiles);
+      setValue("photos", newFiles);
     },
     [setValue, previewImages, getValues]
   );
@@ -76,6 +92,28 @@ export const AddProductForm: FC = () => {
     <Box className={s.root}>
       <Title>Добавить товар</Title>
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+        <Controller
+          name={"category"}
+          control={control}
+          rules={{ required: "Обязательное поле" }}
+          render={({ field }) => (
+            <FormControl fullWidth>
+              <InputLabel id="category-select-label">Категория</InputLabel>
+              <Select
+                {...field}
+                labelId="category-select-label"
+                label="Категория"
+                error={!!formState.errors.category}
+              >
+                {categories.map((category) => (
+                  <MenuItem key={category.id} value={category.id}>
+                    {category.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          )}
+        />
         <Controller
           name={"name"}
           control={control}

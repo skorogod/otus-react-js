@@ -5,7 +5,7 @@ import { TBasicCardProps } from "./basicCard.interface";
 export const BasicCard: FC<TBasicCardProps> = ({
   backgroundColor,
   color,
-  image,
+  photo,
   header,
   main,
   footer,
@@ -17,7 +17,7 @@ export const BasicCard: FC<TBasicCardProps> = ({
     <header className={basicCardScss.header}>{header}</header>
     <main className={basicCardScss.main}>
       <div className={basicCardScss.imageContainer}>
-        <img className={basicCardScss.image} src={image} alt="product-image" />
+        <img className={basicCardScss.image} src={photo} alt="product-image" />
       </div>
       {main}
     </main>

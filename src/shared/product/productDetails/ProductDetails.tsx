@@ -6,12 +6,12 @@ import { ToCart } from "../../toCart/ToCart";
 
 export const ProductDetails: FC<TProductDetailsProps> = ({
   inStock,
-  title,
-  costFull,
-  costDiscount,
+  name,
+  price,
+  oldPrice,
   onCountChange,
-  images,
-  description,
+  photo,
+  desc,
   category,
 }) => {
   const ref = useRef<null | HTMLParagraphElement>(null);
@@ -35,15 +35,11 @@ export const ProductDetails: FC<TProductDetailsProps> = ({
       <div className={productDetailsCss.productCard}>
         <div className={productDetailsCss.images}>
           <picture className={productDetailsCss.mainImageContainer}>
-            <img
-              className={productDetailsCss.mainImage}
-              src={images[0]}
-              alt=""
-            />
+            <img className={productDetailsCss.mainImage} src={photo} alt="" />
           </picture>
         </div>
         <div className={productDetailsCss.info}>
-          <h1 className={productDetailsCss.title}>{title}</h1>
+          <h1 className={productDetailsCss.title}>{name}</h1>
           <div className={productDetailsCss.categoryContainer}>
             <label
               className={productDetailsCss.categoryLabel}
@@ -58,12 +54,10 @@ export const ProductDetails: FC<TProductDetailsProps> = ({
 
         <div className={productDetailsCss.purchaise}>
           <div className={productScss.cost}>
-            <p className={productScss.costFull} id="cost">
-              {costFull}
+            <p className={productScss.price} id="cost">
+              {price}
             </p>
-            {costDiscount && (
-              <p className={productScss.costDiscount}>{costDiscount}</p>
-            )}
+            {oldPrice && <p className={productScss.costDiscount}>{oldPrice}</p>}
           </div>
           <div className={productDetailsCss.purchaiseButtons}>
             <div className={productDetailsCss.buy}>
@@ -87,7 +81,7 @@ export const ProductDetails: FC<TProductDetailsProps> = ({
               showFullDescription ? productDetailsCss.full : null
             }`}
           >
-            {description}
+            {desc}
           </p>
           {descriptionOverflow || showFullDescription ? (
             <div className={productDetailsCss.moreToggle}>

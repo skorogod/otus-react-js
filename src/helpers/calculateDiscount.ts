@@ -7,12 +7,12 @@ type TParams = {
 };
 
 export const calculateDiscount = ({ accountType, product }: TParams) => {
-  if (product.type && product.type.discount[accountType.name]) {
+  if (product.category && product.category.discount[accountType.name]) {
     return Number(
       (
-        product.costFull *
+        product.price *
         Math.min(
-          (product.type.discount[accountType.name] || 0) + accountType.discount,
+          (product.category.discount[accountType.name] || 0) + accountType.discount,
           0.99
         )
       ).toFixed(2)
