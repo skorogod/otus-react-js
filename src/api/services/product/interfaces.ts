@@ -17,5 +17,5 @@ export type TNewProduct = Omit<
   TProduct,
   "id" | "createdAt" | "updatedAt" | "category"
 > & {
-  category: string;
+  categoryId: string;
 };

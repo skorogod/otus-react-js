@@ -4,7 +4,7 @@ import { IProductService } from "./IProductService";
 import { TGetReourceParams } from "../common.interface";
 import { v4 } from "uuid";
 import { Category } from "src/interfaces/category.interface";
-import { TNewProduct } from "./interfaces";
+import { TGetProductsResponse, TNewProduct } from "./interfaces";
 import { TProductTypeName } from "src/interfaces/productType.interface";
 import { TAccountTypeName } from "src/interfaces/accountType.interface";
 
@@ -35,10 +35,33 @@ export class ProductServiceMock implements IProductService {
     return ProductServiceMock.instance;
   }
 
-  async getAll({ page, limit }: TGetReourceParams): Promise<TProduct[]> {
-    return limit
-      ? this.mockProducts.slice((page - 1) * limit, (page - 1) * limit + limit)
-      : this.mockProducts;
+  async getAll({
+    page,
+    limit,
+  }: TGetReourceParams): Promise<TGetProductsResponse> {
+    const data: TProduct[] = [];
+    if (limit) {
+      data.push(
+        ...this.mockProducts.slice(
+          (page - 1) * limit,
+          (page - 1) * limit + limit
+        )
+      );
+    } else {
+      data.push(...this.mockProducts);
+    }
+    return {
+      data: data,
+      pagination: {
+        total: 10,
+        pageNumber: 1,
+        pageSize: data.length,
+      },
+      sorting: {
+        type: "ASC",
+        field: "name",
+      },
+    };
   }
 
   async getById(id: string): Promise<TProduct> {

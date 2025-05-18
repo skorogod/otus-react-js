@@ -1,7 +1,7 @@
-import { ProductTypeService } from "src/api/services/productType/productType.service";
+import { CategoryService } from "src/api/services/category/category.service";
 import { localStorageMock } from "../mocks";
 import { mockData } from "./mocks";
-import { TUpdateProductTypeDiscount } from "src/api/services/productType/interfaces";
+import { TUpdateCategoryDiscount } from "src/api/services/category/interfaces";
 
 jest.mock("axios", () => ({
   create: jest.fn().mockImplementation(() => ({
@@ -18,10 +18,10 @@ Object.defineProperty(global, "localStorage", {
 });
 
 describe("ProductTypeService", () => {
-  let productTypeService: ProductTypeService;
+  let productTypeService: CategoryService;
 
   beforeEach(() => {
-    productTypeService = ProductTypeService.getInstance();
+    productTypeService = CategoryService.getInstance();
     localStorageMock.setItem("token", "fake-token");
   });
 
@@ -32,8 +32,8 @@ describe("ProductTypeService", () => {
 
   describe("updateProductTypeById", () => {
     it("update product type and return updated data", async () => {
-      const params: TUpdateProductTypeDiscount = {
-        producTypetId: "1",
+      const params: TUpdateCategoryDiscount = {
+        categoryId: "1",
         accountTypeId: "123",
         discount: 0.2,
       };
@@ -42,10 +42,10 @@ describe("ProductTypeService", () => {
         data: mockData,
       });
 
-      const result = await productTypeService.updateProductTypeDiscount(params);
+      const result = await productTypeService.updateCategoryDiscount(params);
       expect(result).toEqual(mockData);
       expect(productTypeService.axiosClient.patch).toHaveBeenCalledWith(
-        `/product-types/${params.producTypetId}`,
+        `/product-types/${params.categoryId}`,
         {
           accountTypeId: params.accountTypeId,
           discount: params.discount,
@@ -59,8 +59,8 @@ describe("ProductTypeService", () => {
     });
 
     it("shoud throw an error when request fails", async () => {
-      const params: TUpdateProductTypeDiscount = {
-        producTypetId: "1",
+      const params: TUpdateCategoryDiscount = {
+        categoryId: "1",
         accountTypeId: "123",
         discount: 0.1,
       };
@@ -72,7 +72,7 @@ describe("ProductTypeService", () => {
       );
 
       await expect(
-        productTypeService.updateProductTypeDiscount(params)
+        productTypeService.updateCategoryDiscount(params)
       ).rejects.toThrow(mockError);
     });
   });

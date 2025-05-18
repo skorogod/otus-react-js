@@ -9,7 +9,7 @@ export type TProductFormValues = {
   stock: number;
   photos: File[];
   mainImageIndex: number;
-  category: string;
+  categoryId: string;
 };
 
 export type TAddProducFormProps = {

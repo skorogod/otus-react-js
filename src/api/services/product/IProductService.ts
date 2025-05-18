@@ -1,9 +1,9 @@
 import { TProduct } from "src/interfaces/product.interface";
 import { TGetReourceParams } from "../common.interface";
-import { TNewProduct } from "./interfaces";
+import { TGetProductsResponse, TNewProduct } from "./interfaces";
 
 export interface IProductService {
-  getAll({ page, limit }: TGetReourceParams): Promise<TProduct[]>;
+  getAll({ page, limit }: TGetReourceParams): Promise<TGetProductsResponse>;
   getById(id: string): Promise<TProduct>;
   create(product: TNewProduct): Promise<TProduct>;
   update(id: string, product: Partial<TProduct>): Promise<TProduct>;

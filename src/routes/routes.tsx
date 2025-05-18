@@ -13,4 +13,8 @@ export const routes: TRoute[] = [
     label: "Корзина",
     href: "/cart",
   },
+  {
+    label: "Добавить товар",
+    href: "/add-product",
+  },
 ];

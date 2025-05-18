@@ -1,20 +1,14 @@
 import React, { FC, useState, useCallback } from "react";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import { TProductFormValues } from "./interfaces";
-import {
-  Box,
-  Button,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-} from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { ImagePreview } from "./imagePreview/ImagePreview";
 import { ImageUpload } from "./imageUploadField/ImageUploadField";
 import { FormTextField } from "../../fields/textField/TextField";
 import s from "./productForm.module.scss";
 import { Title } from "../../../shared/ui/title/Title";
 import type { TAddProducFormProps } from "./interfaces";
+import { CategoryField } from "src/features/fields/categoryField/CategoryField";
 
 export const AddProductForm: FC<TAddProducFormProps> = ({
   onSubmitCb,
@@ -30,7 +24,7 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
         stock: 0,
         photos: [],
         mainImageIndex: 0,
-        category: "",
+        categoryId: "",
       },
     });
 
@@ -62,7 +56,7 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
     onSubmitCb({
       ...data,
       photos: data.photos.map((photo) => photo.name),
-      photo: data.photos[data.mainImageIndex].name,
+      photo: data.photos[data.mainImageIndex]?.name || "",
     });
     reset();
   };
@@ -93,25 +87,16 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
       <Title>Добавить товар</Title>
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
         <Controller
-          name={"category"}
+          name={"categoryId"}
           control={control}
           rules={{ required: "Обязательное поле" }}
           render={({ field }) => (
-            <FormControl fullWidth>
-              <InputLabel id="category-select-label">Категория</InputLabel>
-              <Select
-                {...field}
-                labelId="category-select-label"
-                label="Категория"
-                error={!!formState.errors.category}
-              >
-                {categories.map((category) => (
-                  <MenuItem key={category.id} value={category.id}>
-                    {category.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <CategoryField
+              errors={formState.errors.categoryId?.message || ""}
+              title="Категория товара"
+              categories={categories}
+              {...field}
+            />
           )}
         />
         <Controller

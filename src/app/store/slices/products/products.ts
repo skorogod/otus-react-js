@@ -22,7 +22,7 @@ export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async ({ page, limit }: TGetReourceParams) => {
     const products = await productsService.getAll({ page, limit });
-    return products;
+    return products.data;
   }
 );
 
