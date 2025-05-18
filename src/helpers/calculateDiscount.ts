@@ -12,7 +12,8 @@ export const calculateDiscount = ({ accountType, product }: TParams) => {
       (
         product.price *
         Math.min(
-          (product.category.discount[accountType.name] || 0) + accountType.discount,
+          (product.category.discount[accountType.name] || 0) +
+            accountType.discount,
           0.99
         )
       ).toFixed(2)
