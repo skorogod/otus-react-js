@@ -7,16 +7,19 @@ type TParams = {
 };
 
 export const calculateDiscount = ({ accountType, product }: TParams) => {
-  if (product.category && product.category.discount[accountType.name]) {
-    return Number(
-      (
-        product.price *
-        Math.min(
-          (product.category.discount[accountType.name] || 0) +
-            accountType.discount,
-          0.99
-        )
-      ).toFixed(2)
-    );
+  if (product.oldPrice) {
+    if (product.category && product.category.discount[accountType.name]) {
+      return Number(
+        (
+          product.oldPrice *
+          Math.min(
+            (product.category.discount[accountType.name] || 0) +
+              accountType.discount,
+            0.99
+          )
+        ).toFixed(2)
+      );
+    }
   }
+  return 0;
 };

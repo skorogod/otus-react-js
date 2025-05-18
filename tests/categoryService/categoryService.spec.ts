@@ -45,7 +45,7 @@ describe("ProductTypeService", () => {
       const result = await productTypeService.updateCategoryDiscount(params);
       expect(result).toEqual(mockData);
       expect(productTypeService.axiosClient.patch).toHaveBeenCalledWith(
-        `/product-types/${params.categoryId}`,
+        `/categories/${params.categoryId}`,
         {
           accountTypeId: params.accountTypeId,
           discount: params.discount,
