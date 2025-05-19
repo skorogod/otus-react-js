@@ -19,7 +19,7 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
       defaultValues: {
         name: "",
         description: "",
-        price: 0,
+        oldPrice: 0,
         discount: 0,
         stock: 0,
         photos: [],
@@ -55,6 +55,7 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
   const onSubmit: SubmitHandler<TProductFormValues> = (data) => {
     onSubmitCb({
       ...data,
+      price: Number((data.oldPrice * (100 - data.discount)).toFixed(2)),
       photos: data.photos.map((photo) => photo.name),
       photo: data.photos[data.mainImageIndex]?.name || "",
     });
@@ -130,13 +131,19 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
         <Box className={s.horizontalFields}>
           <Box>
             <Controller
-              name={"price"}
+              name={"oldPrice"}
               control={control}
-              rules={{ required: "Обязательное поле" }}
+              rules={{
+                min: {
+                  value: 1,
+                  message: "Цена должна быть больше 0",
+                },
+                required: "Обязательное поле",
+              }}
               render={({ field }) => (
                 <FormTextField
                   {...field}
-                  errors={formState.errors.price?.message || ""}
+                  errors={formState.errors.oldPrice?.message || ""}
                   title="Цена"
                   type="number"
                 />
@@ -162,11 +169,17 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
             <Controller
               name={"stock"}
               control={control}
-              rules={{ required: "Обязательное поле" }}
+              rules={{
+                required: "Обязательное поле",
+                min: {
+                  value: 1,
+                  message: "Количество должно быть больше нуля",
+                },
+              }}
               render={({ field }) => (
                 <FormTextField
                   {...field}
-                  errors={formState.errors.discount?.message || ""}
+                  errors={formState.errors.stock?.message || ""}
                   title="Количество на складе"
                   type="number"
                 />

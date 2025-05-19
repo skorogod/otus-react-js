@@ -4,7 +4,7 @@ import { Category } from "src/interfaces/category.interface";
 export type TProductFormValues = {
   name: string;
   description: string;
-  price: number;
+  oldPrice: number;
   discount: number;
   stock: number;
   photos: File[];

@@ -2,6 +2,7 @@ import {
   createAsyncThunk,
   createEntityAdapter,
   createSlice,
+  isAnyOf,
 } from "@reduxjs/toolkit";
 import { RootState } from "../..";
 import { productsService } from "src/api/services/product/productFactory";
@@ -9,8 +10,20 @@ import { TGetReourceParams } from "src/api/services/common.interface";
 import { TProduct } from "src/interfaces/product.interface";
 import { TNewProduct } from "src/api/services/product/interfaces";
 
+type TProductsState = {
+  status: "idle" | "pending" | "failed";
+  error: string;
+  pagination: {
+    page: number;
+    limit: number;
+    totalPages: number;
+  };
+};
+
 const productsAdapter = createEntityAdapter<TProduct>();
-const initialState = productsAdapter.getInitialState({
+const initialState = productsAdapter.getInitialState<TProductsState>({
+  status: "idle",
+  error: "",
   pagination: {
     page: 1,
     limit: 20,
@@ -34,12 +47,22 @@ export const addNewProduct = createAsyncThunk(
   }
 );
 
+const pendingMatcher = isAnyOf(addNewProduct.pending);
+const fulfilledMatcher = isAnyOf(
+  addNewProduct.fulfilled,
+  fetchProducts.fulfilled
+);
+const rejectedMatcher = isAnyOf(fetchProducts.rejected, addNewProduct.rejected);
+
 export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
     updateProductsPaginationPage: (state, action) => {
       state.pagination.page = action.payload;
+    },
+    setProductsError: (state, action) => {
+      state.error = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -53,15 +76,29 @@ export const productsSlice = createSlice({
       })
       .addCase(addNewProduct.fulfilled, (state, action) => {
         productsAdapter.upsertOne(state, action.payload);
+      })
+      .addMatcher(pendingMatcher, (state) => {
+        state.error = "";
+        state.status = "pending";
+      })
+      .addMatcher(fulfilledMatcher, (state) => {
+        state.status = "idle";
+      })
+      .addMatcher(rejectedMatcher, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Error";
       });
   },
 });
 
 export const productsReducer = productsSlice.reducer;
-export const { updateProductsPaginationPage } = productsSlice.actions;
+export const { updateProductsPaginationPage, setProductsError } =
+  productsSlice.actions;
 
 export const { selectAll: selectProducts, selectById: selectProductById } =
   productsAdapter.getSelectors((state: RootState) => state.products);
 
+export const selectProductsStatus = (state: RootState) => state.products.status;
+export const selectProductsError = (state: RootState) => state.products.error;
 export const selectProductsPagination = (state: RootState) =>
   state.products.pagination;
