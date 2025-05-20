@@ -1,5 +1,5 @@
 import { IAuthService } from "./IAuthService";
-import { AuthCredentials, AuthResponse } from "./interface";
+import { AuthCredentials, AuthResponse, SignUpResponse } from "./interface";
 import { mockUsers, generateTokens } from "./mockData";
 
 const TOKEN_KEY = "token";
@@ -22,14 +22,18 @@ export class MockAuthService implements IAuthService {
     this.onUnauthorized = callback;
   }
 
+  public async signup(credentials: AuthCredentials): Promise<SignUpResponse> {
+    console.log(credentials);
+    return {} as SignUpResponse;
+  }
+
   public async login(credentials: AuthCredentials): Promise<AuthResponse> {
     // Имитация задержки сети
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const user = mockUsers.find(
       (u) =>
-        u.username === credentials.username &&
-        u.password === credentials.password
+        u.email === credentials.email && u.password === credentials.password
     );
 
     if (!user) {
@@ -37,7 +41,7 @@ export class MockAuthService implements IAuthService {
     }
 
     const response = generateTokens(user.id);
-    this.setTokens(response.token, response.refreshToken);
+    this.setTokens(response.token, response.refreshToken || "");
     return response;
   }
 
@@ -52,9 +56,9 @@ export class MockAuthService implements IAuthService {
     }
 
     // Для мока просто генерируем новые токены
-    const userId = parseInt(refreshToken.split("_")[3], 10);
+    const userId = refreshToken.split("_")[3];
     const response = generateTokens(userId);
-    this.setTokens(response.token, response.refreshToken);
+    this.setTokens(response.token, response.refreshToken || "");
     return response;
   }
 
@@ -89,7 +93,7 @@ export class MockAuthService implements IAuthService {
     }
 
     // Для мока извлекаем userId из токена и генерируем ответ
-    const userId = parseInt(token.split("_")[3], 10);
+    const userId = token.split("_")[3];
     return generateTokens(userId);
   }
 }

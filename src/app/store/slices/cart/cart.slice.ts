@@ -24,10 +24,10 @@ const cartSlice = createSlice({
       if (state.items[productId]) {
         state.items[productId].quantity += 1;
         state.totalItems += 1;
-        state.totalCost += product.costFull;
+        state.totalCost += product.price;
 
-        if (product.costDiscount) {
-          state.totalDiscount += product.costFull - product.costDiscount;
+        if (product.oldPrice) {
+          state.totalDiscount += product.price - product.oldPrice;
         }
       } else {
         state.items[productId] = {
@@ -35,10 +35,10 @@ const cartSlice = createSlice({
           quantity: 1,
         };
         state.totalItems += 1;
-        state.totalCost += product.costFull;
+        state.totalCost += product.price;
 
-        if (product.costDiscount) {
-          state.totalDiscount += product.costFull - product.costDiscount;
+        if (product.oldPrice) {
+          state.totalDiscount += product.price - product.oldPrice;
         }
       }
     },
@@ -52,11 +52,10 @@ const cartSlice = createSlice({
 
         delete state.items[productId];
         state.totalItems -= quantity;
-        state.totalCost -= product.costFull * quantity;
+        state.totalCost -= product.price * quantity;
 
-        if (product.costDiscount) {
-          state.totalDiscount -=
-            (product.costFull - product.costDiscount) * quantity;
+        if (product.oldPrice) {
+          state.totalDiscount -= (product.price - product.oldPrice) * quantity;
         }
       }
     },
@@ -76,11 +75,11 @@ const cartSlice = createSlice({
         if (quantityDiff !== 0) {
           cartItem.quantity = quantity;
           state.totalItems += quantityDiff;
-          state.totalCost += product.costFull * quantityDiff;
+          state.totalCost += product.price * quantityDiff;
 
-          if (product.costDiscount) {
+          if (product.oldPrice) {
             state.totalDiscount +=
-              (product.costFull - product.costDiscount) * quantityDiff;
+              (product.price - product.oldPrice) * quantityDiff;
           }
         }
       }

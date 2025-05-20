@@ -1,17 +1,18 @@
 import { TBasicCardProps } from "src/shared/basicCard/basicCard.interface";
 import { Category } from "./category.interface";
-import { TProductType } from "src/interfaces/productType.interface";
 
 export type TProduct = {
   id: string;
-  title: string;
-  costFull: number;
-  costDiscount?: number;
-  images: string[];
-  description?: string;
-  category?: Category;
-  type: TProductType;
-  count?: number;
+  name: string;
+  photo: string;
+  photos?: string[];
+  desc?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  oldPrice?: number;
+  price: number;
+  commandId?: string;
+  category: Category;
 };
 
 export type TProductDetailsProps = TProduct & {
@@ -19,7 +20,10 @@ export type TProductDetailsProps = TProduct & {
   onCountChange: (count: number) => void;
 };
 
-export type TProductCardProps = Omit<TProduct, "images"> &
+export type TProductCardProps = Omit<
+  TProduct,
+  "images" | "createdAt" | "updatedAt" | "commandId"
+> &
   Omit<TBasicCardProps, "header" | "main" | "footer"> & {
     onCountChange: (count: number) => void;
   };

@@ -1,24 +1,30 @@
 import React, { FC, useState, useCallback } from "react";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
-import { TProductFormValues } from "./types";
+import { TProductFormValues } from "./interfaces";
 import { Box, Button } from "@mui/material";
 import { ImagePreview } from "./imagePreview/ImagePreview";
 import { ImageUpload } from "./imageUploadField/ImageUploadField";
-import { FormTextField } from "../../../features/fields/textField/TextField";
+import { FormTextField } from "../../fields/textField/TextField";
 import s from "./productForm.module.scss";
 import { Title } from "../../../shared/ui/title/Title";
+import type { TAddProducFormProps } from "./interfaces";
+import { CategoryField } from "src/features/fields/categoryField/CategoryField";
 
-export const AddProductForm: FC = () => {
+export const AddProductForm: FC<TAddProducFormProps> = ({
+  onSubmitCb,
+  categories,
+}) => {
   const { handleSubmit, setValue, control, getValues, formState, reset } =
     useForm<TProductFormValues>({
       defaultValues: {
         name: "",
         description: "",
-        price: 0,
+        oldPrice: 0,
         discount: 0,
         stock: 0,
-        images: [],
+        photos: [],
         mainImageIndex: 0,
+        categoryId: "",
       },
     });
 
@@ -41,13 +47,18 @@ export const AddProductForm: FC = () => {
         reader.readAsDataURL(file);
       }
 
-      setValue("images", files);
+      setValue("photos", files);
     },
     [setValue]
   );
 
   const onSubmit: SubmitHandler<TProductFormValues> = (data) => {
-    console.log(data);
+    onSubmitCb({
+      ...data,
+      price: Number((data.oldPrice * (100 - data.discount)).toFixed(2)),
+      photos: data.photos.map((photo) => photo.name),
+      photo: data.photos[data.mainImageIndex]?.name || "",
+    });
     reset();
   };
 
@@ -64,10 +75,10 @@ export const AddProductForm: FC = () => {
       newImages.splice(index, 1);
       setPreviewImages(newImages);
 
-      const currentImages = getValues("images") as File[];
+      const currentImages = getValues("photos") as File[];
       const newFiles = [...currentImages];
       newFiles.splice(index, 1);
-      setValue("images", newFiles);
+      setValue("photos", newFiles);
     },
     [setValue, previewImages, getValues]
   );
@@ -76,6 +87,19 @@ export const AddProductForm: FC = () => {
     <Box className={s.root}>
       <Title>Добавить товар</Title>
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+        <Controller
+          name={"categoryId"}
+          control={control}
+          rules={{ required: "Обязательное поле" }}
+          render={({ field }) => (
+            <CategoryField
+              errors={formState.errors.categoryId?.message || ""}
+              title="Категория товара"
+              categories={categories}
+              {...field}
+            />
+          )}
+        />
         <Controller
           name={"name"}
           control={control}
@@ -107,13 +131,19 @@ export const AddProductForm: FC = () => {
         <Box className={s.horizontalFields}>
           <Box>
             <Controller
-              name={"price"}
+              name={"oldPrice"}
               control={control}
-              rules={{ required: "Обязательное поле" }}
+              rules={{
+                min: {
+                  value: 1,
+                  message: "Цена должна быть больше 0",
+                },
+                required: "Обязательное поле",
+              }}
               render={({ field }) => (
                 <FormTextField
                   {...field}
-                  errors={formState.errors.price?.message || ""}
+                  errors={formState.errors.oldPrice?.message || ""}
                   title="Цена"
                   type="number"
                 />
@@ -139,11 +169,17 @@ export const AddProductForm: FC = () => {
             <Controller
               name={"stock"}
               control={control}
-              rules={{ required: "Обязательное поле" }}
+              rules={{
+                required: "Обязательное поле",
+                min: {
+                  value: 1,
+                  message: "Количество должно быть больше нуля",
+                },
+              }}
               render={({ field }) => (
                 <FormTextField
                   {...field}
-                  errors={formState.errors.discount?.message || ""}
+                  errors={formState.errors.stock?.message || ""}
                   title="Количество на складе"
                   type="number"
                 />

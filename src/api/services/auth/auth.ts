@@ -1,5 +1,10 @@
 import { BaseService } from "../base/base.service";
-import type { AuthCredentials, AuthResponse } from "./interface";
+import { TApiResponseError } from "../base/interface";
+import type {
+  AuthCredentials,
+  AuthResponse,
+  SignUpResponse,
+} from "./interface";
 
 const TOKEN_KEY = "token";
 const REFRESH_TOKEN_KEY = "refresh_token";
@@ -26,11 +31,23 @@ export class AuthService extends BaseService {
 
   public async login(credentials: AuthCredentials): Promise<AuthResponse> {
     const response = await this.axiosClient.post<AuthResponse>(
-      "/auth/login",
+      "/signin",
       credentials
     );
-    this.setTokens(response.data.token, response.data.refreshToken);
+    this.setTokens(response.data.token, response.data.refreshToken || "");
     return response.data;
+  }
+
+  public async signup(credentials: AuthCredentials): Promise<SignUpResponse> {
+    try {
+      const response = await this.axiosClient.post<SignUpResponse>("signup", {
+        ...credentials,
+        comandId: "ofgjmsflgkwsgksfhlfsjhsflgh",
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   }
 
   public async refreshToken(): Promise<AuthResponse> {
@@ -46,7 +63,7 @@ export class AuthService extends BaseService {
         refreshToken,
       }
     );
-    this.setTokens(response.data.token, response.data.refreshToken);
+    this.setTokens(response.data.token, response.data.refreshToken || "");
     return response.data;
   }
 
@@ -72,6 +89,13 @@ export class AuthService extends BaseService {
       (response) => response,
       async (error) => {
         const originalRequest = error.config;
+        const apiError = error as TApiResponseError;
+
+        if (apiError.response?.data.errors) {
+          return Promise.reject(
+            new Error(apiError.response.data.errors[0]?.message || "")
+          );
+        }
 
         if (error.response?.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true;

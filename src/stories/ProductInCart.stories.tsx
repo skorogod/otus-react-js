@@ -23,19 +23,27 @@ export const base: Story = {
   args: {
     product: {
       id: "1",
-      title: 'Telegram accounts',
-      costFull: 200,
-      images: ['https://avatars.mds.yandex.net/get-vthumb/3333356/915836b1bb9bbb4bc9257fa973baefd8/800x450'],
-      type: {
-        id: uuidv4(),
-        name: TProductTypeName.TelegramAccount,
+      name: 'Telegram accounts',
+      price: 200,
+      photo: 'https://avatars.mds.yandex.net/get-vthumb/3333356/915836b1bb9bbb4bc9257fa973baefd8/800x450',
+      photos: [],
+      desc: 'Описание товара',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      commandId: '1',
+      category: {
+        id: '1',
+        name: 'Аккаунты',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        commandId: '1',
         discount: {
-          [TAccountTypeName.Free]: Math.random() * 100,
-          [TAccountTypeName.Premium]: Math.random() * 100,
-          [TAccountTypeName.Gold]: Math.random() * 100,
-          [TAccountTypeName.Standard]: Math.random() * 100,
-        },
-      },
+          [TAccountTypeName.Free]: 0,
+          [TAccountTypeName.Standard]: 0,
+          [TAccountTypeName.Premium]: 0,
+          [TAccountTypeName.Gold]: 0,
+        }
+      }
     },
     counter: 3,
   },

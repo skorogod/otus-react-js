@@ -13,14 +13,17 @@ import { PasswordField } from "../../../features/fields/passwordField/PasswordFi
 import { Button } from "@mui/material";
 import { UsernameField } from "../../../features/fields/usrnameField/UsernameField";
 
-export const RegisterForm: FC<TRegisterFormProps> = ({ className }) => {
+export const RegisterForm: FC<TRegisterFormProps> = ({
+  className,
+  onSubmitCb,
+}) => {
   const { handleSubmit, formState, control, reset } =
     useForm<TRegisterFormValues>({
       mode: "onChange",
     });
 
   const onSubmit: SubmitHandler<TRegisterFormValues> = (data) => {
-    console.log(data);
+    onSubmitCb({ email: data.email, password: data.password });
     reset({
       email: "",
       username: "",
@@ -43,10 +46,10 @@ export const RegisterForm: FC<TRegisterFormProps> = ({ className }) => {
         control={control}
         rules={{
           required: "Введите адрес почты",
-          pattern: {
-            value: /^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]/i,
-            message: "Неверный формат почты",
-          },
+          // pattern: {
+          //   value: /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]/i,
+          //   message: "Неверный формат почты",
+          // },
         }}
         render={({ field }) => (
           <EmailField

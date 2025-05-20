@@ -14,6 +14,8 @@ import { SignInBlock } from "./pages/auth/signInBlock/SignInBlock";
 import { SignUpBlock } from "./pages/auth/signUpBlock/SignUpBlock";
 
 import { ProtectedComponent } from "./features/protectedComponent/ProtectedComponent";
+import { SignUpBlockTest } from "./pages/auth/signUpBlock/signUpBlockTest";
+import { AddProductScreen } from "./pages/products/addProductScreen/AddProductScreen";
 
 i18n.init();
 
@@ -38,6 +40,10 @@ const router = createHashRouter([
             path: "/cart",
             element: <ProductCartScreen />,
           },
+          {
+            path: "/add-product",
+            element: <AddProductScreen />,
+          },
         ],
       },
       {
@@ -47,6 +53,10 @@ const router = createHashRouter([
       {
         path: "/signup",
         element: <SignUpBlock />,
+      },
+      {
+        path: "/signup-test",
+        element: <SignUpBlockTest />,
       },
     ],
   },

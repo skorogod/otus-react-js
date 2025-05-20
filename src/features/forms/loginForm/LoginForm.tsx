@@ -8,9 +8,9 @@ import {
   SubmitErrorHandler,
 } from "react-hook-form";
 import type { TLoginFormValues, TLoginFormProps } from "./types";
-import { UsernameField } from "src/features/fields/usrnameField/UsernameField";
 import { PasswordField } from "../../../features/fields/passwordField/PasswordField";
 import { Button } from "@mui/material";
+import { EmailField } from "src/features/fields/emailField/EmailField";
 
 export const LoginForm: FC<TLoginFormProps> = ({ className, onSubmitCb }) => {
   const { handleSubmit, formState, control, reset } = useForm<TLoginFormValues>(
@@ -21,9 +21,9 @@ export const LoginForm: FC<TLoginFormProps> = ({ className, onSubmitCb }) => {
 
   const onSubmit: SubmitHandler<TLoginFormValues> = (data) => {
     console.log(data);
-    onSubmitCb({ username: data.username, password: data.password });
+    onSubmitCb({ email: data.email, password: data.password });
     reset({
-      username: "",
+      email: "",
       password: "",
     });
   };
@@ -38,20 +38,18 @@ export const LoginForm: FC<TLoginFormProps> = ({ className, onSubmitCb }) => {
       className={cn(s.root, className)}
     >
       <Controller
-        name="username"
+        name="email"
         control={control}
         rules={{
-          required: "Введите имя пользователя",
           pattern: {
-            value: /^[a-zA-Z0-9]+$/i,
-            message:
-              "Имя пользователя должно содержить только цифры и латинские буквы",
+            value: /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]/i,
+            message: "Неверный формат почты",
           },
         }}
         render={({ field }) => (
-          <UsernameField
+          <EmailField
             submitCount={formState.submitCount}
-            errors={formState.errors.username?.message || ""}
+            errors={formState.errors.email?.message || ""}
             {...field}
           />
         )}

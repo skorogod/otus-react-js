@@ -37,15 +37,14 @@ export const ProductsScreen = () => {
       products={products}
       renderProduct={(product) => (
         <ProductCard
-          id={product.id}
           key={product.id}
-          title={product.title}
-          costFull={product.costFull}
-          costDiscount={product.costDiscount}
-          description={product.description}
+          id={product.id}
+          name={product.name}
+          desc={product.desc}
+          price={product.price}
+          oldPrice={product.oldPrice}
+          photo={product.photo}
           category={product.category}
-          image={product.images[0]}
-          type={product.type}
           onCountChange={onProductCountChange(product)}
         />
       )}

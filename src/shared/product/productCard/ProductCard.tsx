@@ -10,12 +10,11 @@ import { selectProductQuantity } from "src/app/store/slices/cart/cart.slice";
 
 export const ProductCard: FC<TProductCardProps> = ({
   id,
-  title,
-  description,
-  costFull,
-  costDiscount,
-  count,
-  image,
+  name,
+  desc,
+  price,
+  oldPrice,
+  photo,
   onCountChange,
   ...restProps
 }) => {
@@ -24,23 +23,23 @@ export const ProductCard: FC<TProductCardProps> = ({
   );
   return (
     <BasicCard
-      image={image}
-      header={<p className="title">{title}</p>}
+      photo={photo}
+      header={<p className="title">{name}</p>}
       main={
         <>
-          <p className={productCardCss.description}>{description}</p>
+          <p className={productCardCss.description}>{desc}</p>
           <div className={productCardCss.info}>
             <label
               className={productCardCss.costLabel}
               htmlFor={`cost-${id}`}
             ></label>
-            <p id={`cost-${id}`}>{costFull}</p>
-            {costDiscount && (
+            <p id={`cost-${id}`}>{price}</p>
+            {oldPrice && (
               <p
                 id={`cost-discount-${id}`}
                 className={productScss.costDiscount}
               >
-                {costDiscount}
+                {oldPrice}
               </p>
             )}
           </div>

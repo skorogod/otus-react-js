@@ -2,7 +2,7 @@ import { AuthCredentials } from "src/api/services/auth/interface";
 
 export type TLoginFormValues = {
   password: string;
-  username: string;
+  email: string;
 };
 
 export type TLoginFormProps = {
