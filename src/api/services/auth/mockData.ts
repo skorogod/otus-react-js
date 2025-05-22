@@ -1,4 +1,4 @@
-import { AuthResponse } from "./interface";
+import { AuthResponse, TGetProfileResponse } from "./interface";
 
 export const mockUsers = [
   {
@@ -21,4 +21,12 @@ export const generateTokens = (userId: string): AuthResponse => ({
     _id: userId,
     email: mockUsers.find((user) => user.id === userId)?.email || "",
   },
+});
+
+export const generateProfile: (userId: string) => TGetProfileResponse = (
+  userId
+) => ({
+  id: userId,
+  email: mockUsers.find((user) => user.id === userId)?.email || "",
+  singUpDate: Date().toString(),
 });

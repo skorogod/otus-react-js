@@ -1,6 +1,11 @@
 import { IAuthService } from "./IAuthService";
-import { AuthCredentials, AuthResponse, SignUpResponse } from "./interface";
-import { mockUsers, generateTokens } from "./mockData";
+import {
+  AuthCredentials,
+  AuthResponse,
+  SignUpResponse,
+  TGetProfileResponse,
+} from "./interface";
+import { mockUsers, generateTokens, generateProfile } from "./mockData";
 
 const TOKEN_KEY = "token";
 const REFRESH_TOKEN_KEY = "refresh_token";
@@ -83,7 +88,7 @@ export class MockAuthService implements IAuthService {
     return localStorage.getItem(TOKEN_KEY);
   }
 
-  public async getProfile(): Promise<AuthResponse> {
+  public async getProfile(): Promise<TGetProfileResponse> {
     // Имитация задержки сети
     await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -94,6 +99,6 @@ export class MockAuthService implements IAuthService {
 
     // Для мока извлекаем userId из токена и генерируем ответ
     const userId = token.split("_")[3];
-    return generateTokens(userId);
+    return generateProfile(userId);
   }
 }

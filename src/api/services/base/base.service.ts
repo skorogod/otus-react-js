@@ -41,14 +41,16 @@ export class BaseService {
         if (error.response?.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true;
           return this.axiosClient(originalRequest);
-        } else if (error.response) {
-          const { data, status } = error.response;
-          return Promise.reject({
-            message: data.error,
-            code: status,
-            details: data,
-          });
         }
+        return Promise.reject(error);
+        // else if (error.response) {
+        //   const { data, status } = error.response;
+        //   return Promise.reject({
+        //     message: data.error,
+        //     code: status,
+        //     details: data,
+        //   });
+        // }
       }
     );
   }

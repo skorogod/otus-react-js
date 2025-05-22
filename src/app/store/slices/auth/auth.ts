@@ -4,9 +4,11 @@ import type {
   AuthCredentials,
   AuthResponse,
   SignUpResponse,
+  TGetProfileResponse,
 } from "src/api/services/auth/interface";
 import { authService } from "src/api/services/auth/authFactory";
 import { RootState } from "../..";
+import { TApiResponseError } from "src/api/services/base/interface";
 
 export const TOKEN_KEY = "token";
 export const REFRESH_TOKEN_KEY = "refresh_token";
@@ -20,21 +22,37 @@ const initialState: TAuthState = {
 
 export const login = createAsyncThunk<AuthResponse, AuthCredentials>(
   "auth/login",
-  async ({ email, password }) => {
-    const userData = await authService.login({ email, password });
-    return userData;
+  async ({ email, password }, { rejectWithValue }) => {
+    try {
+      const userData = await authService.login({ email, password });
+      return userData;
+    } catch (error) {
+      const apiError = error as TApiResponseError;
+      if (apiError.response?.data.errors[0]) {
+        return rejectWithValue(apiError.response.data.errors[0].message);
+      }
+      throw error;
+    }
   }
 );
 
 export const signup = createAsyncThunk<SignUpResponse, AuthCredentials>(
   "auth/signup",
-  async ({ email, password }) => {
-    const userData = await authService.signup({ email, password });
-    return userData;
+  async ({ email, password }, { rejectWithValue }) => {
+    try {
+      const userData = await authService.signup({ email, password });
+      return userData;
+    } catch (error) {
+      const apiError = error as TApiResponseError;
+      if (apiError.response?.data.errors) {
+        return rejectWithValue(apiError.response.data.errors[0].message);
+      }
+      throw error;
+    }
   }
 );
 
-export const getProfile = createAsyncThunk<AuthResponse>(
+export const getProfile = createAsyncThunk<TGetProfileResponse>(
   "auth/getProfile",
   async () => {
     const userData = await authService.getProfile();
@@ -75,7 +93,11 @@ export const authSlice = createSlice({
         };
       })
       .addCase(login.rejected, (state, action) => {
-        state.error = action.error.message || "Error";
+        if (action.payload) {
+          state.error = action.payload as string;
+        } else {
+          state.error = action.error.message || "Произошла ошибка";
+        }
       })
       .addCase(signup.fulfilled, (state, action) => {
         state.token = action.payload.token;
@@ -85,13 +107,14 @@ export const authSlice = createSlice({
         };
       })
       .addCase(signup.rejected, (state, action) => {
-        state.error = action.error.message || "Error";
+        if (action.payload) {
+          state.error = action.payload as string;
+        } else {
+          state.error = action.error.message || "Произошла ошибка";
+        }
       })
       .addCase(getProfile.fulfilled, (state, action) => {
-        state.user = state.user = {
-          id: action.payload.profile._id,
-          email: action.payload.profile.email,
-        };
+        state.user = action.payload;
       })
       .addCase(refreshToken.fulfilled, (state, action) => {
         state.token = action.payload.token;

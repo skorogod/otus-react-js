@@ -12,6 +12,12 @@ export interface AuthResponse {
   };
 }
 
+export type TGetProfileResponse = {
+  id: string;
+  email: string;
+  singUpDate: string;
+};
+
 export interface SignUpResponse {
   token: string;
   profile: {
