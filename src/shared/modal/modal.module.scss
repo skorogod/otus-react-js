@@ -5,6 +5,7 @@ $modal-border: 1px solid rgb(0, 0, 0);
 .modalOverlay {
     display: none;
     position: fixed;
+    z-index: 10;
     top: 0;
     bottom: 0;
     left: 0;

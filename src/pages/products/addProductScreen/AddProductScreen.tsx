@@ -34,7 +34,7 @@ export const AddProductScreen = () => {
   }, [dispatch]);
 
   if (status === "pending") {
-    return <Spinner text="ожидайте..." />;
+    return <Spinner />;
   }
 
   return (

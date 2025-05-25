@@ -15,6 +15,7 @@ import { Title } from "../../../shared/ui/title/Title";
 
 export const ChangePaswordForm: FC<ChangePasswordFormProps> = ({
   className,
+  onSubmitCb,
 }) => {
   const { handleSubmit, control, formState } =
     useForm<ChangePasswordFormValues>({
@@ -22,7 +23,7 @@ export const ChangePaswordForm: FC<ChangePasswordFormProps> = ({
     });
 
   const onSubmit: SubmitHandler<ChangePasswordFormValues> = (data) => {
-    console.log(data);
+    onSubmitCb(data);
   };
 
   const onInvalid: SubmitErrorHandler<ChangePasswordFormValues> = (error) => {

@@ -1,14 +1,22 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+  isAnyOf,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import type { TAuthState } from "./interface";
 import type {
   AuthCredentials,
   AuthResponse,
+  SignUpCredentials,
   SignUpResponse,
   TGetProfileResponse,
 } from "src/api/services/auth/interface";
 import { authService } from "src/api/services/auth/authFactory";
 import { RootState } from "../..";
 import { TApiResponseError } from "src/api/services/base/interface";
+import { updateProfile } from "../profile/profileSlice";
 
 export const TOKEN_KEY = "token";
 export const REFRESH_TOKEN_KEY = "refresh_token";
@@ -18,6 +26,7 @@ const initialState: TAuthState = {
   refreshToken: null,
   user: null,
   error: "",
+  status: "idle",
 };
 
 export const login = createAsyncThunk<AuthResponse, AuthCredentials>(
@@ -36,11 +45,11 @@ export const login = createAsyncThunk<AuthResponse, AuthCredentials>(
   }
 );
 
-export const signup = createAsyncThunk<SignUpResponse, AuthCredentials>(
+export const signup = createAsyncThunk<SignUpResponse, SignUpCredentials>(
   "auth/signup",
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ email, name, password }, { rejectWithValue }) => {
     try {
-      const userData = await authService.signup({ email, password });
+      const userData = await authService.signup({ email, name, password });
       return userData;
     } catch (error) {
       const apiError = error as TApiResponseError;
@@ -68,6 +77,10 @@ export const refreshToken = createAsyncThunk<AuthResponse>(
   }
 );
 
+const pendingMatcher = isAnyOf(login.pending, signup.pending);
+const fulfilledMatcher = isAnyOf(login.fulfilled, signup.fulfilled);
+const rejectedMatcher = isAnyOf(login.rejected, signup.rejected);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -81,6 +94,9 @@ export const authSlice = createSlice({
       state.refreshToken = null;
       state.user = null;
     },
+    setAuthError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -88,8 +104,8 @@ export const authSlice = createSlice({
         state.token = action.payload.token;
         state.refreshToken = action.payload.token;
         state.user = {
+          ...action.payload.profile,
           id: action.payload.profile._id,
-          email: action.payload.profile.email,
         };
       })
       .addCase(login.rejected, (state, action) => {
@@ -102,8 +118,8 @@ export const authSlice = createSlice({
       .addCase(signup.fulfilled, (state, action) => {
         state.token = action.payload.token;
         state.user = {
+          ...action.payload.profile,
           id: action.payload.profile._id,
-          email: action.payload.profile.email,
         };
       })
       .addCase(signup.rejected, (state, action) => {
@@ -118,6 +134,18 @@ export const authSlice = createSlice({
       })
       .addCase(refreshToken.fulfilled, (state, action) => {
         state.token = action.payload.token;
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.user = action.payload;
+      })
+      .addMatcher(pendingMatcher, (state) => {
+        state.status = "loading";
+      })
+      .addMatcher(fulfilledMatcher, (state) => {
+        state.status = "idle";
+      })
+      .addMatcher(rejectedMatcher, (state) => {
+        state.status = "failed";
       });
   },
 });
@@ -133,6 +161,12 @@ export const initializeAuth = createAsyncThunk(
   }
 );
 
+export const { setAuthError } = authSlice.actions;
+
 export const selectAuthError = (state: RootState) => state.auth.error;
+export const selectUser = (state: RootState) => state.auth.user;
+export const selectProfile = (state: RootState) => state.auth.user;
+export const selectUserId = createSelector(selectUser, (user) => user?.id);
+export const selectAuthStatus = (state: RootState) => state.auth.status;
 
 export const authReducer = authSlice.reducer;

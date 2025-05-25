@@ -1,4 +1,4 @@
-import { AuthCredentials } from "src/api/services/auth/interface";
+import { SignUpCredentials } from "src/api/services/auth/interface";
 
 export type TRegisterFormValues = {
   email: string;
@@ -9,5 +9,5 @@ export type TRegisterFormValues = {
 
 export type TRegisterFormProps = {
   className?: string;
-  onSubmitCb: (creds: AuthCredentials) => void;
+  onSubmitCb: (creds: SignUpCredentials) => void;
 };

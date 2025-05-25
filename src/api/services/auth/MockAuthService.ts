@@ -3,6 +3,7 @@ import {
   AuthCredentials,
   AuthResponse,
   SignUpResponse,
+  TChangeProfilePasswordParams,
   TGetProfileResponse,
 } from "./interface";
 import { mockUsers, generateTokens, generateProfile } from "./mockData";
@@ -100,5 +101,12 @@ export class MockAuthService implements IAuthService {
     // Для мока извлекаем userId из токена и генерируем ответ
     const userId = token.split("_")[3];
     return generateProfile(userId);
+  }
+
+  public async changeProfilePassword(
+    data: TChangeProfilePasswordParams
+  ): Promise<{ success: boolean }> {
+    console.log(data);
+    return { success: true };
   }
 }

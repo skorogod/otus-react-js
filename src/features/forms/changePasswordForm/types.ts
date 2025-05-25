@@ -1,3 +1,4 @@
+import { TChangeProfilePasswordParams } from "src/api/services/auth/interface";
 import { TFormProps } from "../types";
 
 export type ChangePasswordFormValues = {
@@ -11,4 +12,6 @@ export type ChangePasswordFormErrors = Record<
   string
 >;
 
-export type ChangePasswordFormProps = TFormProps;
+export type ChangePasswordFormProps = TFormProps & {
+  onSubmitCb: (data: TChangeProfilePasswordParams) => void;
+};

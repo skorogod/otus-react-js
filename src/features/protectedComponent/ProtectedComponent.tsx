@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { RootState } from "src/app/store";
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
-import { initializeAuth } from "src/app/store/slices/auth/auth";
+import { initializeAuth, selectUserId } from "src/app/store/slices/auth/auth";
 import { useNavigateTo } from "src/app/hooks/useNavigate";
 import { authService } from "src/api/services/auth/auth";
 
 export const ProtectedComponent = () => {
-  const user = useSelector((state: RootState) => state.auth.user);
+  const userId = useSelector(selectUserId);
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -22,7 +21,7 @@ export const ProtectedComponent = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!user) {
+    if (!userId) {
       if (location.pathname === "signup") {
         navigate("/signup");
       } else {
@@ -31,7 +30,7 @@ export const ProtectedComponent = () => {
     } else {
       navigate("/gods");
     }
-  }, [user]);
+  }, [userId]);
 
   return <Outlet></Outlet>;
 };

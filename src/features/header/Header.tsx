@@ -12,10 +12,10 @@ import { routes } from "../../routes/routes";
 
 import cn from "clsx";
 import { Link } from "react-router-dom";
-import { TUser } from "src/app/store/slices/auth/interface";
+import { TProfile } from "src/app/store/slices/auth/interface";
 
 type HeaderProps = {
-  user?: TUser | null;
+  user?: TProfile | null;
   backgroundColor?: string;
   onLogin: () => void;
   onLogout: () => void;

@@ -6,12 +6,8 @@ import s from "./profileForm.module.scss";
 import { AboutField } from "./aboutField/AboutField";
 import { Title } from "../../../shared/ui/title/Title";
 import { Button } from "@mui/material";
-import {
-  useForm,
-  SubmitHandler,
-  SubmitErrorHandler,
-  Controller,
-} from "react-hook-form";
+import { useForm, SubmitErrorHandler, Controller } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form";
 
 type Inputs = {
   name: string;
@@ -22,25 +18,29 @@ export const ProfileForm: FC<ProfileFormProps> = ({
   className,
   autoFocusElement,
   disabled,
+  name,
+  onSubmitCb,
+  about,
 }) => {
   const { handleSubmit, control, formState } = useForm<Inputs>({
     defaultValues: {
-      name: "",
-      about: "",
+      name,
+      about,
     },
     mode: "onChange",
   });
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
-  };
 
   const onInvalid: SubmitErrorHandler<Inputs> = (errors) => {
     console.log(errors);
   };
 
+  const handleSubmitForm: SubmitHandler<any> = (data) => {
+    onSubmitCb({ name: data.name });
+  };
+
   return (
     <form
-      onSubmit={handleSubmit(onSubmit, onInvalid)}
+      onSubmit={handleSubmit(handleSubmitForm, onInvalid)}
       className={cn(s.root, className)}
     >
       <Title className={s.title}>Изменить профиль</Title>

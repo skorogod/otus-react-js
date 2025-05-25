@@ -3,6 +3,7 @@ import { BaseService } from "../base/base.service";
 import type {
   AuthCredentials,
   AuthResponse,
+  SignUpCredentials,
   SignUpResponse,
   TGetProfileResponse,
 } from "./interface";
@@ -16,7 +17,6 @@ export class AuthService extends BaseService {
 
   private constructor() {
     super();
-    //this.setupInterceptors();
   }
 
   public static getInstance(): AuthService {
@@ -43,7 +43,7 @@ export class AuthService extends BaseService {
     }
   }
 
-  public async signup(credentials: AuthCredentials): Promise<SignUpResponse> {
+  public async signup(credentials: SignUpCredentials): Promise<SignUpResponse> {
     try {
       const response = await this.axiosClient.post<SignUpResponse>("signup", {
         ...credentials,

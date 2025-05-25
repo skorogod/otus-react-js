@@ -11,6 +11,9 @@ import { ProductCard } from "src/shared/product/productCard/ProductCard";
 import { useSelector } from "react-redux";
 import { addToCart } from "src/app/store/slices/cart/cart.slice";
 import { TProduct } from "src/interfaces/product.interface";
+import { TextField } from "@mui/material";
+import s from "./productScreen.module.scss";
+import cn from "clsx";
 
 export const ProductsScreen = () => {
   const products = useSelector(selectProducts);
@@ -33,22 +36,25 @@ export const ProductsScreen = () => {
   }, []);
 
   return (
-    <ProductList
-      products={products}
-      renderProduct={(product) => (
-        <ProductCard
-          key={product.id}
-          id={product.id}
-          name={product.name}
-          desc={product.desc}
-          price={product.price}
-          oldPrice={product.oldPrice}
-          photo={product.photo}
-          category={product.category}
-          onCountChange={onProductCountChange(product)}
-        />
-      )}
-      getNextProducts={getNextProducts}
-    />
+    <section className={cn(s.root)}>
+      <TextField label="Поиск по названию" variant="outlined" fullWidth />
+      <ProductList
+        products={products}
+        renderProduct={(product) => (
+          <ProductCard
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            desc={product.desc}
+            price={product.price}
+            oldPrice={product.oldPrice}
+            photo={product.photo}
+            category={product.category}
+            onCountChange={onProductCountChange(product)}
+          />
+        )}
+        getNextProducts={getNextProducts}
+      />
+    </section>
   );
 };
