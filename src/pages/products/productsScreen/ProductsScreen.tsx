@@ -6,14 +6,14 @@ import {
   selectProducts,
   selectProductsPagination,
   updateProductsPaginationPage,
-} from "src/app/store/slices/products/products";
+} from "src/features/products/state/productsSlice";
 import { ProductCard } from "src/shared/product/productCard/ProductCard";
 import { useSelector } from "react-redux";
 import { addToCart } from "src/app/store/slices/cart/cart.slice";
 import { TProduct } from "src/interfaces/product.interface";
-import { TextField } from "@mui/material";
 import s from "./productScreen.module.scss";
 import cn from "clsx";
+import { ProductsFilters } from "src/features/productsFilters/ui/productsFilters/ProductsFilters";
 
 export const ProductsScreen = () => {
   const products = useSelector(selectProducts);
@@ -37,7 +37,7 @@ export const ProductsScreen = () => {
 
   return (
     <section className={cn(s.root)}>
-      <TextField label="Поиск по названию" variant="outlined" fullWidth />
+      <ProductsFilters />
       <ProductList
         products={products}
         renderProduct={(product) => (

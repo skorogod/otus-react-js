@@ -4,7 +4,7 @@ import {
   createSlice,
   isAnyOf,
 } from "@reduxjs/toolkit";
-import { RootState } from "../..";
+import { RootState } from "../../../app/store";
 import { productsService } from "src/api/services/product/productFactory";
 import { TGetReourceParams } from "src/api/services/common.interface";
 import { TProduct } from "src/interfaces/product.interface";

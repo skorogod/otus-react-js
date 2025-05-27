@@ -4,7 +4,6 @@ import { ChangePaswordForm } from "../../../features/forms/changePasswordForm/Ch
 import { ProfileForm } from "../../../features/forms/profileForm/ProfileForm";
 import s from "./profileScreen.module.scss";
 import cn from "clsx";
-import { Page } from "../../../shared/ui/page";
 import { useAppSelector } from "src/app/hooks/useAppSelector";
 import { selectProfile } from "src/app/store/slices/auth/auth";
 import { shallowEqual } from "react-redux";

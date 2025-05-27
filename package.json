@@ -1,6 +1,5 @@
 {
   "description": "",
-  "type": "module",
   "homepage": "https://skorogod.github.io/otus-react-js",
   "devDependencies": {
     "@babel/core": "^7.22.1",
@@ -72,6 +71,7 @@
     "dotenv-webpack": "^8.1.0",
     "i18next": "^24.2.1",
     "i18next-browser-languagedetector": "^8.0.2",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
