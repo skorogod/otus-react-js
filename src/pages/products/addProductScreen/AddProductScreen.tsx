@@ -4,8 +4,8 @@ import { AddProductForm } from "src/features/forms/productForm/AddProductForm";
 import { addNewProduct } from "src/features/products/state/productsSlice";
 import { TNewProduct } from "src/api/services/product/interfaces";
 import { useAppSelector } from "src/app/hooks/useAppSelector";
-import { fetchCategories } from "src/app/store/slices/categories/categoriesSlice";
-import { selectCategories } from "src/app/store/slices/categories/categoriesSlice";
+import { fetchCategories } from "src/features/categories/state/categoriesSlice";
+import { selectCategories } from "src/features/categories/state/categoriesSlice";
 import {
   selectProductsStatus,
   selectProductsError,

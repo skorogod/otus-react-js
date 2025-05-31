@@ -5,7 +5,7 @@ import { addNewProduct } from "../../state/productsSlice";
 import { TNewProduct } from "src/api/services/product/interfaces";
 import { AddProductForm } from "src/features/forms/productForm/AddProductForm";
 import { useAppSelector } from "src/app/hooks/useAppSelector";
-import { selectCategories } from "src/app/store/slices/categories/categoriesSlice";
+import { selectCategories } from "src/features/categories/state/categoriesSlice";
 import s from "./addProductModal.module.scss";
 import cn from "clsx";
 

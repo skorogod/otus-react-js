@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import s from "./cabinetScreen.module.scss";
 import cn from "clsx";
-import { Box, Tabs, Tab, Button } from "@mui/material";
-import { ProductsFilters } from "src/features/productsFilters/ui/productsFilters/ProductsFilters";
-import AddIcon from "@mui/icons-material/Add";
-import { AddProductModal } from "src/features/products/ui/addProductModal/AddProductModal";
+import { Box, Tabs, Tab } from "@mui/material";
+import { ProductPannel } from "src/features/products/ui/productPannel/ProductPannel";
+import { CategoryPannel } from "src/features/categories/ui/categoryPannel/CategoryPannel";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -30,13 +29,10 @@ function CustomTabPanel(props: TabPanelProps) {
 
 export const CabinetScreen = () => {
   const [value, setValue] = useState(0);
-  const [visible, setVisible] = useState(false);
 
   const handleChange = (e: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
-  const onCloseClick = () => setVisible(false);
 
   return (
     <Box>
@@ -50,20 +46,10 @@ export const CabinetScreen = () => {
       </Tabs>
       <Box component="div" className={cn(s.pannels)}>
         <CustomTabPanel value={value} index={0}>
-          <ProductsFilters />
-          <Box>
-            <Button
-              onClick={() => setVisible(true)}
-              variant="contained"
-              startIcon={<AddIcon />}
-            >
-              Добавить
-            </Button>
-            <AddProductModal visible={visible} onCloseClick={onCloseClick} />
-          </Box>
+          <ProductPannel />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          Категории
+          <CategoryPannel />
         </CustomTabPanel>
       </Box>
     </Box>

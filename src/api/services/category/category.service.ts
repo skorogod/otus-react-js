@@ -1,6 +1,7 @@
 import { BaseService } from "../base/base.service";
 import { TGetReourceParams } from "../common.interface";
 import {
+  TAddCategory,
   TGetCategoriesReponse,
   TUpdateCategoryDiscount,
   TUpdateCategoryParams,
@@ -33,9 +34,13 @@ export class CategoryService extends BaseService {
       });
       return response.data;
     } catch (error) {
-      console.error(error);
       throw error;
     }
+  }
+
+  async create(data: TAddCategory): Promise<Category> {
+    const response = await this.axiosClient.post("/categories", data);
+    return response.data;
   }
 
   async updateCategory({ id, data }: TUpdateCategoryParams): Promise<Category> {

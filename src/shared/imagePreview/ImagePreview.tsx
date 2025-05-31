@@ -10,7 +10,7 @@ interface ImagePreviewProps {
   mainImageIndex: number;
   previewImages: string[];
   onDeleteImage: (index: number) => void;
-  onMainImageChange: (index: number) => void;
+  onMainImageChange?: (index: number) => void;
 }
 
 export const ImagePreview: FC<ImagePreviewProps> = ({
@@ -30,18 +30,20 @@ export const ImagePreview: FC<ImagePreviewProps> = ({
         >
           <DeleteIcon />
         </IconButton>
-        <IconButton
-          aria-label="set main"
-          size="small"
-          className={s.mainImageButton}
-          onClick={() => onMainImageChange(index)}
-        >
-          {index === (mainImageIndex || 0) ? (
-            <RadioButtonCheckedIcon />
-          ) : (
-            <RadioButtonUncheckedIcon />
-          )}
-        </IconButton>
+        {onMainImageChange && (
+          <IconButton
+            aria-label="set main"
+            size="small"
+            className={s.mainImageButton}
+            onClick={() => onMainImageChange(index)}
+          >
+            {index === (mainImageIndex || 0) ? (
+              <RadioButtonCheckedIcon />
+            ) : (
+              <RadioButtonUncheckedIcon />
+            )}
+          </IconButton>
+        )}
       </Box>
     ))}
   </Box>

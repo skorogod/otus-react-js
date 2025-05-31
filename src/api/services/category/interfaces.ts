@@ -25,3 +25,8 @@ export type TGetCategoriesReponse = {
     field: "id" | "createdAt" | "updatedAt" | "name";
   };
 };
+
+export type TAddCategory = {
+  name: string;
+  photo?: string;
+};

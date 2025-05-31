@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./slices/auth/auth";
 import { productsReducer } from "../../features/products/state/productsSlice";
 import { cartReducer } from "./slices/cart/cart.slice";
-import { categoriesReducer } from "./slices/categories/categoriesSlice";
+import { categoriesReducer } from "src/features/categories/state/categoriesSlice";
 import { profileReducer } from "./slices/profile/profileSlice";
 import { productsFiltersReducer } from "src/features/productsFilters/state/productsFiltersSlice";
 
