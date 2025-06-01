@@ -14,7 +14,7 @@ import {
 } from "../../state/productsSlice";
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
 import { ProductList } from "src/shared/product/productList/ProductList";
-import { ProductCard } from "src/shared/product/productCard/ProductCard";
+import { ProductCard } from "src/features/products/ui/productCard/ProductCard";
 
 type Props = {
   className?: string;
@@ -29,7 +29,14 @@ export const ProductPannel: FC<Props> = ({ className }) => {
   const onModalClose = () => setModalVisible(false);
 
   const getNextProducts = () => {
-    dispatch(fetchProducts({ ...pagination }));
+    dispatch(
+      fetchProducts({
+        pagination: {
+          pageNumber: pagination.page,
+          pageSize: pagination.limit,
+        },
+      })
+    );
     dispatch(updateProductsPaginationPage(pagination.page + 1));
   };
 

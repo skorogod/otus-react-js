@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, useCallback, useRef, useState } from "react";
 import {
   TAddCategoriesFormProps,
   TAddCategoriesFormValues,
@@ -9,7 +9,7 @@ import { Title } from "src/shared/ui/title/Title";
 import s from "./addCategoriesForm.module.scss";
 import cn from "clsx";
 import { FormTextField } from "src/features/fields/textField/TextField";
-import { ImageUpload } from "src/shared/imageUploadField/ImageUploadField";
+import { ImageUploadWithRef } from "src/shared/imageUploadField/ImageUploadField";
 import { ImagePreview } from "src/shared/imagePreview/ImagePreview";
 
 export const AddCategoriesForm: FC<TAddCategoriesFormProps> = ({
@@ -21,11 +21,12 @@ export const AddCategoriesForm: FC<TAddCategoriesFormProps> = ({
     useForm<TAddCategoriesFormValues>({
       defaultValues: {
         name: "",
-        photo: null,
+        photo: "",
       },
     });
 
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const imageUploadRef = useRef<HTMLInputElement | null>(null);
 
   const onSubmit: SubmitHandler<TAddCategoriesFormValues> = (data) => {
     onSubmitCb({
@@ -61,10 +62,15 @@ export const AddCategoriesForm: FC<TAddCategoriesFormProps> = ({
     [setValue]
   );
 
-  const handleDeleteImage = () => {
-    setValue("photo", null);
+  const handleDeleteImage = useCallback(() => {
+    setValue("photo", "");
     setPreviewImages([]);
-  };
+
+    if (imageUploadRef.current) {
+      imageUploadRef.current.files = null;
+      imageUploadRef.current.value = "";
+    }
+  }, [setValue]);
 
   return (
     <Box component="div" className={cn(s.root, className)}>
@@ -94,7 +100,12 @@ export const AddCategoriesForm: FC<TAddCategoriesFormProps> = ({
             />
           )}
         />
-        <ImageUpload onImageChange={handleImageChange} />
+
+        <ImageUploadWithRef
+          ref={imageUploadRef}
+          onImageChange={handleImageChange}
+        />
+
         <ImagePreview
           mainImageIndex={0}
           previewImages={previewImages}

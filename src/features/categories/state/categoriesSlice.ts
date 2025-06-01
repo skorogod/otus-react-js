@@ -32,8 +32,10 @@ export const fetchCategories = createAsyncThunk(
   async (_, storeApi) => {
     const state = storeApi.getState() as RootState;
     const categories = await categoryService.getAll({
-      page: state.categories.pagination.page,
-      limit: state.categories.pagination.limit,
+      pagination: {
+        pageNumber: state.categories.pagination.page,
+        pageSize: state.categories.pagination.limit,
+      },
     });
     return categories.data;
   }

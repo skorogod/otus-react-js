@@ -1,20 +1,21 @@
-import React, { FC, useState, useCallback } from "react";
+import React, { FC, useState, useCallback, useRef } from "react";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import { TProductFormValues } from "./interfaces";
 import { Box, Button } from "@mui/material";
-import { ImagePreview } from "../../../shared/imagePreview/ImagePreview";
-import { ImageUpload } from "../../../shared/imageUploadField/ImageUploadField";
-import { FormTextField } from "../../fields/textField/TextField";
+import { ImagePreview } from "../../../../shared/imagePreview/ImagePreview";
+import { ImageUploadWithRef } from "../../../../shared/imageUploadField/ImageUploadField";
+import { FormTextField } from "../../../fields/textField/TextField";
 import s from "./productForm.module.scss";
-import { Title } from "../../../shared/ui/title/Title";
+import { Title } from "../../../../shared/ui/title/Title";
 import type { TAddProducFormProps } from "./interfaces";
 import { CategoryField } from "src/features/fields/categoryField/CategoryField";
 
 export const AddProductForm: FC<TAddProducFormProps> = ({
   onSubmitCb,
   categories,
+  onImageChangeCb,
 }) => {
-  const { handleSubmit, setValue, control, getValues, formState, reset } =
+  const { handleSubmit, setValue, control, formState, reset } =
     useForm<TProductFormValues>({
       defaultValues: {
         name: "",
@@ -22,12 +23,13 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
         oldPrice: 0,
         discount: 0,
         stock: 0,
-        photos: [],
+        photo: "",
         mainImageIndex: 0,
         categoryId: "",
       },
     });
 
+  const imageUploadRef = useRef<HTMLInputElement | null>(null);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
 
   const handleImageChange = useCallback(
@@ -47,7 +49,11 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
         reader.readAsDataURL(file);
       }
 
-      setValue("photos", files);
+      if (onImageChangeCb && e.target.files) {
+        onImageChangeCb(e.target.files).then((response) =>
+          setValue("photo", response.url)
+        );
+      }
     },
     [setValue]
   );
@@ -56,33 +62,24 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
     onSubmitCb({
       ...data,
       desc: data.description,
-      price: Number(((data.oldPrice * (100 - data.discount)) / 100).toFixed(2)),
-      photos: data.photos.map((photo) => photo.name),
-      photo: data.photos[data.mainImageIndex]?.name || "",
+      price: data.discount
+        ? Number(((data.oldPrice * (100 - data.discount)) / 100).toFixed(2))
+        : data.oldPrice,
+      oldPrice: data.discount ? data.oldPrice : undefined,
+      photo: data.photo || "",
     });
     reset();
   };
 
-  const handleMainImageChange = useCallback(
-    (index: number) => {
-      setValue("mainImageIndex", index);
-    },
-    [setValue]
-  );
+  const handleDeleteImage = useCallback(() => {
+    setValue("photo", "");
+    setPreviewImages([]);
 
-  const handleDeleteImage = useCallback(
-    (index: number) => {
-      const newImages = [...previewImages];
-      newImages.splice(index, 1);
-      setPreviewImages(newImages);
-
-      const currentImages = getValues("photos") as File[];
-      const newFiles = [...currentImages];
-      newFiles.splice(index, 1);
-      setValue("photos", newFiles);
-    },
-    [setValue, previewImages, getValues]
-  );
+    if (imageUploadRef.current) {
+      imageUploadRef.current.files = null;
+      imageUploadRef.current.value = "";
+    }
+  }, [setValue]);
 
   return (
     <Box className={s.root}>
@@ -101,6 +98,7 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
             />
           )}
         />
+
         <Controller
           name={"name"}
           control={control}
@@ -189,13 +187,28 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
           </Box>
         </Box>
 
-        <ImageUpload onImageChange={handleImageChange} />
+        <Controller
+          name={"photo"}
+          control={control}
+          rules={{ required: "Обязательное поле" }}
+          render={({ field }) => (
+            <FormTextField
+              errors={formState.errors.name?.message || ""}
+              {...field}
+              title="Ссылка на изображение"
+            />
+          )}
+        />
+
+        <ImageUploadWithRef
+          ref={imageUploadRef}
+          onImageChange={handleImageChange}
+        />
 
         <ImagePreview
           mainImageIndex={0}
           previewImages={previewImages}
           onDeleteImage={handleDeleteImage}
-          onMainImageChange={handleMainImageChange}
         />
 
         <Button

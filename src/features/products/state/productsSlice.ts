@@ -7,9 +7,11 @@ import {
 } from "@reduxjs/toolkit";
 import { RootState } from "../../../app/store";
 import { productsService } from "src/api/services/product/productFactory";
-import { TGetReourceParams } from "src/api/services/common.interface";
 import { TProduct } from "src/interfaces/product.interface";
-import { TNewProduct } from "src/api/services/product/interfaces";
+import {
+  TGetProductsParams,
+  TNewProduct,
+} from "src/api/services/product/interfaces";
 
 type TProductsState = {
   status: "idle" | "pending" | "failed";
@@ -34,9 +36,11 @@ const initialState = productsAdapter.getInitialState<TProductsState>({
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async ({ page, limit }: TGetReourceParams) => {
-    const products = await productsService.getAll({ page, limit });
-    return products.data;
+  async (params: TGetProductsParams) => {
+    const products = await productsService.getAll({
+      ...params,
+    });
+    return products;
   }
 );
 
@@ -69,11 +73,10 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        const newEntities: Record<string, TProduct> = {};
-        action.payload.forEach((product) => {
-          newEntities[product.id] = product;
-        });
-        productsAdapter.upsertMany(state, newEntities);
+        if (action.payload.pagination.pageNumber === 1) {
+          return productsAdapter.setAll(state, action.payload.data);
+        }
+        return productsAdapter.upsertMany(state, action.payload.data);
       })
       .addCase(addNewProduct.fulfilled, (state, action) => {
         productsAdapter.upsertOne(state, action.payload);

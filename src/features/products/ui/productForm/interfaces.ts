@@ -1,4 +1,5 @@
 import { TNewProduct } from "src/api/services/product/interfaces";
+import { TUploadFileResponse } from "src/api/services/uploadFile/interfaces";
 import { Category } from "src/interfaces/category.interface";
 
 export type TProductFormValues = {
@@ -7,12 +8,13 @@ export type TProductFormValues = {
   oldPrice: number;
   discount: number;
   stock: number;
-  photos: File[];
+  photo: string | null;
   mainImageIndex: number;
   categoryId: string;
 };
 
 export type TAddProducFormProps = {
   onSubmitCb: (data: TNewProduct) => void;
+  onImageChangeCb?: (files: FileList) => Promise<TUploadFileResponse>;
   categories: Category[];
 };

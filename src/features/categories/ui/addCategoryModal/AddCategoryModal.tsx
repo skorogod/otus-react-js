@@ -18,6 +18,7 @@ export const AddCategoryModal: FC<Props> = ({ visible, onCloseClick }) => {
 
   const onSubmitCb = (newCategory: TAddCategory) => {
     dispatch(addCategory(newCategory));
+    onCloseClick();
   };
 
   const onImageChangeCb = async (files: FileList) => {

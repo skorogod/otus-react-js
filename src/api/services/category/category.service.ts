@@ -1,8 +1,8 @@
 import { BaseService } from "../base/base.service";
-import { TGetReourceParams } from "../common.interface";
 import {
   TAddCategory,
-  TGetCategoriesReponse,
+  TGetCategoriesParams,
+  TGetCategoriesResponse,
   TUpdateCategoryDiscount,
   TUpdateCategoryParams,
 } from "./interfaces";
@@ -19,14 +19,15 @@ export class CategoryService extends BaseService {
     return CategoryService.instance || new CategoryService();
   }
 
-  async getAll({
-    page,
-    limit,
-  }: TGetReourceParams): Promise<TGetCategoriesReponse> {
+  async getAll(params: TGetCategoriesParams): Promise<TGetCategoriesResponse> {
     try {
       const response = await this.axiosClient.get("/categories", {
         params: {
-          pagination: JSON.stringify({ pageSize: limit, pageNumber: page }),
+          ...params,
+          pagination: JSON.stringify(params.pagination),
+          createdAt: JSON.stringify(params.createdAt),
+          updatedAt: JSON.stringify(params.updatedAt),
+          sorting: JSON.stringify(params.sorting),
         },
         headers: {
           Authorization: `Bearer ${this.getToken()}`,

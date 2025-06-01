@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ProductList } from "../../../shared/product/productList/ProductList";
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
 import {
@@ -7,7 +7,7 @@ import {
   selectProductsWithCartCount,
   updateProductsPaginationPage,
 } from "src/features/products/state/productsSlice";
-import { ProductCard } from "src/shared/product/productCard/ProductCard";
+import { ProductCard } from "src/features/products/ui/productCard/ProductCard";
 import { useSelector } from "react-redux";
 import {
   increaseProductCartCount,
@@ -19,14 +19,26 @@ import s from "./productScreen.module.scss";
 import cn from "clsx";
 import { ProductsFilters } from "src/features/productsFilters/ui/productsFilters/ProductsFilters";
 import { ToCart } from "src/shared/toCart/ToCart";
+import { useAppSelector } from "src/app/hooks/useAppSelector";
+import { selectProductsFiltersNAme } from "src/features/productsFilters/state/productsFiltersSlice";
+import { useGetProducts } from "src/features/products/hooks/useGetProducts";
 
 export const ProductsScreen = () => {
   const products = useSelector(selectProductsWithCartCount);
   const pagination = useSelector(selectProductsPagination);
+  const productsFiltersName = useAppSelector(selectProductsFiltersNAme);
   const dispatch = useAppDispatch();
 
   const getNextProducts = () => {
-    dispatch(fetchProducts({ ...pagination }));
+    dispatch(
+      fetchProducts({
+        pagination: {
+          pageNumber: pagination.page,
+          pageSize: pagination.limit,
+        },
+        name: productsFiltersName || undefined,
+      })
+    );
     dispatch(updateProductsPaginationPage(pagination.page + 1));
   };
 
@@ -42,11 +54,7 @@ export const ProductsScreen = () => {
     dispatch(setProductCartCount({ product, count }));
   };
 
-  useEffect(() => {
-    if (!products.length) {
-      getNextProducts();
-    }
-  }, []);
+  useGetProducts();
 
   return (
     <section className={cn(s.root)}>

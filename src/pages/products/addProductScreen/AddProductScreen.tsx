@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
-import { AddProductForm } from "src/features/forms/productForm/AddProductForm";
+import { AddProductForm } from "src/features/products/ui/productForm/AddProductForm";
 import { addNewProduct } from "src/features/products/state/productsSlice";
 import { TNewProduct } from "src/api/services/product/interfaces";
 import { useAppSelector } from "src/app/hooks/useAppSelector";

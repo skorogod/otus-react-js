@@ -1,4 +1,4 @@
-import { AddProductForm } from "../../features/forms/productForm/AddProductForm";
+import { AddProductForm } from "../../features/products/ui/productForm/AddProductForm";
 import { type Meta } from "@storybook/react";
 import { type StoryObj } from "@storybook/react";
 
