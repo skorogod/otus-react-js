@@ -17,13 +17,15 @@ export type TProduct = {
 
 export type TProductDetailsProps = TProduct & {
   inStock: number;
-  onCountChange: (count: number) => void;
+  onCountIncrease: (count: number) => void;
+  onCountDecrease: (count: number) => void;
+  onCountSet: (count: number) => void;
 };
 
 export type TProductCardProps = Omit<
   TProduct,
   "images" | "createdAt" | "updatedAt" | "commandId"
 > &
-  Omit<TBasicCardProps, "header" | "main" | "footer"> & {
-    onCountChange: (count: number) => void;
+  Omit<TBasicCardProps, "header" | "main"> & {
+    onCountChange?: (count: number) => void;
   };

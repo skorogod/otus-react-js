@@ -15,6 +15,7 @@ import { ImagePreview } from "src/shared/imagePreview/ImagePreview";
 export const AddCategoriesForm: FC<TAddCategoriesFormProps> = ({
   className,
   onSubmitCb,
+  onImageChangeCb,
 }) => {
   const { handleSubmit, control, reset, setValue, formState } =
     useForm<TAddCategoriesFormValues>({
@@ -29,7 +30,7 @@ export const AddCategoriesForm: FC<TAddCategoriesFormProps> = ({
   const onSubmit: SubmitHandler<TAddCategoriesFormValues> = (data) => {
     onSubmitCb({
       ...data,
-      photo: data.photo?.name,
+      photo: data.photo || "",
     });
     reset();
   };
@@ -39,6 +40,7 @@ export const AddCategoriesForm: FC<TAddCategoriesFormProps> = ({
       const files = Array.from(e.target.files || []);
 
       const newPreviewImages: string[] = [];
+
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const reader = new FileReader();
@@ -50,7 +52,11 @@ export const AddCategoriesForm: FC<TAddCategoriesFormProps> = ({
         };
         reader.readAsDataURL(file);
       }
-      setValue("photo", files[0]);
+      if (onImageChangeCb && e.target.files) {
+        onImageChangeCb(e.target.files).then((response) =>
+          setValue("photo", response.url)
+        );
+      }
     },
     [setValue]
   );
@@ -72,6 +78,18 @@ export const AddCategoriesForm: FC<TAddCategoriesFormProps> = ({
             <FormTextField
               errors={formState.errors.name?.message || ""}
               title="Название категории"
+              {...field}
+            />
+          )}
+        />
+        <Controller
+          name="photo"
+          control={control}
+          rules={{ required: "Обязательное поле" }}
+          render={({ field }) => (
+            <FormTextField
+              errors={formState.errors.photo?.message || ""}
+              title="Ссылка на изображение"
               {...field}
             />
           )}

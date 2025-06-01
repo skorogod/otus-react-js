@@ -69,11 +69,14 @@ export const categoriesSlice = createSlice({
     setCategoriesError: (state, action) => {
       state.error = action.payload;
     },
+    updateCategoriesPaginationPage: (state, action) => {
+      state.pagination.page = action.payload;
+    },
   },
   extraReducers: (build) => {
     build
       .addCase(fetchCategories.fulfilled, (state, action) => {
-        categoriesAdapter.setAll(state, action.payload);
+        categoriesAdapter.upsertMany(state, action.payload);
       })
       .addCase(addCategory.fulfilled, (state, action) => {
         categoriesAdapter.upsertOne(state, action.payload);
@@ -103,8 +106,14 @@ export const { selectAll: selectCategories } = categoriesAdapter.getSelectors(
   (state: RootState) => state.categories
 );
 
-export const { setCategoriesError, setCategoriesStatus } =
-  categoriesSlice.actions;
+export const selectCategoriesPagination = (state: RootState) =>
+  state.categories.pagination;
+
+export const {
+  setCategoriesError,
+  setCategoriesStatus,
+  updateCategoriesPaginationPage,
+} = categoriesSlice.actions;
 
 export const selectCategoriesStatus = (state: RootState) =>
   state.categories.status;

@@ -6,6 +6,7 @@ import { Modal } from "src/shared/modal/Modal";
 import { AddCategoriesForm } from "../addCategoriesForm/AddCategoriesForm";
 import s from "./addCategoryModal.module.scss";
 import cn from "clsx";
+import { uploadFileService } from "src/api/services/uploadFile/uploadFileService";
 
 type Props = {
   visible: boolean;
@@ -19,9 +20,18 @@ export const AddCategoryModal: FC<Props> = ({ visible, onCloseClick }) => {
     dispatch(addCategory(newCategory));
   };
 
+  const onImageChangeCb = async (files: FileList) => {
+    const formData = new FormData();
+    formData.append("file", files[0]);
+    return await uploadFileService.upload(formData);
+  };
+
   return (
     <Modal className={cn(s.root)} visible={visible} onCloseClick={onCloseClick}>
-      <AddCategoriesForm onSubmitCb={onSubmitCb} />
+      <AddCategoriesForm
+        onSubmitCb={onSubmitCb}
+        onImageChangeCb={onImageChangeCb}
+      />
     </Modal>
   );
 };

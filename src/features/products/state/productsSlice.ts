@@ -1,6 +1,7 @@
 import {
   createAsyncThunk,
   createEntityAdapter,
+  createSelector,
   createSlice,
   isAnyOf,
 } from "@reduxjs/toolkit";
@@ -97,6 +98,16 @@ export const { updateProductsPaginationPage, setProductsError } =
 
 export const { selectAll: selectProducts, selectById: selectProductById } =
   productsAdapter.getSelectors((state: RootState) => state.products);
+
+export const selectProductsWithCartCount = createSelector(
+  selectProducts,
+  (state: RootState) => state.cart.items,
+  (products, productsInCart) =>
+    products.map((product) => ({
+      ...product,
+      cartCount: productsInCart[product.id]?.quantity || 0,
+    }))
+);
 
 export const selectProductsStatus = (state: RootState) => state.products.status;
 export const selectProductsError = (state: RootState) => state.products.error;

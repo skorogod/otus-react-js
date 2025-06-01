@@ -55,7 +55,8 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
   const onSubmit: SubmitHandler<TProductFormValues> = (data) => {
     onSubmitCb({
       ...data,
-      price: Number((data.oldPrice * (100 - data.discount)).toFixed(2)),
+      desc: data.description,
+      price: Number(((data.oldPrice * (100 - data.discount)) / 100).toFixed(2)),
       photos: data.photos.map((photo) => photo.name),
       photo: data.photos[data.mainImageIndex]?.name || "",
     });

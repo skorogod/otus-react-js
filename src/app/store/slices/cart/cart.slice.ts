@@ -14,7 +14,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (
+    increaseProductCartCount: (
       state,
       action: PayloadAction<{ product: TProduct; count: number }>
     ) => {
@@ -42,7 +42,47 @@ const cartSlice = createSlice({
         }
       }
     },
+    decreaseProductCartCount: (
+      state,
+      action: PayloadAction<{ product: TProduct; count: number }>
+    ) => {
+      const product = action.payload.product;
+      const productId = product.id;
 
+      if (state.items[productId]) {
+        if (state.items[productId].quantity > 1) {
+          state.items[productId].quantity -= 1;
+        } else {
+          state.items[productId].quantity = 0;
+        }
+        state.totalItems -= 1;
+        state.totalCost -= product.price;
+
+        if (product.oldPrice) {
+          state.totalDiscount -= product.price - product.oldPrice;
+        }
+      }
+    },
+    setProductCartCount: (
+      state,
+      action: PayloadAction<{ product: TProduct; count: number }>
+    ) => {
+      state.items[action.payload.product.id].quantity = action.payload.count;
+      let totalItems = 0;
+      let totalDiscount = 0;
+      let totalCost = 0;
+      Object.values(state.items).forEach((item) => {
+        totalItems += item.quantity;
+        totalCost += item.quantity * item.product.price;
+        if (item.product.oldPrice) {
+          totalDiscount +=
+            item.quantity * (item.product.oldPrice - item.product.price);
+        }
+      });
+      state.totalCost = totalCost;
+      state.totalDiscount = totalDiscount;
+      state.totalItems = totalItems;
+    },
     removeFromCart: (state, action: PayloadAction<string>) => {
       const productId = action.payload;
       const cartItem = state.items[productId];
@@ -94,8 +134,14 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, updateQuantity, clearCart } =
-  cartSlice.actions;
+export const {
+  increaseProductCartCount,
+  decreaseProductCartCount,
+  setProductCartCount,
+  removeFromCart,
+  updateQuantity,
+  clearCart,
+} = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;
 
 export const selectCartItems = (state: RootState) =>
