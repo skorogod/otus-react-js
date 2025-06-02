@@ -20,18 +20,33 @@ import cn from "clsx";
 import { ProductsFilters } from "src/features/productsFilters/ui/productsFilters/ProductsFilters";
 import { ToCart } from "src/shared/toCart/ToCart";
 import { useAppSelector } from "src/app/hooks/useAppSelector";
-import { selectProductsFiltersNAme } from "src/features/productsFilters/state/productsFiltersSlice";
+import {
+  selectProductsCategoryIds,
+  selectProductsFiltersNAme,
+  selectProductsSortField,
+  selectProductsSortType,
+} from "src/features/productsFilters/state/productsFiltersSlice";
 import { useGetProducts } from "src/features/products/hooks/useGetProducts";
+import { useGetCategories } from "src/features/categories/hooks/useGetCategories";
 
 export const ProductsScreen = () => {
   const products = useSelector(selectProductsWithCartCount);
   const pagination = useSelector(selectProductsPagination);
   const productsFiltersName = useAppSelector(selectProductsFiltersNAme);
+  const productsSortField = useAppSelector(selectProductsSortField);
+  const productsSortType = useAppSelector(selectProductsSortType);
   const dispatch = useAppDispatch();
+  const categories = useGetCategories();
+  const categoryIds = useAppSelector(selectProductsCategoryIds);
 
   const getNextProducts = () => {
     dispatch(
       fetchProducts({
+        categoryIds: categoryIds,
+        sorting: {
+          field: productsSortField,
+          type: productsSortType,
+        },
         pagination: {
           pageNumber: pagination.page,
           pageSize: pagination.limit,
@@ -58,7 +73,7 @@ export const ProductsScreen = () => {
 
   return (
     <section className={cn(s.root)}>
-      <ProductsFilters />
+      <ProductsFilters categories={categories} />
       <ProductList
         products={products}
         renderProduct={(product) => (

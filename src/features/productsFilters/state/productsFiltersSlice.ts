@@ -6,6 +6,7 @@ const initialState: TProductsFiltersState = {
   sortType: "DESC",
   sortField: "createdAt",
   name: "",
+  categoryIds: undefined,
 };
 
 const productsFiltersSlice = createSlice({
@@ -21,12 +22,19 @@ const productsFiltersSlice = createSlice({
     setProductsFiltersName: (state, action) => {
       state.name = action.payload;
     },
+    setCategoryIds: (state, action) => {
+      state.categoryIds = action.payload;
+    },
   },
 });
 
 export const productsFiltersReducer = productsFiltersSlice.reducer;
-export const { setSortType, setSortField, setProductsFiltersName } =
-  productsFiltersSlice.actions;
+export const {
+  setSortType,
+  setSortField,
+  setProductsFiltersName,
+  setCategoryIds,
+} = productsFiltersSlice.actions;
 
 export const selectProductsSortType = (state: RootState) =>
   state.productsFilters.sortType;
@@ -34,3 +42,6 @@ export const selectProductsSortField = (state: RootState) =>
   state.productsFilters.sortField;
 export const selectProductsFiltersNAme = (state: RootState) =>
   state.productsFilters.name;
+
+export const selectProductsCategoryIds = (state: RootState) =>
+  state.productsFilters.categoryIds;

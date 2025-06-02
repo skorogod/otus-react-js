@@ -15,6 +15,12 @@ import {
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
 import { ProductList } from "src/shared/product/productList/ProductList";
 import { ProductCard } from "src/features/products/ui/productCard/ProductCard";
+import { useGetCategories } from "src/features/categories/hooks/useGetCategories";
+import {
+  selectProductsSortField,
+  selectProductsSortType,
+  selectProductsCategoryIds,
+} from "src/features/productsFilters/state/productsFiltersSlice";
 
 type Props = {
   className?: string;
@@ -25,12 +31,21 @@ export const ProductPannel: FC<Props> = ({ className }) => {
   const products = useAppSelector(selectProducts);
   const pagination = useAppSelector(selectProductsPagination);
   const dispatch = useAppDispatch();
+  const categories = useGetCategories();
+  const productsSortField = useAppSelector(selectProductsSortField);
+  const productsSortType = useAppSelector(selectProductsSortType);
+  const categoryIds = useAppSelector(selectProductsCategoryIds);
 
   const onModalClose = () => setModalVisible(false);
 
   const getNextProducts = () => {
     dispatch(
       fetchProducts({
+        categoryIds: categoryIds,
+        sorting: {
+          field: productsSortField,
+          type: productsSortType,
+        },
         pagination: {
           pageNumber: pagination.page,
           pageSize: pagination.limit,
@@ -48,7 +63,7 @@ export const ProductPannel: FC<Props> = ({ className }) => {
 
   return (
     <Box component="article" className={cn(s.root, className)}>
-      <ProductsFilters />
+      <ProductsFilters categories={categories} />
       <Box component="div" className={cn(s.main)}>
         <Button
           onClick={() => setModalVisible(true)}
