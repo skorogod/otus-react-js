@@ -13,7 +13,7 @@ import {
   increaseProductCartCount,
   decreaseProductCartCount,
   setProductCartCount,
-} from "src/app/store/slices/cart/cart.slice";
+} from "src/features/cart/cart.slice";
 import { TProduct } from "src/interfaces/product.interface";
 import s from "./productScreen.module.scss";
 import cn from "clsx";

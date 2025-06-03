@@ -4,6 +4,7 @@ import cn from "clsx";
 import { Box, Tabs, Tab } from "@mui/material";
 import { ProductPannel } from "src/features/products/ui/productPannel/ProductPannel";
 import { CategoryPannel } from "src/features/categories/ui/categoryPannel/CategoryPannel";
+import { OrderPannel } from "src/features/orders/ui/orderPannel/orderPannel";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -41,8 +42,9 @@ export const CabinetScreen = () => {
         onChange={handleChange}
         aria-label="basic tabs example"
       >
-        <Tab label="Товары" id="1" />
-        <Tab label="Категории" id="2" />
+        <Tab label="Товары" id="0" />
+        <Tab label="Категории" id="1" />
+        <Tab label="Заказы" id="2" />
       </Tabs>
       <Box component="div" className={cn(s.pannels)}>
         <CustomTabPanel value={value} index={0}>
@@ -50,6 +52,9 @@ export const CabinetScreen = () => {
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           <CategoryPannel />
+        </CustomTabPanel>
+        <CustomTabPanel value={value} index={2}>
+          <OrderPannel />
         </CustomTabPanel>
       </Box>
     </Box>

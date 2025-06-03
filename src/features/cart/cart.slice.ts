@@ -1,7 +1,7 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ICartState } from "./cart.types";
 import { TProduct } from "src/interfaces/product.interface";
-import { RootState } from "../..";
+import { RootState } from "../../app/store";
 
 const initialState: ICartState = {
   items: {},
@@ -99,7 +99,6 @@ const cartSlice = createSlice({
         }
       }
     },
-
     updateQuantity: (
       state,
       action: PayloadAction<{ productId: string; quantity: number }>
