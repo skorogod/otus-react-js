@@ -1,6 +1,6 @@
 import { createListenerMiddleware, addListener } from "@reduxjs/toolkit";
 import { RootState, AppDispatch } from ".";
-import { addCartListeners } from "@/features/cart/cart.slice";
+import { addCartListeners } from "../../features/cart/cart.slice";
 
 export const listenerMiddleware = createListenerMiddleware();
 

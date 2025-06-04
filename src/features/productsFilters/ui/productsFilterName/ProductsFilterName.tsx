@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import { IconButton, TextField, TextFieldProps } from "@mui/material";
-import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
+import { useAppDispatch } from "../../../../app/store/hooks/useAppDispatch";
 import { setProductsFiltersName } from "../../state/productsFiltersSlice";
 import ClearIcon from "@mui/icons-material/Clear";
 

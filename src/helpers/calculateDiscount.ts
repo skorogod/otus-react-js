@@ -1,5 +1,5 @@
-import { TProduct } from "@/interfaces/product.interface";
-import { TAccountType } from "@/interfaces/accountType.interface";
+import { TProduct } from "../interfaces/product.interface";
+import { TAccountType } from "../interfaces/accountType.interface";
 
 type TParams = {
   accountType: TAccountType;

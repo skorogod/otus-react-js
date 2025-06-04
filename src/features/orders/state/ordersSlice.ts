@@ -3,15 +3,15 @@ import {
   createAsyncThunk,
   createSlice,
 } from "@reduxjs/toolkit";
-import { Order } from "@/interfaces/order.interface";
-import { RootState } from "@/app/store";
-import { TApiResponseError } from "@/api/services/base/interface";
-import { orderService } from "@/api/services/order/orderService";
+import { Order } from "../../../interfaces/order.interface";
+import { RootState } from "../../../app/store";
+import { TApiResponseError } from "../../../api/services/base/interface";
+import { orderService } from "../../../api/services/order/orderService";
 import {
   TAddOrderParams,
   TGetOrdersResponse,
-} from "@/api/services/order/interfaces";
-import { clearCart } from "@/features/cart/cart.slice";
+} from "../../../api/services/order/interfaces";
+import { clearCart } from "../../../features/cart/cart.slice";
 import { OrderStatus } from "./interface";
 
 const ordersAdapter = createEntityAdapter<Order>();

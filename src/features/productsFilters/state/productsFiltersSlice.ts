@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { TProductsFiltersState } from "./interface";
-import { RootState } from "@/app/store";
+import { RootState } from "../../../app/store";
 
 const initialState: TProductsFiltersState = {
   sortType: "DESC",
@@ -40,7 +40,7 @@ export const selectProductsSortType = (state: RootState) =>
   state.productsFilters.sortType;
 export const selectProductsSortField = (state: RootState) =>
   state.productsFilters.sortField;
-export const selectProductsFiltersNAme = (state: RootState) =>
+export const selectProductsFiltersName = (state: RootState) =>
   state.productsFilters.name;
 
 export const selectProductsCategoryIds = (state: RootState) =>

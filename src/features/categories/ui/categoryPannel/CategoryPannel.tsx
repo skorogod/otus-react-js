@@ -1,19 +1,19 @@
-import { Box, Button } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
 import s from "./categoryPannel.module.scss";
 import cn from "clsx";
 import AddIcon from "@mui/icons-material/Add";
 import { AddCategoryModal } from "../addCategoryModal/AddCategoryModal";
 import { CategoriesList } from "../categoriesList/CategoriesList";
-import { useAppSelector } from "@/app/hooks/useAppSelector";
+import { useAppSelector } from "../../../../app/hooks/useAppSelector";
 import {
   fetchCategories,
   selectCategories,
   selectCategoriesPagination,
 } from "../../state/categoriesSlice";
-import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
+import { useAppDispatch } from "../../../../app/store/hooks/useAppDispatch";
 import { CategoryCard } from "../categoryCard/CategoryCard";
 import { updateCategoriesPaginationPage } from "../../state/categoriesSlice";
+import { Button, Box } from "@mui/material";
 
 type Props = {
   className?: string;

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
-import { initializeAuth, selectUserId } from "@/app/store/slices/auth/auth";
-import { useNavigateTo } from "@/app/hooks/useNavigate";
-import { authService } from "@/api/services/auth/auth";
+import { useAppDispatch } from "../../app/store/hooks/useAppDispatch";
+import { initializeAuth, selectUserId } from "../../app/store/slices/auth/auth";
+import { useNavigateTo } from "../../app/hooks/useNavigate";
+import { authService } from "../../api/services/auth/auth";
 
 export const ProtectedComponent = () => {
   const userId = useSelector(selectUserId);

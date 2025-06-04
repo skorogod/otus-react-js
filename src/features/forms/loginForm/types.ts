@@ -1,4 +1,4 @@
-import { AuthCredentials } from "@/api/services/auth/interface";
+import { AuthCredentials } from "../../../api/services/auth/interface";
 
 export type TLoginFormValues = {
   password: string;

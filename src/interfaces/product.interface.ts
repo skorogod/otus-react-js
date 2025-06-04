@@ -1,4 +1,4 @@
-import { TBasicCardProps } from "@/shared/basicCard/basicCard.interface";
+import { TBasicCardProps } from "../shared/basicCard/basicCard.interface";
 import { Category } from "./category.interface";
 
 export type TProduct = {

@@ -1,38 +1,38 @@
 import React from "react";
 import { ProductList } from "../../../shared/product/productList/ProductList";
-import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
+import { useAppDispatch } from "../../../app/store/hooks/useAppDispatch";
 import {
   fetchProducts,
   selectProductsPagination,
   selectProductsWithCartCount,
   updateProductsPaginationPage,
-} from "@/features/products/state/productsSlice";
-import { ProductCard } from "@/features/products/ui/AddProductCard/ProductCard";
+} from "../../../features/products/state/productsSlice";
+import { ProductCard } from "../../../features/products/ui/AddProductCard/ProductCard";
 import { useSelector } from "react-redux";
 import {
   increaseProductCartCount,
   decreaseProductCartCount,
   setProductCartCount,
-} from "@/features/cart/cart.slice";
-import { TProduct } from "@/interfaces/product.interface";
+} from "../../../features/cart/cart.slice";
+import { TProduct } from "../../../interfaces/product.interface";
 import s from "./productScreen.module.scss";
 import cn from "clsx";
-import { ProductsFilters } from "@/features/productsFilters/ui/productsFilters/ProductsFilters";
-import { ToCart } from "@/shared/toCart/ToCart";
-import { useAppSelector } from "@/app/hooks/useAppSelector";
+import { ProductsFilters } from "../../../features/productsFilters/ui/productsFilters/ProductsFilters";
+import { ToCart } from "../../../shared/toCart/ToCart";
+import { useAppSelector } from "../../../app/hooks/useAppSelector";
 import {
   selectProductsCategoryIds,
-  selectProductsFiltersNAme,
+  selectProductsFiltersName,
   selectProductsSortField,
   selectProductsSortType,
-} from "@/features/productsFilters/state/productsFiltersSlice";
-import { useGetProducts } from "@/features/products/hooks/useGetProducts";
-import { useGetCategories } from "@/features/categories/hooks/useGetCategories";
+} from "../../../features/productsFilters/state/productsFiltersSlice";
+import { useGetProducts } from "../../../features/products/hooks/useGetProducts";
+import { useGetCategories } from "../../../features/categories/hooks/useGetCategories";
 
 export const ProductsScreen = () => {
   const products = useSelector(selectProductsWithCartCount);
   const pagination = useSelector(selectProductsPagination);
-  const productsFiltersName = useAppSelector(selectProductsFiltersNAme);
+  const productsFiltersName = useAppSelector(selectProductsFiltersName);
   const productsSortField = useAppSelector(selectProductsSortField);
   const productsSortType = useAppSelector(selectProductsSortType);
   const dispatch = useAppDispatch();

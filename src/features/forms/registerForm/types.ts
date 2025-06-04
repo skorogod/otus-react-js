@@ -1,4 +1,4 @@
-import { SignUpCredentials } from "@/api/services/auth/interface";
+import { SignUpCredentials } from "../../../api/services/auth/interface";
 
 export type TRegisterFormValues = {
   email: string;

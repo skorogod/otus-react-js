@@ -1,20 +1,20 @@
 import React, { FC, useLayoutEffect, useState } from "react";
-import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
-import { Modal } from "@/shared/modal/Modal";
+import { useAppDispatch } from "../../../../app/store/hooks/useAppDispatch";
+import { Modal } from "../../../../shared/modal/Modal";
 import {
   selectProductById,
   selectUpdateProductId,
   updateProduct,
 } from "../../state/productsSlice";
-import { TUpdateProductParams } from "@/api/services/product/interfaces";
+import { TUpdateProductParams } from "../../../../api/services/product/interfaces";
 import s from "./updateProduct.module.scss";
 import cn from "clsx";
-import { Category } from "@/interfaces/category.interface";
-import { categoryService } from "@/api/services/category/category.service";
-import { uploadFileService } from "@/api/services/uploadFile/uploadFileService";
+import { Category } from "../../../../interfaces/category.interface";
+import { categoryService } from "../../../../api/services/category/category.service";
+import { uploadFileService } from "../../../../api/services/uploadFile/uploadFileService";
 import { UpdateProductForm } from "../updateProductForm/UpdateProductForm";
-import { useAppSelector } from "@/app/hooks/useAppSelector";
-import { RootState } from "@/app/store";
+import { useAppSelector } from "../../../../app/hooks/useAppSelector";
+import { RootState } from "../../../../app/store";
 
 type Props = {
   visible: boolean;

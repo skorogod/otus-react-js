@@ -1,13 +1,13 @@
 import React, { FC } from "react";
+import { useAppDispatch } from "../../../../app/store/hooks/useAppDispatch";
+import { ProductsSortTypeSelect } from "../productsSortTypeSelect/ProductsSortTypeSelect";
 import s from "./products.module.scss";
 import cn from "clsx";
 import { Box, SelectChangeEvent } from "@mui/material";
 import { ProductsSortFieldSelect } from "../productsSortFieldSelect/ProductsSortFieldSelect";
-import { ProductsSortTypeSelect } from "../productsSortTypeSelect/ProductsSortTypeSelect";
 import { ProductsFitlerName } from "../productsFilterName/ProductsFilterName";
-import { Category } from "@/interfaces/category.interface";
+import { Category } from "../../../../interfaces/category.interface";
 import { CategoriesFilter } from "../categoriesFilter/CategoriesFilter";
-import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
 import { setCategoryIds } from "../../state/productsFiltersSlice";
 
 type Props = {

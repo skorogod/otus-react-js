@@ -1,20 +1,20 @@
-import { useAppSelector } from "@/app/hooks/useAppSelector";
-import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
-import {
-  selectProductsCategoryIds,
-  selectProductsFiltersNAme,
-  selectProductsSortField,
-  selectProductsSortType,
-} from "@/features/productsFilters/state/productsFiltersSlice";
+import { useAppSelector } from "../../../app/hooks/useAppSelector";
+import { useAppDispatch } from "../../../app/store/hooks/useAppDispatch";
+import { useEffect } from "react";
 import {
   fetchProducts,
   selectProductsPagination,
 } from "../state/productsSlice";
-import { useEffect } from "react";
+import {
+  selectProductsSortField,
+  selectProductsSortType,
+  selectProductsCategoryIds,
+} from "../../productsFilters/state/productsFiltersSlice";
+import { selectProductsFiltersName } from "../../../features/productsFilters/state/productsFiltersSlice";
 
 export const useGetProducts = () => {
   const dispatch = useAppDispatch();
-  const productsFilterName = useAppSelector(selectProductsFiltersNAme);
+  const productsFilterName = useAppSelector(selectProductsFiltersName);
   const pagination = useAppSelector(selectProductsPagination);
   const productsSortField = useAppSelector(selectProductsSortField);
   const productsSortType = useAppSelector(selectProductsSortType);

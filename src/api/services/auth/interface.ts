@@ -1,4 +1,4 @@
-import { TProfile } from "@/app/store/slices/auth/interface";
+import { TProfile } from "../../../app/store/slices/auth/interface";
 
 export interface AuthCredentials {
   email: string;

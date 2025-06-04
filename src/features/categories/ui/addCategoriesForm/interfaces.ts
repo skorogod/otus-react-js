@@ -1,5 +1,5 @@
-import { TAddCategory } from "@/api/services/category/interfaces";
-import { TUploadFileResponse } from "@/api/services/uploadFile/interfaces";
+import { TAddCategory } from "../../../../api/services/category/interfaces";
+import { TUploadFileResponse } from "../../../../api/services/uploadFile/interfaces";
 
 export type TAddCategoriesFormValues = {
   name: string;

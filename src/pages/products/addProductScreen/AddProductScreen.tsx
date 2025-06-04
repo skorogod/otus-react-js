@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
-import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
-import { AddProductForm } from "@/features/products/ui/AddProductForm/AddProductForm";
-import { addNewProduct } from "@/features/products/state/productsSlice";
-import { TNewProduct } from "@/api/services/product/interfaces";
-import { useAppSelector } from "@/app/hooks/useAppSelector";
-import { fetchCategories } from "@/features/categories/state/categoriesSlice";
-import { selectCategories } from "@/features/categories/state/categoriesSlice";
+import { useAppDispatch } from "../../../app/store/hooks/useAppDispatch";
+import { AddProductForm } from "../../../features/products/ui/AddProductForm/AddProductForm";
+import { addNewProduct } from "../../../features/products/state/productsSlice";
+import { TNewProduct } from "../../../api/services/product/interfaces";
+import { useAppSelector } from "../../../app/hooks/useAppSelector";
+import { fetchCategories } from "../../../features/categories/state/categoriesSlice";
+import { selectCategories } from "../../../features/categories/state/categoriesSlice";
 import {
   selectProductsStatus,
   selectProductsError,
-} from "@/features/products/state/productsSlice";
-import { Spinner } from "@/shared/ui/spinner/Spinner";
-import { Modal } from "@/shared/modal/Modal";
-import { setProductsError } from "@/features/products/state/productsSlice";
+} from "../../../features/products/state/productsSlice";
+import { Spinner } from "../../../shared/ui/spinner/Spinner";
+import { Modal } from "../../../shared/modal/Modal";
+import { setProductsError } from "../../../features/products/state/productsSlice";
 import { Typography } from "@mui/material";
 
 export const AddProductScreen = () => {

@@ -8,7 +8,7 @@ import {
   ListItemText,
   SelectChangeEvent,
 } from "@mui/material";
-import { Category } from "@/interfaces/category.interface";
+import { Category } from "../../../../interfaces/category.interface";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

@@ -1,4 +1,4 @@
-import { TProduct } from "@/interfaces/product.interface";
+import { TProduct } from "../../../interfaces/product.interface";
 
 export type TProductsState = {
   products: { [key: TProduct["id"]]: TProduct };

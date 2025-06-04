@@ -2,8 +2,8 @@ import React, { FC } from "react";
 import { ProductInCart } from "../productInCart/ProductInCart";
 import { TProduct } from "../../interfaces/product.interface";
 import styles from "./productCartList.module.scss";
-import { removeFromCart } from "@/features/cart/cart.slice";
-import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
+import { removeFromCart } from "../../features/cart/cart.slice";
+import { useAppDispatch } from "../../app/store/hooks/useAppDispatch";
 
 type Props = {
   products: Array<TProduct & { counter: number }>;

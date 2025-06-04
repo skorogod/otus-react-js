@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import s from "./categoriesList.module.scss";
-import { InfiniteScroll } from "@/shared/infiniteScroll/Infinitescroll";
-import { Category } from "@/interfaces/category.interface";
+import { InfiniteScroll } from "../../../../shared/infiniteScroll/Infinitescroll";
+import { Category } from "../../../../interfaces/category.interface";
 import cn from "clsx";
 
 type Props = {

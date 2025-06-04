@@ -6,13 +6,13 @@ import {
   isAnyOf,
 } from "@reduxjs/toolkit";
 import { RootState } from "../../../app/store";
-import { productsService } from "@/api/services/product/productFactory";
-import { TProduct } from "@/interfaces/product.interface";
+import { productsService } from "../../../api/services/product/productFactory";
+import { TProduct } from "../../../interfaces/product.interface";
 import {
   TGetProductsParams,
   TNewProduct,
   TUpdateProductParams,
-} from "@/api/services/product/interfaces";
+} from "../../../api/services/product/interfaces";
 
 type TProductsState = {
   updateProductId: TProduct["id"] | null;

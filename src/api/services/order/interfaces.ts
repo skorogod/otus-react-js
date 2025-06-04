@@ -1,4 +1,7 @@
-import type { OrderStatus, Order } from "@/features/orders/state/interface";
+import type {
+  OrderStatus,
+  Order,
+} from "../../../features/orders/state/interface";
 
 export type TGetOrdersParams = {
   productIds?: string[];

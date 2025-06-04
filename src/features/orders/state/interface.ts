@@ -1,5 +1,5 @@
-import type { TProduct } from "@/interfaces/product.interface";
-import type { TProfile } from "@/app/store/slices/auth/interface";
+import type { TProduct } from "../../../interfaces/product.interface";
+import type { TProfile } from "../../../app/store/slices/auth/interface";
 
 export type Order = {
   id: string;
