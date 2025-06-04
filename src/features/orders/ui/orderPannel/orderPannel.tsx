@@ -164,7 +164,12 @@ export const OrderPannel = () => {
                     )}
                   </FormControl>
                 </TableCell>
-                <TableCell>{order.products.length}</TableCell>
+                <TableCell>
+                  {order.products.reduce<number>(
+                    (prev, curr) => prev + curr.quantity,
+                    0
+                  )}
+                </TableCell>
                 <TableCell>
                   {order.products.reduce(
                     (sum, item) => sum + item.product.price * item.quantity,

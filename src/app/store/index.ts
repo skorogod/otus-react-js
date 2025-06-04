@@ -6,6 +6,7 @@ import { categoriesReducer } from "src/features/categories/state/categoriesSlice
 import { profileReducer } from "./slices/profile/profileSlice";
 import { productsFiltersReducer } from "src/features/productsFilters/state/productsFiltersSlice";
 import { ordersReducer } from "src/features/orders/state/ordersSlice";
+import { listenerMiddleware } from "./listenerMiddleware";
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +18,8 @@ export const store = configureStore({
     profile: profileReducer,
     productsFilters: productsFiltersReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().prepend(listenerMiddleware.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

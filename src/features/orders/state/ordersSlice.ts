@@ -120,4 +120,5 @@ export const ordersReducer = ordersSlice.reducer;
 export const { setOrdersStatus, setStatusFilter } = ordersSlice.actions;
 
 export const selectOrdersStatus = (state: RootState) => state.orders.status;
-export const selectStatusFilter = (state: RootState) => state.orders.statusFilter;
+export const selectStatusFilter = (state: RootState) =>
+  state.orders.statusFilter;

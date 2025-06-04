@@ -1,9 +1,24 @@
-import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSelector,
+  createSlice,
+  isAnyOf,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { ICartState } from "./cart.types";
 import { TProduct } from "src/interfaces/product.interface";
 import { RootState } from "../../app/store";
+import { AppStartListening } from "src/app/store/listenerMiddleware";
 
-const initialState: ICartState = {
+const preloadCartSlice = () => {
+  try {
+    const data = localStorage.getItem("productCart");
+    return data ? JSON.parse(data) : null;
+  } catch (e) {
+    return null;
+  }
+};
+
+const initialState: ICartState = preloadCartSlice() || {
   items: {},
   totalItems: 0,
   totalCost: 0,
@@ -152,3 +167,21 @@ export const selectCartProductsWithCount = createSelector(
 
 export const selectProductQuantity = (state: RootState, productId: string) =>
   state.cart.items[productId]?.quantity || 0;
+
+export const addCartListeners = (startAppListening: AppStartListening) => {
+  startAppListening({
+    matcher: isAnyOf(
+      updateQuantity,
+      increaseProductCartCount,
+      decreaseProductCartCount,
+      setProductCartCount,
+      removeFromCart,
+      clearCart
+    ),
+    effect: (_, listenerApi) => {
+      const state = listenerApi.getState() as RootState;
+      const cart = state.cart;
+      localStorage.setItem("productCart", JSON.stringify(cart));
+    },
+  });
+};

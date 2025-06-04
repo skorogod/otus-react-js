@@ -40,13 +40,15 @@ export const ProductCartScreen: FC = () => {
     <div className={styles.productCartScreen}>
       <h1 className={styles.title}>Корзина</h1>
       {Boolean(products.length) && (
-        <Button
-          variant="contained"
-          color="success"
-          onClick={onCreateOrderClick}
-        >
-          Оформить заказ
-        </Button>
+        <Box component="div" className={cn(styles.btnContainer)}>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={onCreateOrderClick}
+          >
+            Оформить заказ
+          </Button>
+        </Box>
       )}
       <ProductCartList products={products} />
       <Modal
