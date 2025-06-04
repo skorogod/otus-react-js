@@ -1,4 +1,4 @@
-import { TUpdateProfileData } from "src/api/services/profile/interface";
+import { TUpdateProfileData } from "@/api/services/profile/interface";
 import { TFormProps } from "../types";
 
 export type ProfileFormValues = {

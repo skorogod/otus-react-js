@@ -3,7 +3,7 @@ import cn from "clsx";
 import s from "./navigation.module.scss";
 import { TNavigationRoute } from "./interfaces";
 import { NavLink } from "react-router-dom";
-import { useTheme } from "src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 
 export type TNavigationProps = {
   className?: string;

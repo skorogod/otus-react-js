@@ -1,16 +1,16 @@
 import { SelectChangeEvent } from "@mui/material";
 import React, { FC } from "react";
-import { useAppSelector } from "src/app/hooks/useAppSelector";
-import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
+import { useAppSelector } from "@/app/hooks/useAppSelector";
+import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
 import {
   selectProductsSortType,
   setSortType,
-} from "src/features/productsFilters/state/productsFiltersSlice";
+} from "@/features/productsFilters/state/productsFiltersSlice";
 import {
   CustomSelect,
   TCustomSelectProps,
   TSelectItem,
-} from "src/shared/select/Select";
+} from "@/shared/select/Select";
 
 const items: Array<TSelectItem> = [
   { value: "ASC", label: "По возрастанию" },

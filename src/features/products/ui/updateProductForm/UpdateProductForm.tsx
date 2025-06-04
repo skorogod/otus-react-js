@@ -8,7 +8,7 @@ import { FormTextField } from "../../../fields/textField/TextField";
 import s from "./updateProductForm.module.scss";
 import { Title } from "../../../../shared/ui/title/Title";
 import type { TUpdateProducFormProps } from "./interfaces";
-import { CategoryField } from "src/features/fields/categoryField/CategoryField";
+import { CategoryField } from "@/features/fields/categoryField/CategoryField";
 
 export const UpdateProductForm: FC<TUpdateProducFormProps> = ({
   title,

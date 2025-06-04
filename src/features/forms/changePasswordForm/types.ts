@@ -1,4 +1,4 @@
-import { TChangeProfilePasswordParams } from "src/api/services/auth/interface";
+import { TChangeProfilePasswordParams } from "@/api/services/auth/interface";
 import { TFormProps } from "../types";
 
 export type ChangePasswordFormValues = {

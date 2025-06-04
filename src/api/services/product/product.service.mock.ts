@@ -1,15 +1,15 @@
-import { TProduct } from "src/interfaces/product.interface";
+import { TProduct } from "@/interfaces/product.interface";
 import { generateMockProducts } from "../../mocks/products.mock";
 import { IProductService } from "./IProductService";
 import { v4 } from "uuid";
-import { Category } from "src/interfaces/category.interface";
+import { Category } from "@/interfaces/category.interface";
 import {
   TGetProductsParams,
   TGetProductsResponse,
   TNewProduct,
 } from "./interfaces";
-import { TProductTypeName } from "src/interfaces/productType.interface";
-import { TAccountTypeName } from "src/interfaces/accountType.interface";
+import { TProductTypeName } from "@/interfaces/productType.interface";
+import { TAccountTypeName } from "@/interfaces/accountType.interface";
 
 const mockCategory: Category = {
   id: "wdjfwdkvndmnsfbvsv",

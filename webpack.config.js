@@ -25,6 +25,7 @@ module.exports = (_, args) => ({
     extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
     alias: {
       src: path.resolve(__dirname, "src/"),
+      "@": path.resolve(__dirname, "src/"),
     },
   },
 

@@ -2,17 +2,17 @@ import React, { FC } from "react";
 import { ProductCartList } from "../../shared/productCartList/ProductCartList";
 import styles from "./productCartScreen.module.scss";
 import { useSelector } from "react-redux";
-import { selectCartProductsWithCount } from "src/features/cart/cart.slice";
+import { selectCartProductsWithCount } from "@/features/cart/cart.slice";
 import { Button, Box, Typography } from "@mui/material";
-import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
+import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
 import {
   addOrder,
   selectOrdersStatus,
   setOrdersStatus,
-} from "src/features/orders/state/ordersSlice";
-import { OrderStatus } from "src/features/orders/state/interface";
-import { Modal } from "src/shared/modal/Modal";
-import { useAppSelector } from "src/app/hooks/useAppSelector";
+} from "@/features/orders/state/ordersSlice";
+import { OrderStatus } from "@/features/orders/state/interface";
+import { Modal } from "@/shared/modal/Modal";
+import { useAppSelector } from "@/app/hooks/useAppSelector";
 import cn from "clsx";
 
 export const ProductCartScreen: FC = () => {

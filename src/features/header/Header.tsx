@@ -12,7 +12,7 @@ import { routes } from "../../routes/routes";
 
 import cn from "clsx";
 import { Link } from "react-router-dom";
-import { TProfile } from "src/app/store/slices/auth/interface";
+import { TProfile } from "@/app/store/slices/auth/interface";
 
 type HeaderProps = {
   user?: TProfile | null;

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { TProductsFiltersState } from "./interface";
-import { RootState } from "src/app/store";
+import { RootState } from "@/app/store";
 
 const initialState: TProductsFiltersState = {
   sortType: "DESC",

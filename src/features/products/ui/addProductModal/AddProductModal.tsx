@@ -1,14 +1,14 @@
 import React, { FC, useLayoutEffect, useState } from "react";
-import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
-import { Modal } from "src/shared/modal/Modal";
+import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
+import { Modal } from "@/shared/modal/Modal";
 import { addNewProduct } from "../../state/productsSlice";
-import { TNewProduct } from "src/api/services/product/interfaces";
-import { AddProductForm } from "src/features/products/ui/AddProductForm/AddProductForm";
+import { TNewProduct } from "@/api/services/product/interfaces";
+import { AddProductForm } from "@/features/products/ui/AddProductForm/AddProductForm";
 import s from "./addProductModal.module.scss";
 import cn from "clsx";
-import { Category } from "src/interfaces/category.interface";
-import { categoryService } from "src/api/services/category/category.service";
-import { uploadFileService } from "src/api/services/uploadFile/uploadFileService";
+import { Category } from "@/interfaces/category.interface";
+import { categoryService } from "@/api/services/category/category.service";
+import { uploadFileService } from "@/api/services/uploadFile/uploadFileService";
 
 type Props = {
   visible: boolean;

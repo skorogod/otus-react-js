@@ -4,21 +4,21 @@ import { ChangePaswordForm } from "../../../features/forms/changePasswordForm/Ch
 import { ProfileForm } from "../../../features/forms/profileForm/ProfileForm";
 import s from "./profileScreen.module.scss";
 import cn from "clsx";
-import { useAppSelector } from "src/app/hooks/useAppSelector";
-import { selectProfile } from "src/app/store/slices/auth/auth";
+import { useAppSelector } from "@/app/hooks/useAppSelector";
+import { selectProfile } from "@/app/store/slices/auth/auth";
 import { shallowEqual } from "react-redux";
-import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
-import { TUpdateProfileData } from "src/api/services/profile/interface";
+import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
+import { TUpdateProfileData } from "@/api/services/profile/interface";
 import {
   selectProfileStatus,
   updateProfile,
   selectProfileError,
   setError,
-} from "src/app/store/slices/profile/profileSlice";
-import { TChangeProfilePasswordParams } from "src/api/services/auth/interface";
-import { changeProfilePassword } from "src/app/store/slices/profile/profileSlice";
-import { LoadingOverlay } from "src/shared/ui/loadingOverlay/LoadingOverlay";
-import { ErrorModal } from "src/shared/errorModal/ErrorModal";
+} from "@/app/store/slices/profile/profileSlice";
+import { TChangeProfilePasswordParams } from "@/api/services/auth/interface";
+import { changeProfilePassword } from "@/app/store/slices/profile/profileSlice";
+import { LoadingOverlay } from "@/shared/ui/loadingOverlay/LoadingOverlay";
+import { ErrorModal } from "@/shared/errorModal/ErrorModal";
 
 export type TProfileScreen = {
   className?: string;

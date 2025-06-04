@@ -5,13 +5,13 @@ import cn from "clsx";
 import AddIcon from "@mui/icons-material/Add";
 import { AddCategoryModal } from "../addCategoryModal/AddCategoryModal";
 import { CategoriesList } from "../categoriesList/CategoriesList";
-import { useAppSelector } from "src/app/hooks/useAppSelector";
+import { useAppSelector } from "@/app/hooks/useAppSelector";
 import {
   fetchCategories,
   selectCategories,
   selectCategoriesPagination,
 } from "../../state/categoriesSlice";
-import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
+import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
 import { CategoryCard } from "../categoryCard/CategoryCard";
 import { updateCategoriesPaginationPage } from "../../state/categoriesSlice";
 
