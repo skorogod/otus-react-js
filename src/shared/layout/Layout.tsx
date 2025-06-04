@@ -3,10 +3,10 @@ import { Header } from "../../features/header/Header";
 import cn from "clsx";
 import s from "./layout.module.scss";
 import { useSelector } from "react-redux";
-import { RootState } from "src/app/store";
-import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
-import { authSlice } from "src/app/store/slices/auth/auth";
-import { authService } from "src/api/services/auth/authFactory";
+import { RootState } from "../../app/store";
+import { useAppDispatch } from "../../app/store/hooks/useAppDispatch";
+import { authSlice } from "../../app/store/slices/auth/auth";
+import { authService } from "../../api/services/auth/authFactory";
 
 type LayoutProps = {
   children: ReactElement;

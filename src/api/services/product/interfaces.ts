@@ -1,4 +1,4 @@
-import type { TProduct } from "src/interfaces/product.interface";
+import type { TProduct } from "../../../interfaces/product.interface";
 
 export type TGetProductsResponse = {
   data: TProduct[];

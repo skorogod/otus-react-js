@@ -4,13 +4,13 @@ import {
   isAnyOf,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { TUpdateProfileData } from "src/api/services/profile/interface";
-import { profileService } from "src/api/services/profile/profile.service";
+import { TUpdateProfileData } from "../../../../api/services/profile/interface";
+import { profileService } from "../../../../api/services/profile/profile.service";
 import { TProfileState } from "./interfaces";
 import { TStatus } from "../types";
 import { RootState } from "../..";
-import { TChangeProfilePasswordParams } from "src/api/services/auth/interface";
-import { TApiResponseError } from "src/api/services/base/interface";
+import { TChangeProfilePasswordParams } from "../../../../api/services/auth/interface";
+import { TApiResponseError } from "../../../../api/services/base/interface";
 
 const initialState: TProfileState = {
   status: "idle",

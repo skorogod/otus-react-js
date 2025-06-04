@@ -1,4 +1,4 @@
-import type { TAccount } from "src/interfaces/account.interface";
+import type { TAccount } from "../../../interfaces/account.interface";
 
 export type TGetAccountsResponse = TAccount[];
 

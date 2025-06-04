@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import s from "./cabinetScreen.module.scss";
 import cn from "clsx";
 import { Box, Tabs, Tab } from "@mui/material";
-import { ProductPannel } from "src/features/products/ui/ProductPannel/ProductPannel";
-import { CategoryPannel } from "src/features/categories/ui/categoryPannel/CategoryPannel";
-import { OrderPannel } from "src/features/orders/ui/orderPannel/orderPannel";
+import { ProductPannel } from "../../../features/products/ui/ProductPannel/ProductPannel";
+import { CategoryPannel } from "../../../features/categories/ui/categoryPannel/CategoryPannel";
+import { OrderPannel } from "../../../features/orders/ui/orderPannel/orderPannel";
 
 interface TabPanelProps {
   children?: React.ReactNode;

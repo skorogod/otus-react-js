@@ -2,10 +2,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./slices/auth/auth";
 import { productsReducer } from "../../features/products/state/productsSlice";
 import { cartReducer } from "../../features/cart/cart.slice";
-import { categoriesReducer } from "src/features/categories/state/categoriesSlice";
+import { categoriesReducer } from "../../features/categories/state/categoriesSlice";
 import { profileReducer } from "./slices/profile/profileSlice";
-import { productsFiltersReducer } from "src/features/productsFilters/state/productsFiltersSlice";
-import { ordersReducer } from "src/features/orders/state/ordersSlice";
+import { productsFiltersReducer } from "../../features/productsFilters/state/productsFiltersSlice";
+import { ordersReducer } from "../../features/orders/state/ordersSlice";
 import { listenerMiddleware } from "./listenerMiddleware";
 
 export const store = configureStore({

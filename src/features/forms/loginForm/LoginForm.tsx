@@ -10,7 +10,7 @@ import {
 import type { TLoginFormValues, TLoginFormProps } from "./types";
 import { PasswordField } from "../../../features/fields/passwordField/PasswordField";
 import { Button } from "@mui/material";
-import { EmailField } from "src/features/fields/emailField/EmailField";
+import { EmailField } from "../../../features/fields/emailField/EmailField";
 
 export const LoginForm: FC<TLoginFormProps> = ({ className, onSubmitCb }) => {
   const { handleSubmit, formState, control, reset } = useForm<TLoginFormValues>(

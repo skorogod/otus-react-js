@@ -7,7 +7,7 @@ on:
       'range-slider', 'products_infinite_scroll', 
       'popover', account_service,
       "forms", "routing", "redux", registration,
-      server_working
+      server_working, diploma
     ]
 
   # Позволяет запустить этот рабочий процесс вручную на вкладке Actions
@@ -40,9 +40,9 @@ jobs:
       - name: Run tests and linter
         run: npm run lint && npm test
 
-      # Собираем приложение
-      - name: Build Application
-        run: npm run build
+      # # Собираем приложение
+      # - name: Build Application
+      #   run: npm run build
 
       # Публикуем приложение на Github Pages
       - name: Deploy to Github Pages

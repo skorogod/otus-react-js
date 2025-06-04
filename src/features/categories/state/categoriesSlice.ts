@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { createEntityAdapter } from "@reduxjs/toolkit";
-import { Category } from "src/interfaces/category.interface";
-import { categoryService } from "src/api/services/category/category.service";
-import { RootState } from "src/app/store";
-import { TAddCategory } from "src/api/services/category/interfaces";
-import { TApiResponseError } from "src/api/services/base/interface";
+import { Category } from "../../../interfaces/category.interface";
+import { categoryService } from "../../../api/services/category/category.service";
+import { RootState } from "../../../app/store";
+import { TAddCategory } from "../../../api/services/category/interfaces";
+import { TApiResponseError } from "../../../api/services/base/interface";
 
 type TCategoriesState = {
   status: "idle" | "pending" | "failed";
