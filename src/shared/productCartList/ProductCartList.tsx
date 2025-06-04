@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { ProductInCart } from "../productInCart/ProductInCart";
 import { TProduct } from "../../interfaces/product.interface";
 import styles from "./productCartList.module.scss";
-import { removeFromCart } from "src/app/store/slices/cart/cart.slice";
+import { removeFromCart } from "src/features/cart/cart.slice";
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
 
 type Props = {

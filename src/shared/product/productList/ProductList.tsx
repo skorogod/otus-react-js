@@ -6,7 +6,9 @@ import { InfiniteScroll } from "../../infiniteScroll/Infinitescroll";
 type TProductsListProps = {
   products: TProduct[];
   getNextProducts: () => void;
-  renderProduct: (product: TProduct) => React.ReactNode;
+  renderProduct: (
+    product: TProduct & { cartCount?: number }
+  ) => React.ReactNode;
 };
 
 export const ProductList: FC<TProductsListProps> = ({

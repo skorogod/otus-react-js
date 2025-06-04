@@ -9,7 +9,9 @@ export const ProductDetails: FC<TProductDetailsProps> = ({
   name,
   price,
   oldPrice,
-  onCountChange,
+  onCountIncrease,
+  onCountDecrease,
+  onCountSet,
   photo,
   desc,
   category,
@@ -61,7 +63,12 @@ export const ProductDetails: FC<TProductDetailsProps> = ({
           </div>
           <div className={productDetailsCss.purchaiseButtons}>
             <div className={productDetailsCss.buy}>
-              <ToCart onCountChange={onCountChange} counter={1}></ToCart>
+              <ToCart
+                onCountIncrease={onCountIncrease}
+                onCountDecrease={onCountDecrease}
+                onCountSet={onCountSet}
+                counter={1}
+              ></ToCart>
               <button className={productDetailsCss.buyButton}>Купить</button>
             </div>
             <a role="button" className={productDetailsCss.contact} href="">

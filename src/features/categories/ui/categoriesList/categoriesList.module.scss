@@ -1,0 +1,9 @@
+.categoriesList { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));;
+    justify-content: space-between;
+    justify-items: center;
+    gap: 2rem;
+    padding: 20px;
+    margin: 0 auto;
+}

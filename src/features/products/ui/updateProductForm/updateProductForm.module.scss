@@ -1,0 +1,22 @@
+.root{
+  padding: 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontalFields {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.horizontalFields > div {
+  flex: 1;
+}
+
+.submitButton {
+  margin-top: 16px !important;
+}

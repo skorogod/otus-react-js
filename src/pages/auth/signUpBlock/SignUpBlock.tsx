@@ -1,13 +1,14 @@
-import React, { FC } from "react";
+import React, { FC, useLayoutEffect } from "react";
 import cn from "clsx";
 import s from "./signUpBlock.module.scss";
 import { RegisterForm } from "../../../features/forms/registerForm/RegisterForm";
 import { Title } from "../../../shared/ui/title/Title";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
-import { AuthCredentials } from "src/api/services/auth/interface";
+import { SignUpCredentials } from "src/api/services/auth/interface";
 import { selectAuthError, signup } from "src/app/store/slices/auth/auth";
 import { useAppSelector } from "src/app/hooks/useAppSelector";
+import { setAuthError } from "src/app/store/slices/auth/auth";
 
 export type TAuthScreen = {
   className?: string;
@@ -17,9 +18,13 @@ export const SignUpBlock: FC<TAuthScreen> = ({ className }) => {
   const dispatch = useAppDispatch();
   const error = useAppSelector(selectAuthError);
 
-  const onSubmitCb = ({ email, password }: AuthCredentials) => {
-    dispatch(signup({ email, password }));
+  const onSubmitCb = ({ email, name, password }: SignUpCredentials) => {
+    dispatch(signup({ email, name, password }));
   };
+
+  useLayoutEffect(() => {
+    dispatch(setAuthError(""));
+  }, []);
 
   return (
     <div className={cn(s.root, className)}>

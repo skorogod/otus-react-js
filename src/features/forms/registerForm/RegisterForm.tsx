@@ -23,7 +23,11 @@ export const RegisterForm: FC<TRegisterFormProps> = ({
     });
 
   const onSubmit: SubmitHandler<TRegisterFormValues> = (data) => {
-    onSubmitCb({ email: data.email, password: data.password });
+    onSubmitCb({
+      email: data.email,
+      name: data.username,
+      password: data.password,
+    });
     reset({
       email: "",
       username: "",
@@ -46,10 +50,10 @@ export const RegisterForm: FC<TRegisterFormProps> = ({
         control={control}
         rules={{
           required: "Введите адрес почты",
-          // pattern: {
-          //   value: /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]/i,
-          //   message: "Неверный формат почты",
-          // },
+          pattern: {
+            value: /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]/i,
+            message: "Неверный формат почты",
+          },
         }}
         render={({ field }) => (
           <EmailField

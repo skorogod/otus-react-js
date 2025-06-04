@@ -4,8 +4,12 @@ $marginBottom: 30px;
 .root {}
 
 .main {
-  margin-top: 100px;
   max-height: calc(100vh - $marginTop);
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-top: 80px;
   overflow: auto;
+  padding: 0 20px;
   scrollbar-width: none;
+  height: 100vh;
 }

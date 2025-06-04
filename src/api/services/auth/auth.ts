@@ -1,9 +1,11 @@
 import { BaseService } from "../base/base.service";
-import { TApiResponseError } from "../base/interface";
+
 import type {
   AuthCredentials,
   AuthResponse,
+  SignUpCredentials,
   SignUpResponse,
+  TGetProfileResponse,
 } from "./interface";
 
 const TOKEN_KEY = "token";
@@ -15,7 +17,6 @@ export class AuthService extends BaseService {
 
   private constructor() {
     super();
-    this.setupInterceptors();
   }
 
   public static getInstance(): AuthService {
@@ -30,20 +31,25 @@ export class AuthService extends BaseService {
   }
 
   public async login(credentials: AuthCredentials): Promise<AuthResponse> {
-    const response = await this.axiosClient.post<AuthResponse>(
-      "/signin",
-      credentials
-    );
-    this.setTokens(response.data.token, response.data.refreshToken || "");
-    return response.data;
+    try {
+      const response = await this.axiosClient.post<AuthResponse>(
+        "/signin",
+        credentials
+      );
+      this.setTokens(response.data.token, response.data.refreshToken || "");
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   }
 
-  public async signup(credentials: AuthCredentials): Promise<SignUpResponse> {
+  public async signup(credentials: SignUpCredentials): Promise<SignUpResponse> {
     try {
       const response = await this.axiosClient.post<SignUpResponse>("signup", {
         ...credentials,
-        comandId: "ofgjmsflgkwsgksfhlfsjhsflgh",
+        commandId: "ksu12345",
       });
+      this.setTokens(response.data.token, "");
       return response.data;
     } catch (error) {
       throw error;
@@ -84,40 +90,40 @@ export class AuthService extends BaseService {
     localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
   }
 
-  protected setupInterceptors(): void {
-    this.axiosClient.interceptors.response.use(
-      (response) => response,
-      async (error) => {
-        const originalRequest = error.config;
-        const apiError = error as TApiResponseError;
+  // protected setupInterceptors(): void {
+  //   this.axiosClient.interceptors.response.use(
+  //     (response) => response,
+  //     async (error) => {
+  //       const originalRequest = error.config;
+  //       const apiError = error as TApiResponseError;
 
-        if (apiError.response?.data.errors) {
-          return Promise.reject(
-            new Error(apiError.response.data.errors[0]?.message || "")
-          );
-        }
+  //       if (apiError.response?.data.errors) {
+  //         return Promise.reject(
+  //           new Error(apiError.response.data.errors[0]?.message || "")
+  //         );
+  //       }
 
-        if (error.response?.status === 401 && !originalRequest._retry) {
-          originalRequest._retry = true;
+  //       if (error.response?.status === 401 && !originalRequest._retry) {
+  //         originalRequest._retry = true;
 
-          try {
-            const { token } = await this.refreshToken();
-            originalRequest.headers.Authorization = `Bearer ${token}`;
-            return this.axiosClient(originalRequest);
-          } catch (refreshError) {
-            this.logout();
-            return Promise.reject(refreshError);
-          }
-        }
+  //         try {
+  //           const { token } = await this.refreshToken();
+  //           originalRequest.headers.Authorization = `Bearer ${token}`;
+  //           return this.axiosClient(originalRequest);
+  //         } catch (refreshError) {
+  //           this.logout();
+  //           return Promise.reject(refreshError);
+  //         }
+  //       }
 
-        return Promise.reject(error);
-      }
-    );
-  }
+  //       return Promise.reject(error);
+  //     }
+  //   );
+  // }
 
-  async getProfile(): Promise<AuthResponse> {
+  async getProfile(): Promise<TGetProfileResponse> {
     try {
-      const response = await this.axiosClient.get("/auth/getProfile");
+      const response = await this.axiosClient.get("/profile");
       if (!response.data) {
         throw new Error("response data not found");
       }

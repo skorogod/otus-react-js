@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { ProductCard } from '../shared/product/productCard/ProductCard';
+import { ProductCard } from '../features/products/ui/AddProductCard/ProductCard';
 import telegramAccountsImage from '../assets/telegram-accounts.jpg';
 import type { TProductCardProps } from 'src/interfaces/product.interface';
 import { TProductTypeName } from 'src/interfaces/productType.interface';

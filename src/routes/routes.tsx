@@ -14,7 +14,7 @@ export const routes: TRoute[] = [
     href: "/cart",
   },
   {
-    label: "Добавить товар",
-    href: "/add-product",
+    label: "Личный кабинет",
+    href: "/cabinet",
   },
 ];

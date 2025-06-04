@@ -20,7 +20,6 @@ export const LoginForm: FC<TLoginFormProps> = ({ className, onSubmitCb }) => {
   );
 
   const onSubmit: SubmitHandler<TLoginFormValues> = (data) => {
-    console.log(data);
     onSubmitCb({ email: data.email, password: data.password });
     reset({
       email: "",

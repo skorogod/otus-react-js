@@ -1,54 +1,103 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ProductList } from "../../../shared/product/productList/ProductList";
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
 import {
   fetchProducts,
-  selectProducts,
   selectProductsPagination,
+  selectProductsWithCartCount,
   updateProductsPaginationPage,
-} from "src/app/store/slices/products/products";
-import { ProductCard } from "src/shared/product/productCard/ProductCard";
+} from "src/features/products/state/productsSlice";
+import { ProductCard } from "src/features/products/ui/AddProductCard/ProductCard";
 import { useSelector } from "react-redux";
-import { addToCart } from "src/app/store/slices/cart/cart.slice";
+import {
+  increaseProductCartCount,
+  decreaseProductCartCount,
+  setProductCartCount,
+} from "src/features/cart/cart.slice";
 import { TProduct } from "src/interfaces/product.interface";
+import s from "./productScreen.module.scss";
+import cn from "clsx";
+import { ProductsFilters } from "src/features/productsFilters/ui/productsFilters/ProductsFilters";
+import { ToCart } from "src/shared/toCart/ToCart";
+import { useAppSelector } from "src/app/hooks/useAppSelector";
+import {
+  selectProductsCategoryIds,
+  selectProductsFiltersNAme,
+  selectProductsSortField,
+  selectProductsSortType,
+} from "src/features/productsFilters/state/productsFiltersSlice";
+import { useGetProducts } from "src/features/products/hooks/useGetProducts";
+import { useGetCategories } from "src/features/categories/hooks/useGetCategories";
 
 export const ProductsScreen = () => {
-  const products = useSelector(selectProducts);
+  const products = useSelector(selectProductsWithCartCount);
   const pagination = useSelector(selectProductsPagination);
+  const productsFiltersName = useAppSelector(selectProductsFiltersNAme);
+  const productsSortField = useAppSelector(selectProductsSortField);
+  const productsSortType = useAppSelector(selectProductsSortType);
   const dispatch = useAppDispatch();
+  const categories = useGetCategories();
+  const categoryIds = useAppSelector(selectProductsCategoryIds);
 
   const getNextProducts = () => {
-    dispatch(fetchProducts({ ...pagination }));
+    dispatch(
+      fetchProducts({
+        categoryIds: categoryIds,
+        sorting: {
+          field: productsSortField,
+          type: productsSortType,
+        },
+        pagination: {
+          pageNumber: pagination.page,
+          pageSize: pagination.limit,
+        },
+        name: productsFiltersName || undefined,
+      })
+    );
     dispatch(updateProductsPaginationPage(pagination.page + 1));
   };
 
-  const onProductCountChange = (product: TProduct) => (count: number) => {
-    dispatch(addToCart({ product, count }));
+  const onIncreaseProductCount = (product: TProduct) => (count: number) => {
+    dispatch(increaseProductCartCount({ product, count }));
   };
 
-  useEffect(() => {
-    if (!products.length) {
-      getNextProducts();
-    }
-  }, []);
+  const onDecreaseProductCount = (product: TProduct) => (count: number) => {
+    dispatch(decreaseProductCartCount({ product, count }));
+  };
+
+  const onSetProductCount = (product: TProduct) => (count: number) => {
+    dispatch(setProductCartCount({ product, count }));
+  };
+
+  useGetProducts();
 
   return (
-    <ProductList
-      products={products}
-      renderProduct={(product) => (
-        <ProductCard
-          key={product.id}
-          id={product.id}
-          name={product.name}
-          desc={product.desc}
-          price={product.price}
-          oldPrice={product.oldPrice}
-          photo={product.photo}
-          category={product.category}
-          onCountChange={onProductCountChange(product)}
-        />
-      )}
-      getNextProducts={getNextProducts}
-    />
+    <section className={cn(s.root)}>
+      <ProductsFilters categories={categories} />
+      <ProductList
+        products={products}
+        renderProduct={(product) => (
+          <ProductCard
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            desc={product.desc}
+            price={product.price}
+            oldPrice={product.oldPrice}
+            photo={product.photo}
+            category={product.category}
+            footer={
+              <ToCart
+                counter={product.cartCount || 0}
+                onCountIncrease={onIncreaseProductCount(product)}
+                onCountDecrease={onDecreaseProductCount(product)}
+                onCountSet={onSetProductCount(product)}
+              />
+            }
+          />
+        )}
+        getNextProducts={getNextProducts}
+      />
+    </section>
   );
 };

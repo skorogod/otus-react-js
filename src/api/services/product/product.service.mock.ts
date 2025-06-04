@@ -1,10 +1,13 @@
 import { TProduct } from "src/interfaces/product.interface";
 import { generateMockProducts } from "../../mocks/products.mock";
 import { IProductService } from "./IProductService";
-import { TGetReourceParams } from "../common.interface";
 import { v4 } from "uuid";
 import { Category } from "src/interfaces/category.interface";
-import { TGetProductsResponse, TNewProduct } from "./interfaces";
+import {
+  TGetProductsParams,
+  TGetProductsResponse,
+  TNewProduct,
+} from "./interfaces";
 import { TProductTypeName } from "src/interfaces/productType.interface";
 import { TAccountTypeName } from "src/interfaces/accountType.interface";
 
@@ -35,16 +38,14 @@ export class ProductServiceMock implements IProductService {
     return ProductServiceMock.instance;
   }
 
-  async getAll({
-    page,
-    limit,
-  }: TGetReourceParams): Promise<TGetProductsResponse> {
+  async getAll(params: TGetProductsParams): Promise<TGetProductsResponse> {
     const data: TProduct[] = [];
-    if (limit) {
+    if (params.pagination?.pageSize && params.pagination?.pageNumber) {
       data.push(
         ...this.mockProducts.slice(
-          (page - 1) * limit,
-          (page - 1) * limit + limit
+          (params.pagination.pageNumber - 1) * params.pagination.pageSize,
+          (params.pagination.pageNumber - 1) * params.pagination.pageSize +
+            params.pagination.pageSize
         )
       );
     } else {
