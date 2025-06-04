@@ -4,8 +4,8 @@ import cn from "clsx";
 import { Box, Button } from "@mui/material";
 import { AddProductModal } from "../addProductModal/AddProductModal";
 import AddIcon from "@mui/icons-material/Add";
-import { ProductsFilters } from "@/features/productsFilters/ui/productsFilters/ProductsFilters";
-import { useAppSelector } from "@/app/hooks/useAppSelector";
+import { ProductsFilters } from "src/features/productsFilters/ui/productsFilters/ProductsFilters";
+import { useAppSelector } from "src/app/hooks/useAppSelector";
 import {
   selectProducts,
   fetchProducts,
@@ -14,15 +14,15 @@ import {
   setUpdateProductId,
   selectUpdateProductId,
 } from "../../state/productsSlice";
-import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
-import { ProductList } from "@/shared/product/productList/ProductList";
-import { ProductCard } from "@/features/products/ui/AddProductCard/ProductCard";
-import { useGetCategories } from "@/features/categories/hooks/useGetCategories";
+import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
+import { ProductList } from "src/shared/product/productList/ProductList";
+import { ProductCard } from "src/features/products/ui/AddProductCard/ProductCard";
+import { useGetCategories } from "src/features/categories/hooks/useGetCategories";
 import {
   selectProductsSortField,
   selectProductsSortType,
   selectProductsCategoryIds,
-} from "@/features/productsFilters/state/productsFiltersSlice";
+} from "src/features/productsFilters/state/productsFiltersSlice";
 import { UpdateProductModal } from "../updateProductModal/UpdateProductModal";
 
 type Props = {

@@ -1,4 +1,4 @@
-import { TProfile } from "@/app/store/slices/auth/interface";
+import { TProfile } from "src/app/store/slices/auth/interface";
 import { BaseService } from "../base/base.service";
 import { TUpdateProfileData } from "./interface";
 import { TChangeProfilePasswordParams } from "../auth/interface";

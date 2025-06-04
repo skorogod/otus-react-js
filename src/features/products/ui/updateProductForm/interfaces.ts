@@ -1,7 +1,7 @@
-import { TUpdateProductParams } from "@/api/services/product/interfaces";
-import { TUploadFileResponse } from "@/api/services/uploadFile/interfaces";
-import { Category } from "@/interfaces/category.interface";
-import { TProduct } from "@/interfaces/product.interface";
+import { TUpdateProductParams } from "src/api/services/product/interfaces";
+import { TUploadFileResponse } from "src/api/services/uploadFile/interfaces";
+import { Category } from "src/interfaces/category.interface";
+import { TProduct } from "src/interfaces/product.interface";
 
 export type TProductFormValues = {
   name: string;

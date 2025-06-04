@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-import { TProduct } from "@/interfaces/product.interface";
-import { TAccountTypeName } from "@/interfaces/accountType.interface";
+import { TProduct } from "src/interfaces/product.interface";
+import { TAccountTypeName } from "src/interfaces/accountType.interface";
 
 //  Функция для генерации рандомной строки
 function str_random(length: number) {

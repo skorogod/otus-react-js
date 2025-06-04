@@ -1,17 +1,17 @@
 import React from "react";
-import { TAddCategory } from "@/api/services/category/interfaces";
-import { useAppSelector } from "@/app/hooks/useAppSelector";
-import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
-import { Spinner } from "@/shared/ui/spinner/Spinner";
-import { Modal } from "@/shared/modal/Modal";
+import { TAddCategory } from "src/api/services/category/interfaces";
+import { useAppSelector } from "src/app/hooks/useAppSelector";
+import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
+import { Spinner } from "src/shared/ui/spinner/Spinner";
+import { Modal } from "src/shared/modal/Modal";
 import { Typography } from "@mui/material";
-import { AddCategoriesForm } from "@/features/categories/ui/addCategoriesForm/AddCategoriesForm";
+import { AddCategoriesForm } from "src/features/categories/ui/addCategoriesForm/AddCategoriesForm";
 import {
   selectCategoriesError,
   setCategoriesError,
   addCategory,
   selectCategoriesStatus,
-} from "@/features/categories/state/categoriesSlice";
+} from "src/features/categories/state/categoriesSlice";
 
 export const AddCategoriesScreen = () => {
   const dispatch = useAppDispatch();

@@ -5,12 +5,12 @@ import {
 } from "./interfaces";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Box, Button } from "@mui/material";
-import { Title } from "@/shared/ui/title/Title";
+import { Title } from "src/shared/ui/title/Title";
 import s from "./addCategoriesForm.module.scss";
 import cn from "clsx";
-import { FormTextField } from "@/features/fields/textField/TextField";
-import { ImageUploadWithRef } from "@/shared/imageUploadField/ImageUploadField";
-import { ImagePreview } from "@/shared/imagePreview/ImagePreview";
+import { FormTextField } from "src/features/fields/textField/TextField";
+import { ImageUploadWithRef } from "src/shared/imageUploadField/ImageUploadField";
+import { ImagePreview } from "src/shared/imagePreview/ImagePreview";
 
 export const AddCategoriesForm: FC<TAddCategoriesFormProps> = ({
   className,

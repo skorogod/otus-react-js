@@ -1,4 +1,4 @@
-import { TAccountType } from "@/interfaces/accountType.interface";
+import { TAccountType } from "src/interfaces/accountType.interface";
 import { BaseService } from "../base/base.service";
 import { TUpdateAccoutTypeParams } from "./interfaces";
 

@@ -1,4 +1,4 @@
-import { Order } from "@/interfaces/order.interface";
+import { Order } from "src/interfaces/order.interface";
 import { BaseService } from "../base/base.service";
 import {
   TAddOrderParams,
@@ -6,7 +6,7 @@ import {
   TGetOrdersResponse,
   TUpdateOrderParams,
 } from "./interfaces";
-import { OrderStatus } from "@/features/orders/state/interface";
+import { OrderStatus } from "src/features/orders/state/interface";
 
 export class OrderService extends BaseService {
   private static instance: OrderService | null;

@@ -5,9 +5,9 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { ICartState } from "./cart.types";
-import { TProduct } from "@/interfaces/product.interface";
+import { TProduct } from "src/interfaces/product.interface";
 import { RootState } from "../../app/store";
-import { AppStartListening } from "@/app/store/listenerMiddleware";
+import { AppStartListening } from "src/app/store/listenerMiddleware";
 
 const preloadCartSlice = () => {
   try {

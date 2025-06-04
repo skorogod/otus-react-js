@@ -4,11 +4,11 @@ import s from "./signUpBlock.module.scss";
 import { RegisterForm } from "../../../features/forms/registerForm/RegisterForm";
 import { Title } from "../../../shared/ui/title/Title";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
-import { SignUpCredentials } from "@/api/services/auth/interface";
-import { selectAuthError, signup } from "@/app/store/slices/auth/auth";
-import { useAppSelector } from "@/app/hooks/useAppSelector";
-import { setAuthError } from "@/app/store/slices/auth/auth";
+import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
+import { SignUpCredentials } from "src/api/services/auth/interface";
+import { selectAuthError, signup } from "src/app/store/slices/auth/auth";
+import { useAppSelector } from "src/app/hooks/useAppSelector";
+import { setAuthError } from "src/app/store/slices/auth/auth";
 
 export type TAuthScreen = {
   className?: string;

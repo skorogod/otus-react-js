@@ -1,5 +1,5 @@
-import { TProduct } from "@/interfaces/product.interface";
-import { TAccountTypeName } from "@/interfaces/accountType.interface";
+import { TProduct } from "src/interfaces/product.interface";
+import { TAccountTypeName } from "src/interfaces/accountType.interface";
 
 export const generateMockProducts = (count: number): TProduct[] =>
   Array.from({ length: count }, (_, index) => ({

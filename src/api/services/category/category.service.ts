@@ -6,7 +6,7 @@ import {
   TUpdateCategoryDiscount,
   TUpdateCategoryParams,
 } from "./interfaces";
-import { Category } from "@/interfaces/category.interface";
+import { Category } from "src/interfaces/category.interface";
 
 export class CategoryService extends BaseService {
   private static instance: CategoryService | null;
