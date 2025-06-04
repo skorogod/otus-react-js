@@ -11,9 +11,11 @@ import { TProduct } from "src/interfaces/product.interface";
 import {
   TGetProductsParams,
   TNewProduct,
+  TUpdateProductParams,
 } from "src/api/services/product/interfaces";
 
 type TProductsState = {
+  updateProductId: TProduct["id"] | null;
   status: "idle" | "pending" | "failed";
   error: string;
   pagination: {
@@ -25,6 +27,7 @@ type TProductsState = {
 
 const productsAdapter = createEntityAdapter<TProduct>();
 const initialState = productsAdapter.getInitialState<TProductsState>({
+  updateProductId: null,
   status: "idle",
   error: "",
   pagination: {
@@ -52,6 +55,14 @@ export const addNewProduct = createAsyncThunk(
   }
 );
 
+export const updateProduct = createAsyncThunk(
+  "products/updateProduct",
+  async ({ id, data }: TUpdateProductParams) => {
+    const result = await productsService.update(id, data);
+    return result;
+  }
+);
+
 const pendingMatcher = isAnyOf(addNewProduct.pending);
 const fulfilledMatcher = isAnyOf(
   addNewProduct.fulfilled,
@@ -69,9 +80,18 @@ export const productsSlice = createSlice({
     setProductsError: (state, action) => {
       state.error = action.payload;
     },
+    setUpdateProductId: (state, action) => {
+      state.updateProductId = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        productsAdapter.updateOne(state, {
+          id: action.payload.id,
+          changes: action.payload,
+        });
+      })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         if (action.payload.pagination.pageNumber === 1) {
           return productsAdapter.setAll(state, action.payload.data);
@@ -96,8 +116,11 @@ export const productsSlice = createSlice({
 });
 
 export const productsReducer = productsSlice.reducer;
-export const { updateProductsPaginationPage, setProductsError } =
-  productsSlice.actions;
+export const {
+  updateProductsPaginationPage,
+  setProductsError,
+  setUpdateProductId,
+} = productsSlice.actions;
 
 export const { selectAll: selectProducts, selectById: selectProductById } =
   productsAdapter.getSelectors((state: RootState) => state.products);
@@ -112,6 +135,8 @@ export const selectProductsWithCartCount = createSelector(
     }))
 );
 
+export const selectUpdateProductId = (state: RootState) =>
+  state.products.updateProductId;
 export const selectProductsStatus = (state: RootState) => state.products.status;
 export const selectProductsError = (state: RootState) => state.products.error;
 export const selectProductsPagination = (state: RootState) =>

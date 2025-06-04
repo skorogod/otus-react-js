@@ -5,27 +5,29 @@ import { Box, Button } from "@mui/material";
 import { ImagePreview } from "../../../../shared/imagePreview/ImagePreview";
 import { ImageUploadWithRef } from "../../../../shared/imageUploadField/ImageUploadField";
 import { FormTextField } from "../../../fields/textField/TextField";
-import s from "./productForm.module.scss";
+import s from "./updateProductForm.module.scss";
 import { Title } from "../../../../shared/ui/title/Title";
-import type { TAddProducFormProps } from "./interfaces";
+import type { TUpdateProducFormProps } from "./interfaces";
 import { CategoryField } from "src/features/fields/categoryField/CategoryField";
 
-export const AddProductForm: FC<TAddProducFormProps> = ({
+export const UpdateProductForm: FC<TUpdateProducFormProps> = ({
+  title,
+  submitBtnLabel,
   onSubmitCb,
   categories,
   onImageChangeCb,
+  product,
 }) => {
   const { handleSubmit, setValue, control, formState, reset } =
     useForm<TProductFormValues>({
       defaultValues: {
-        name: "",
-        description: "",
-        oldPrice: 0,
-        discount: 0,
-        stock: 0,
-        photo: "",
-        mainImageIndex: 0,
-        categoryId: "",
+        ...product,
+        categoryId: product.category.id,
+        discount: product.oldPrice
+          ? 100 - Math.round((product.price * 100) / product.oldPrice)
+          : 0,
+        description: product.desc,
+        stock: Math.round(Math.random() * 100),
       },
     });
 
@@ -60,13 +62,16 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
 
   const onSubmit: SubmitHandler<TProductFormValues> = (data) => {
     onSubmitCb({
-      ...data,
-      desc: data.description,
-      price: data.discount
-        ? Number(((data.oldPrice * (100 - data.discount)) / 100).toFixed(2))
-        : data.oldPrice,
-      oldPrice: data.discount ? data.oldPrice : undefined,
-      photo: data.photo || "",
+      id: product.id,
+      data: {
+        ...data,
+        desc: data.description,
+        price: data.discount
+          ? Number(((data.oldPrice * (100 - data.discount)) / 100).toFixed(2))
+          : data.oldPrice,
+        oldPrice: data.discount ? data.oldPrice : undefined,
+        photo: data.photo || "",
+      },
     });
     reset();
   };
@@ -83,7 +88,7 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
 
   return (
     <Box className={s.root}>
-      <Title>Добавить товар</Title>
+      <Title>{title || "Обновить товар"}</Title>
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
         <Controller
           name={"categoryId"}
@@ -217,7 +222,7 @@ export const AddProductForm: FC<TAddProducFormProps> = ({
           type="submit"
           className={s.submitButton}
         >
-          Добавить товар
+          {submitBtnLabel || "Обновить"}
         </Button>
       </form>
     </Box>

@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC } from "react";
-
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import toCartCss from "./toCart.module.scss";
 
 type toCartProps = {
@@ -21,7 +21,7 @@ export const ToCart: FC<toCartProps> = ({
         onClick={() => onCountIncrease(1)}
         className={[toCartCss.cartButton, toCartCss.button].join(" ")}
       >
-        <i className={toCartCss.cartIcon}></i>
+        <ShoppingCartIcon />
       </button>
     ) : (
       <div className={toCartCss.cartInput}>

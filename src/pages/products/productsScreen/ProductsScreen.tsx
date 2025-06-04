@@ -7,7 +7,7 @@ import {
   selectProductsWithCartCount,
   updateProductsPaginationPage,
 } from "src/features/products/state/productsSlice";
-import { ProductCard } from "src/features/products/ui/productCard/ProductCard";
+import { ProductCard } from "src/features/products/ui/AddProductCard/ProductCard";
 import { useSelector } from "react-redux";
 import {
   increaseProductCartCount,

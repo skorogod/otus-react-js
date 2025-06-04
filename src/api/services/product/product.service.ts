@@ -4,6 +4,7 @@ import {
   TGetProductsParams,
   TGetProductsResponse,
   TNewProduct,
+  TUpdateProductData,
 } from "./interfaces";
 
 export class ProductService extends BaseService {
@@ -47,10 +48,10 @@ export class ProductService extends BaseService {
     return response.data;
   }
 
-  async update(id: string, product: Partial<TProduct>): Promise<TProduct> {
+  async update(id: string, data: TUpdateProductData): Promise<TProduct> {
     const response = await this.axiosClient.put<TProduct>(
       `${this.endpoint}/${id}`,
-      product
+      data
     );
     return response.data;
   }

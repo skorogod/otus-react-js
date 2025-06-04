@@ -13,7 +13,10 @@ export type TProductFormValues = {
   categoryId: string;
 };
 
-export type TAddProducFormProps = {
+export type TProducFormProps = {
+  title?: string;
+  submitBtnLabel?: string;
+  defaultValues?: TProductFormValues;
   onSubmitCb: (data: TNewProduct) => void;
   onImageChangeCb?: (files: FileList) => Promise<TUploadFileResponse>;
   categories: Category[];

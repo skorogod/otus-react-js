@@ -11,16 +11,19 @@ import {
   fetchProducts,
   updateProductsPaginationPage,
   selectProductsPagination,
+  setUpdateProductId,
+  selectUpdateProductId,
 } from "../../state/productsSlice";
 import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
 import { ProductList } from "src/shared/product/productList/ProductList";
-import { ProductCard } from "src/features/products/ui/productCard/ProductCard";
+import { ProductCard } from "src/features/products/ui/AddProductCard/ProductCard";
 import { useGetCategories } from "src/features/categories/hooks/useGetCategories";
 import {
   selectProductsSortField,
   selectProductsSortType,
   selectProductsCategoryIds,
 } from "src/features/productsFilters/state/productsFiltersSlice";
+import { UpdateProductModal } from "../updateProductModal/UpdateProductModal";
 
 type Props = {
   className?: string;
@@ -35,6 +38,7 @@ export const ProductPannel: FC<Props> = ({ className }) => {
   const productsSortField = useAppSelector(selectProductsSortField);
   const productsSortType = useAppSelector(selectProductsSortType);
   const categoryIds = useAppSelector(selectProductsCategoryIds);
+  const updateProductId = useAppSelector(selectUpdateProductId);
 
   const onModalClose = () => setModalVisible(false);
 
@@ -61,6 +65,10 @@ export const ProductPannel: FC<Props> = ({ className }) => {
     }
   }, []);
 
+  const onUpdateClick = (productId: string) => () => {
+    dispatch(setUpdateProductId(productId));
+  };
+
   return (
     <Box component="article" className={cn(s.root, className)}>
       <ProductsFilters categories={categories} />
@@ -73,6 +81,12 @@ export const ProductPannel: FC<Props> = ({ className }) => {
           Добавить
         </Button>
         <AddProductModal visible={modalVisible} onCloseClick={onModalClose} />
+        {updateProductId && (
+          <UpdateProductModal
+            visible={Boolean(updateProductId)}
+            onCloseClick={() => dispatch(setUpdateProductId(null))}
+          />
+        )}
         <ProductList
           products={products}
           renderProduct={(product) => (
@@ -87,7 +101,11 @@ export const ProductPannel: FC<Props> = ({ className }) => {
               category={product.category}
               footer={
                 <Box>
-                  <Button variant="contained" color="success">
+                  <Button
+                    onClick={onUpdateClick(product.id)}
+                    variant="contained"
+                    color="success"
+                  >
                     Изменить
                   </Button>
                 </Box>

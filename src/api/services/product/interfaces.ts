@@ -20,6 +20,20 @@ export type TNewProduct = Omit<
   categoryId: string;
 };
 
+export type TUpdateProductData = {
+  name?: string;
+  photo?: string;
+  desc?: string;
+  oldPrice?: number;
+  price?: number;
+  categoryId?: string;
+};
+
+export type TUpdateProductParams = {
+  id: TProduct["id"];
+  data: TUpdateProductData;
+};
+
 export type TGetProductsParams = {
   name?: string;
   ids?: string[];
