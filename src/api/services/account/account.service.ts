@@ -1,4 +1,4 @@
-import { TAccount } from "src/interfaces/account.interface";
+import { TAccount } from "@/interfaces/account.interface";
 import { BaseService } from "../base/base.service";
 import { TGetAccountByIdParams, TGetAccountsResponse } from "./interfaces";
 

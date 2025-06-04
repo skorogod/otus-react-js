@@ -1,11 +1,11 @@
-import { useAppSelector } from "src/app/hooks/useAppSelector";
-import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
+import { useAppSelector } from "@/app/hooks/useAppSelector";
+import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
 import {
   selectProductsCategoryIds,
   selectProductsFiltersNAme,
   selectProductsSortField,
   selectProductsSortType,
-} from "src/features/productsFilters/state/productsFiltersSlice";
+} from "@/features/productsFilters/state/productsFiltersSlice";
 import {
   fetchProducts,
   selectProductsPagination,

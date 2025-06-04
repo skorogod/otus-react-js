@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import productCardCss from "./productCard.module.scss";
-import { TProductCardProps } from "src/interfaces/product.interface";
+import { TProductCardProps } from "@/interfaces/product.interface";
 import productScss from "../product.module.scss";
-import { BasicCard } from "src/shared/basicCard/BasicCard";
+import { BasicCard } from "@/shared/basicCard/BasicCard";
 
 export const ProductCard: FC<TProductCardProps> = ({
   id,

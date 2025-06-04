@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import s from "./categoryCard.module.scss";
 import cn from "clsx";
-import { BasicCard } from "src/shared/basicCard/BasicCard";
-import { TBasicCardProps } from "src/shared/basicCard/basicCard.interface";
-import { Title } from "src/shared/ui/title/Title";
+import { BasicCard } from "@/shared/basicCard/BasicCard";
+import { TBasicCardProps } from "@/shared/basicCard/basicCard.interface";
+import { Title } from "@/shared/ui/title/Title";
 
 type Props = Omit<TBasicCardProps, "header"> & {
   name: string;

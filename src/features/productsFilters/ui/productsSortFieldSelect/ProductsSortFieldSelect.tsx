@@ -1,17 +1,17 @@
 import React, { FC } from "react";
 import { SelectChangeEvent } from "@mui/material";
-import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
+import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
 import {
   CustomSelect,
   TCustomSelectProps,
   TSelectItem,
-} from "src/shared/select/Select";
+} from "@/shared/select/Select";
 
 import {
   selectProductsSortField,
   setSortField,
-} from "src/features/productsFilters/state/productsFiltersSlice";
-import { useAppSelector } from "src/app/hooks/useAppSelector";
+} from "@/features/productsFilters/state/productsFiltersSlice";
+import { useAppSelector } from "@/app/hooks/useAppSelector";
 
 const items: Array<TSelectItem> = [
   { value: "id", label: "ID" },

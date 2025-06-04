@@ -1,12 +1,12 @@
 import React, { FC } from "react";
-import { TAddCategory } from "src/api/services/category/interfaces";
-import { useAppDispatch } from "src/app/store/hooks/useAppDispatch";
+import { TAddCategory } from "@/api/services/category/interfaces";
+import { useAppDispatch } from "@/app/store/hooks/useAppDispatch";
 import { addCategory } from "../../state/categoriesSlice";
-import { Modal } from "src/shared/modal/Modal";
+import { Modal } from "@/shared/modal/Modal";
 import { AddCategoriesForm } from "../addCategoriesForm/AddCategoriesForm";
 import s from "./addCategoryModal.module.scss";
 import cn from "clsx";
-import { uploadFileService } from "src/api/services/uploadFile/uploadFileService";
+import { uploadFileService } from "@/api/services/uploadFile/uploadFileService";
 
 type Props = {
   visible: boolean;

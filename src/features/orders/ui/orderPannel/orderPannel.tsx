@@ -19,7 +19,7 @@ import {
   Snackbar,
   InputLabel,
 } from "@mui/material";
-import { RootState, AppDispatch } from "src/app/store";
+import { RootState, AppDispatch } from "@/app/store";
 import {
   fetchOrders,
   selectOrdersStatus,

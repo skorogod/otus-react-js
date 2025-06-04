@@ -1,8 +1,8 @@
 import { SelectProps } from "@mui/material";
 import React, { FC } from "react";
-import { Category } from "src/interfaces/category.interface";
+import { Category } from "@/interfaces/category.interface";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
-import { FormItem } from "src/shared/ui/formItem/FormItem";
+import { FormItem } from "@/shared/ui/formItem/FormItem";
 import cn from "clsx";
 import s from "./categoryField.module.scss";
 

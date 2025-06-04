@@ -1,6 +1,6 @@
-import { TAccountType } from "src/interfaces/accountType.interface";
-import { TProduct } from "src/interfaces/product.interface";
-import { Category } from "src/interfaces/category.interface";
+import { TAccountType } from "@/interfaces/accountType.interface";
+import { TProduct } from "@/interfaces/product.interface";
+import { Category } from "@/interfaces/category.interface";
 
 export type TUpdateCategoryParams = {
   id: Category["id"];

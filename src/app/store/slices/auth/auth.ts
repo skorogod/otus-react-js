@@ -12,10 +12,10 @@ import type {
   SignUpCredentials,
   SignUpResponse,
   TGetProfileResponse,
-} from "src/api/services/auth/interface";
-import { authService } from "src/api/services/auth/authFactory";
+} from "@/api/services/auth/interface";
+import { authService } from "@/api/services/auth/authFactory";
 import { RootState } from "../..";
-import { TApiResponseError } from "src/api/services/base/interface";
+import { TApiResponseError } from "@/api/services/base/interface";
 import { updateProfile } from "../profile/profileSlice";
 
 export const TOKEN_KEY = "token";
