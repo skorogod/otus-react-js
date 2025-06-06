@@ -43,6 +43,7 @@ export const fetchOrders = createAsyncThunk<TGetOrdersResponse, void>(
   async (_, storeApi) => {
     const state = storeApi.getState() as RootState;
     const orders = await orderService.getAll({
+      userId: state.auth.user?.id,
       pagination: {
         pageNumber: state.orders.pagination.page,
         pageSize: state.orders.pagination.limit,
